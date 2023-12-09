@@ -1,6 +1,8 @@
 const Home = () => {
     return (
-        <div>Home</div>
+        <div className="centerDiv">
+            <img src="./banner.jpg" alt="welcomeimage" id="homeimg"/>
+        </div>
     );
 };
 
