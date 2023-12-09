@@ -7,6 +7,7 @@ import Calendar from './Pages/calendar';
 import Profile from './Pages/profile';
 import Navbar from './Components/navbar';
 import AddSemester from './Pages/addSemester';
+import CoffeeMel from './Pages/coffeeMel';
 
 //https://hygraph.com/blog/routing-in-react
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <>
       <Navbar/>
       <Routes>
+        <Route Path="/coffeeMel" element={<CoffeeMel/>}/>
         <Route path="/" element={<Home/>} />
         <Route path="/grade" element={<Grade/>} />
         <Route path="/todolist" element={<Todolist/>} />
