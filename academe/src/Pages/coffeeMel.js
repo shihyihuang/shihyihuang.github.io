@@ -1,7 +1,8 @@
 import React,{useState, useEffect, useMemo} from "react";
-import { useGlobalFilter, useTable } from "react-table";
+import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import {coffeeDataColumn} from "../Components/column";
 
+//https://hygraph.com/blog/react-table
 const CoffeeMel = () => {
     const dataApi = "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/cafes-and-restaurants-with-seating-capacity/records?where=trading_name%20like%20%27%25cafe%25%27%20or%20trading_name%20like%20%27%25coffee%25%27%20or%20trading_name%20like%20%27%25c%C3%A1fe%25%27%20and%20trading_name%20like%20%27%25espresso%25%27&limit=100&refine=census_year%3A%222022%22&refine=clue_small_area%3A%22Melbourne%20(CBD)%22&refine=industry_anzsic4_description%3A%22Cafes%20and%20Restaurants%22";
     
@@ -29,7 +30,7 @@ const CoffeeMel = () => {
       state,
       setGlobalFilter,
       prepareRow
-    } = useTable({ columns, data }, useGlobalFilter);
+    } = useTable({ columns, data }, useGlobalFilter, useSortBy);
 
     const {globalFilter} = state;
 
@@ -51,6 +52,9 @@ return (
                             {headerGroup.headers.map((column) => (
                                 <th {...column.getHeaderProps()}>
                                     {column.render('Header')}
+                                    <span>
+                                      {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
+                                    </span>
                                 </th>
                             ))}
                         </tr>
