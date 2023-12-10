@@ -12,22 +12,34 @@ const CoffeeMel = () => {
         try{
             const searchParams = new URLSearchParams({
                 query: 'coffee',
-                // ll: '41.8781,-87.6298',
-                // open_now: 'true',
                 sort: 'DISTANCE'
-              });
-              const results = await fetch(
-                `https://api.foursquare.com/v3/places/search?${searchParams}`,
-                {
-                  method: 'GET',
-                  headers: {
-                    Accept: 'application/json',
-                    Authorization: 'fsq3Y2W2zsFSPy5fDyCjzxmD1FYHj6mCA7vKlEVIPdirgEA=',
-                  }
+              },
+            );
+            const results = await fetch(
+              `https://api.foursquare.com/v3/places/search?${searchParams}`,
+              {
+                method: 'GET',
+                headers: {
+                  Accept: 'application/json',
+                  Authorization: 'fsq3Y2W2zsFSPy5fDyCjzxmD1FYHj6mCA7vKlEVIPdirgEA=',
                 }
-              );
-              const data = await results.json();
-            setData(data);
+              }
+            );
+            const data = await results.json();
+
+            const filteredData = data.results.map(item => ({
+              name: item.name,
+              category: item.categories,
+              address: item.location.formatted_address,
+              geocodes: {
+                latitude: item.geocodes.main.latitude,
+                longitude: item.geocodes.main.longitude,
+              },
+            }));
+        
+            console.log(filteredData);
+
+            setData(filteredData);
         } catch(e){
             console.error("error fetching data:", e);
         }
@@ -43,14 +55,15 @@ const CoffeeMel = () => {
         []
     ); 
     
+    const {
+      getTableProps,
+      getTableBodyProps,
+      headerGroups,
+      rows,
+      prepareRow
+    } = useTable({ columns, data });
 
-    const{
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow
-    } = useTable({columns, data});
+    
 
     return (
         <div className="table-container">
