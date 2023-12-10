@@ -1,60 +1,26 @@
 import React,{useState, useEffect, useMemo} from "react";
-import { useTable } from "react-table";
+import { useGlobalFilter, useTable } from "react-table";
+import {coffeeDataColumn} from "../Components/column";
 
 const CoffeeMel = () => {
-    const [data, setData] = useState([]);
+    const dataApi = "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/cafes-and-restaurants-with-seating-capacity/records?where=trading_name%20like%20%27%25cafe%25%27%20or%20trading_name%20like%20%27%25coffee%25%27%20or%20trading_name%20like%20%27%25c%C3%A1fe%25%27%20and%20trading_name%20like%20%27%25espresso%25%27&limit=100&refine=census_year%3A%222022%22&refine=clue_small_area%3A%22Melbourne%20(CBD)%22&refine=industry_anzsic4_description%3A%22Cafes%20and%20Restaurants%22";
     
+    const [data, setData] = useState([]);
     useEffect(()=>{
-        fetchData();
+      fetchData();
     },[]);
 
     const fetchData = async() => {
         try{
-            const searchParams = new URLSearchParams({
-                query: 'coffee',
-                sort: 'DISTANCE'
-              },
-            );
-            const results = await fetch(
-              `https://api.foursquare.com/v3/places/search?${searchParams}`,
-              {
-                method: 'GET',
-                headers: {
-                  Accept: 'application/json',
-                  Authorization: 'fsq3Y2W2zsFSPy5fDyCjzxmD1FYHj6mCA7vKlEVIPdirgEA=',
-                }
-              }
-            );
-            const data = await results.json();
-
-            const filteredData = data.results.map(item => ({
-              name: item.name,
-              category: item.categories,
-              address: item.location.formatted_address,
-              geocodes: {
-                latitude: item.geocodes.main.latitude,
-                longitude: item.geocodes.main.longitude,
-              },
-            }));
-        
-            console.log(filteredData);
-
-            setData(filteredData);
+            const results = await fetch(dataApi);
+            const responseData = await results.json();
+            setData(responseData.results);
         } catch(e){
             console.error("error fetching data:", e);
         }
     };
 
-    const columns = useMemo(
-        () => [
-            {Header: "Name", accessor: "name"},
-            {Header: "Category", accessor: "categories.name"},
-            {Header: "Address", accessor: "location.formatted_address"},
-            {Header: 'Geocodes', accessor: 'geocodes.main' }
-        ],
-        []
-    ); 
-    
+    const columns = useMemo(() => coffeeDataColumn, []); 
     const {
       getTableProps,
       getTableBodyProps,
@@ -63,35 +29,40 @@ const CoffeeMel = () => {
       prepareRow
     } = useTable({ columns, data });
 
-    
 
-    return (
-        <div className="table-container">
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell) => (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+return (
+        <div>
+            <table {...getTableProps()} className="table table-striped table-hover">
+                <thead>
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th {...column.getHeaderProps()}>
+                                    {column.render('Header')}
+                                </th>
+                            ))}
+                        </tr>
                     ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {rows.map((row) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render('Cell')}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </div>
-      );
+    );
 };
 
 export default CoffeeMel;
