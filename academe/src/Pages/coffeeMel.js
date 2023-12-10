@@ -26,13 +26,25 @@ const CoffeeMel = () => {
       getTableBodyProps,
       headerGroups,
       rows,
+      state,
+      setGlobalFilter,
       prepareRow
-    } = useTable({ columns, data });
+    } = useTable({ columns, data }, useGlobalFilter);
 
+    const {globalFilter} = state;
 
 return (
-        <div>
-            <table {...getTableProps()} className="table table-striped table-hover">
+        <div className="container">
+            <br/>
+            <div style={{ display: 'flex', alignItems: 'center'}}>
+              <label style={{ marginRight: '10px' }}>Search:</label>
+              <input 
+                type="text"
+                value={globalFilter || ''}
+                onChange={(e)=>setGlobalFilter(e.target.value)}
+              />
+            </div>
+            <table {...getTableProps()} className="table table-striped table-hover" >
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
