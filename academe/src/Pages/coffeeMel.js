@@ -1,5 +1,5 @@
 import React,{useState, useEffect, useMemo} from "react";
-import { useGlobalFilter, useSortBy, useTable } from "react-table";
+import { useGlobalFilter, useTable } from "react-table";
 import {coffeeDataColumn} from "../Components/column";
 
 //https://hygraph.com/blog/react-table
@@ -30,7 +30,7 @@ const CoffeeMel = () => {
       state,
       setGlobalFilter,
       prepareRow
-    } = useTable({ columns, data }, useGlobalFilter, useSortBy);
+    } = useTable({ columns, data }, useGlobalFilter);
 
     const {globalFilter} = state;
 
@@ -52,9 +52,6 @@ return (
                             {headerGroup.headers.map((column) => (
                                 <th {...column.getHeaderProps()}>
                                     {column.render('Header')}
-                                    <span>
-                                      {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
-                                    </span>
                                 </th>
                             ))}
                         </tr>

@@ -1,5 +1,11 @@
+import DynamicTable from "../Components/dynamicTable";
+
 const AddSemester = () => {
-    return <div className="centerDiv"> add semeter </div>
+    return (
+        <>
+            <DynamicTable/>
+        </>
+    );
 };
 
 export default AddSemester;

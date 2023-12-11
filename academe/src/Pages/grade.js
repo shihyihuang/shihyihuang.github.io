@@ -19,22 +19,22 @@ const Grade = () => {
       };
 
     return(
-        <div className="centerDiv"> 
-            <button onClick={() => handleClick("addSemester")}><Icon name="add" /></button>
+        <div className="container centerDiv"> 
+            <button onClick={() => handleClick("addSemester")}><Icon name="add"/></button>
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th> Semester </th>
-                        <th> Total Grade </th>
+                        <th> WAM </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td> 1 </td>
+                        <td> 2022 S2 </td>
                         <td> 1 </td>
                     </tr>
                     <tr>
-                        <td> 1 </td>
+                        <td> 2023 S1 </td>
                         <td> 1 </td>
                     </tr>
                 </tbody>
