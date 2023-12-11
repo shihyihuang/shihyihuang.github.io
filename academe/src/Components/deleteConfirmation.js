@@ -1,7 +1,7 @@
 import {Modal, Button} from 'react-bootstrap';
 import React, {useState} from "react";
 
-function ConfirmationModal(props) {
+const ConfirmationModal = (props) => {
     const { context, index, ...modalProps } = props;
 
     const handleClickDelete = () => {
