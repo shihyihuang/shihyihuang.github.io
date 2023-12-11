@@ -1,11 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "../Components/icon"
 //https://app.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
 
 const DynamicTable = () => {
     const [message, setMessage] = useState("");
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(
+       JSON.parse(localStorage.getItem('items')) || []
+       );
+    
+    useEffect(()=> {
+        localStorage.setItem('items', JSON.stringify(items))
+    },[items]);
 
     const updateMessage = (event) => {
         setMessage(event.target.value);
