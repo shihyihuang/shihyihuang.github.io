@@ -3,7 +3,7 @@ import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "../Components/icon"
 //https://app.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
 
-const DynamicTable = () => {
+const DynamicTable = ({column1, column2}) => {
     const [message, setMessage] = useState("");
     const [items, setItems] = useState(
        JSON.parse(localStorage.getItem('items')) || []
@@ -24,15 +24,15 @@ const DynamicTable = () => {
         setMessage("");
     };
 
-    const handleModifySemester = (index, event) => {
+    const handleModifyColumn1 = (index, event) => {
         const updatedItems = [...items];
-        updatedItems[index] = {...updatedItems[index], semester: event.target.value};
+        updatedItems[index] = {...updatedItems[index], column1: event.target.value};
         setItems(updatedItems);
     };
 
-    const handleModifyGrade = (index, event) => {
+    const handleModifyColumn2 = (index, event) => {
         const updatedItems = [...items];
-        updatedItems[index] = {...updatedItems[index], grade: event.target.value};
+        updatedItems[index] = {...updatedItems[index], column2: event.target.value};
         setItems(updatedItems);
     };
 
@@ -48,17 +48,17 @@ const DynamicTable = () => {
                     <td>
                         <input 
                         type="text"
-                        name="semester"
-                        value={o.semester || ""}
-                        onChange={ (event) => handleModifySemester(index, event)} 
+                        name="column1"
+                        value={o.column1 || ""}
+                        onChange={ (event) => handleModifyColumn1(index, event)} 
                         style={{border:'none', background:'transparent'}}/>
                     </td>
                     <td>
                         <input 
                         type="text"
-                        name="grade"
-                        value={o.grade || ""}
-                        onChange={(event) =>  handleModifyGrade(index, event)}
+                        name="column2"
+                        value={o.column2 || ""}
+                        onChange={(event) =>  handleModifyColumn2(index, event)}
                         style={{border:'none', background:'transparent'}}/>
                     </td>
                     <td>
@@ -90,8 +90,8 @@ const DynamicTable = () => {
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th> Semester </th>
-                        <th> Grade </th>
+                        <th> {column1} </th>
+                        <th> {column2} </th>
                         <th></th>
                     </tr>
                 </thead>

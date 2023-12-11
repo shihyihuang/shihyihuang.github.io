@@ -2,25 +2,13 @@ import { useNavigate } from "react-router-dom";
 import DynamicTable from "../Components/dynamicTable";
 
 const Grade = () => {
-    const navigate = useNavigate();
-
-    const pageRoutes = {
-        addSemester: '/addSemester',
-      };
-      
-      const handleClick = (page) => {
-        const route = pageRoutes[page];
-        
-        if (route) {
-          navigate(route);
-        } else {
-          console.error("Can't find your page:", page);
-        }
-      };
 
     return(
         <div className="container"> 
-            <DynamicTable/>
+            <DynamicTable
+                column1={"Semester"}
+                column2={"WAM"}
+            />
             {/* <button onClick={() => handleClick("addSemester")}><Icon name="add"/></button>
             <table className="table table-striped table-hover">
                 <thead>
