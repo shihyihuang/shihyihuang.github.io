@@ -58,3 +58,7 @@ button {
   background-color: transparent;
 }
 
+#addSemesterBtn{
+  height:'40px';
+  align-items: 'center';
+}

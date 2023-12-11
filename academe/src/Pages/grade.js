@@ -1,5 +1,5 @@
-import Icon from "../Components/icon"
 import { useNavigate } from "react-router-dom";
+import DynamicTable from "../Components/dynamicTable";
 
 const Grade = () => {
     const navigate = useNavigate();
@@ -19,8 +19,9 @@ const Grade = () => {
       };
 
     return(
-        <div className="container centerDiv"> 
-            <button onClick={() => handleClick("addSemester")}><Icon name="add"/></button>
+        <div className="container"> 
+            <DynamicTable/>
+            {/* <button onClick={() => handleClick("addSemester")}><Icon name="add"/></button>
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -38,7 +39,7 @@ const Grade = () => {
                         <td> 1 </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> */}
         </div>
     );
 };

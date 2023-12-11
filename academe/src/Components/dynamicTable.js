@@ -1,4 +1,6 @@
 import React from "react";
+import DeleteConfirmation from "./deleteConfirmation";
+import Icon from "../Components/icon"
 //https://app.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
 
 class DynamicTable extends React.Component {
@@ -11,52 +13,71 @@ class DynamicTable extends React.Component {
         }
     }
 
+
     updateMessage(event){
         this.setState({
             message: event.target.value
         });
     }
 
-    handleClick(){
-        var items = this.state.items;
+    handleAdd(){
+        const items = [...this.state.items];
         items.push(this.state.message);
         this.setState({
             items: items
         });
     }
 
-    handleModify(i, event){
-        var items = this.state.items;
+    handleModifySemester(index, event){
+        const items = [...this.state.items];
 
-        items[i] = event.target.value;
+        items[index] = {...items[index], semester: event.target.value};
         this.setState({
             items: items
         });
     }
 
-    handleDelete(i){
-        var items = this.state.items;
+    handleModifyGrade(index, event){
+        const items = [...this.state.items];
 
-        items.splice(i,1);
+        items[index] = {...items[index], grade: event.target.value};
         this.setState({
             items: items
         });
+    }
+
+    handleDelete(index){
+        const items = [...this.state.items];
+
+        items.splice(index,1);
+        this.setState({
+            items: items
+        });
+        console.log("after delete items: ",items);
     }
 
     renderRows(){
-        var context = this;
+        const context = this;
 
-        return this.state.items.map((o,i) => {
+        return this.state.items.map((o,index) => {
             return(
-                <tr key={"item-" + i}>
+                <tr key={"item-" + index}>
                     <td>
                         <input 
                         type="text"
-                        value={o}
-                        onChange={context.handleModify.bind(context,i)} style={{border:'none', background:'transparent'}}/>
+                        name="semester"
+                        value={o.semester || ""}
+                        onChange={context.handleModifySemester.bind(context,index)} style={{border:'none', background:'transparent'}}/>
                     </td>
                     <td>
-                        <button className="btn btn-danger" onClick={context.handleDelete.bind(context, i)}> Delete </button>
+                        <input 
+                        type="text"
+                        name="grade"
+                        value={o.grade || ""}
+                        onChange={context.handleModifyGrade.bind(context,index)} style={{border:'none', background:'transparent'}}/>
+                    </td>
+                    <td>
+                        <DeleteConfirmation context={this} index={index}/>
                     </td>
                 </tr>
             );
@@ -68,15 +89,24 @@ class DynamicTable extends React.Component {
             <div className="container">
                 <br/>
                 <div style={{display: 'flex'}}>
-                <input type="text" onChange={this.updateMessage.bind(this)} style={{height:'40px'}}/>
-                <button className="btn btn-primary"onClick={this.handleClick.bind(this)} style={{marginLeft: '10px', height:'40px', alignItems: 'center'}}> add </button>
+                    {/* <input 
+                        type="text" 
+                        style={{height:'40px', marginRight:'10px'}}
+                        onChange={this.updateMessage.bind(this)} 
+                        /> */}
+                    <button 
+                        id="#addSemesterBtn"
+                        onClick={this.handleAdd.bind(this)}> 
+                        <Icon name="add"/>
+                    </button>
                 </div>
                 <hr/>
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th> Item </th>
-                            <th> Action </th>
+                            <th> Semester </th>
+                            <th> Grade </th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
