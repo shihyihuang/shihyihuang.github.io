@@ -1,36 +1,24 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "../Components/icon";
 // //https://app.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
 
 const DynamicTable = ({ header, STORAGE_KEY }) => {
+  const navigate = useNavigate();
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
-      {
-        column1: "",
-        column2: "",
-      },
-    ]
+    JSON.parse(localStorage.getItem(STORAGE_KEY)) ||
+      [
+        // {
+        //   column1: "",
+        //   column2: "",
+        // },
+      ]
   );
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
-
-  //   const savedData = () => {
-  //     switch (STORAGE_KEY) {
-  //       case "semesters":
-  //         localStorage.setItem("semesters", JSON.stringify(items));
-  //         break;
-  //       default:
-  //         console.error();
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     savedData();
-  //   }, [items]);
 
   const renderHeader = () => {
     return header.map((header, index) => (
@@ -47,34 +35,29 @@ const DynamicTable = ({ header, STORAGE_KEY }) => {
     setItems(updatedItems);
   };
 
-  // const handleModifyColumn = (index, event, target) => {
-  //   const updatedItems = [...items];
-  //   if (target === "column1") {
-  //     updatedItems[index] = {
-  //       ...updatedItems[index],
-  //       column1: event.target.value,
-  //     };
-  //   }
-  //   if (target === "column2") {
-  //     updatedItems[index] = {
-  //       ...updatedItems[index],
-  //       column2: event.target.value,
-  //     };
-  //   }
-  //   setItems(updatedItems);
-  // };
-
-  //   const handleModifyColumn1 = (index, event) => {
-  //     const updatedItems = [...items];
-  //     updatedItems[index] = {
-  //       ...updatedItems[index],
-  //       column1: event.target.value,
-  //     };
-  //     setItems(updatedItems);
-  //   };
-
   const handleAdd = () => {
     setItems([...items, ""]);
+  };
+
+  // const pageRoutes = {
+  //   editSubject: "/grade/editSubject",
+  // };
+
+  // const navigatePage = (page) => {
+  //   const route = pageRoutes[page];
+  //   if (route) {
+  //     navigate(route);
+  //   } else {
+  //     console.error("Can't find your page:", page);
+  //   }
+  // };
+
+  const handleEdit = (item) => {
+    console.log("handleEdit item: ", item);
+    const semester = item.column1;
+    console.log("handleEdit semester: ", semester);
+    console.log("handleEdit type of semester: ", typeof semester);
+    navigate("/editSubject", { state: semester });
   };
 
   const handleDelete = (index) => {
@@ -105,6 +88,12 @@ const DynamicTable = ({ header, STORAGE_KEY }) => {
           />
         </td>
         <td>
+          <button
+            className="btn btn-outline-primary"
+            style={{ marginRight: "10px" }}
+            onClick={() => handleEdit(item)}>
+            Edit
+          </button>
           <DeleteConfirmation context={{ handleDelete }} index={index} />
         </td>
       </tr>
@@ -129,33 +118,21 @@ const DynamicTable = ({ header, STORAGE_KEY }) => {
 
 export default DynamicTable;
 
-//                         <td>
-//                             <button
-//                             className="btn btn-outline-primary"
-//                             style={{marginRight:'10px'}}
-//                             onClick={() => handleEdit("editSemester")}
-//                             >
-//                             Edit
-//                             </button>
-//                         </td>
+// <td>
+//     <button
+//     className="btn btn-outline-primary"
+//     style={{marginRight:'10px'}}
+//     onClick={() => handleEdit("editSemester")}
+//     >
+//     Edit
+//     </button>
+// </td>
 
 //     // const navigate = useNavigate();
-//     // const pageRoutes = {
-//     //     editSemester: '/editSemester',
-//     //   };
-//     //   const navigatePage = (page) => {
-//     //     const route = pageRoutes[page];
 
-//     //     if (route) {
-//     //       navigate(route);
-//     //     } else {
-//     //       console.error("Can't find your page:", page);
-//     //     }
-//     //   };
-
-//     const handleEdit = (items, index) => {
-//         navigatePage("editSemester");
-//     };
+// const handleEdit = (items, index) => {
+//     navigatePage("editSemester");
+// };
 
 //     // const headers = ['Subject', 'Average'];
 
