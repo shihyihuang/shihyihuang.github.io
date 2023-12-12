@@ -6,7 +6,7 @@ import Todolist from './Pages/todolist';
 import Calendar from './Pages/calendar';
 import Profile from './Pages/profile';
 import Navbar from './Components/navbar';
-import AddSemester from './Pages/addSemester';
+import EditSemester from './Pages/editSemester';
 import CoffeeMel from './Pages/coffeeMel';
 
 
@@ -22,7 +22,7 @@ function App() {
         <Route path="/todolist" element={<Todolist/>} />
         <Route path="/calendar" element={<Calendar/>} />
         <Route path="/profile" element={<Profile/>} />
-        <Route path="/addSemester" element={<AddSemester/>}/>
+        <Route path="/editSemester" element={<EditSemester/>}/>
       </Routes>
     </>
   );

@@ -1,35 +1,32 @@
-import { useNavigate } from "react-router-dom";
 import DynamicTable from "../Components/dynamicTable";
+import DeleteConfirmation from "../Components/deleteConfirmation";
+import Icon from "../Components/icon";
+import { useState, useEffect } from "react";
 
 const Grade = () => {
+  const STORAGE_KEY = "semesters";
 
-    return(
-        <div className="container"> 
-            <DynamicTable
-                column1={"Semester"}
-                column2={"WAM"}
-            />
-            {/* <button onClick={() => handleClick("addSemester")}><Icon name="add"/></button>
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th> Semester </th>
-                        <th> WAM </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> 2022 S2 </td>
-                        <td> 1 </td>
-                    </tr>
-                    <tr>
-                        <td> 2023 S1 </td>
-                        <td> 1 </td>
-                    </tr>
-                </tbody>
-            </table> */}
-        </div>
-    );
+  //   const [semesterData, setSemesterData] = useState(
+  //     JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+  //       {
+  //         column1: "",
+  //         column2: "",
+  //       },
+  //     ]
+  //   );
+
+  //   useEffect(() => {
+  //     const storedData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  //     setSemesterData(storedData);
+  //   }, []);
+
+  //   useEffect(() => {
+  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(semesterData));
+  //   }, [semesterData]);
+
+  const header = ["Semester", "WAM"];
+
+  return <DynamicTable header={header} STORAGE_KEY={STORAGE_KEY} />;
 };
 
 export default Grade;
