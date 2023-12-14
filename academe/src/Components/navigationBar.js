@@ -28,9 +28,10 @@ const NavigationBar = () => {
             <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link href="/calendar">Calendar</Nav.Link>
             <Nav.Link href="/todolist">To-Do List</Nav.Link>
-            <NavDropdown title="Grade" id="basic-nav-dropdown">
+            <Nav.Link href="/overallGrade">Grade</Nav.Link>
+            {/* <NavDropdown title="Grade" id="basic-nav-dropdown">
               <NavDropdown.Item href="/overallGrade">Overall</NavDropdown.Item>
-              <NavDropdown.Item href="/semesterOneGrade">
+              <NavDropdown.Item href="/semesterOneGrade" id="sem1">
                 Semester1
               </NavDropdown.Item>
               <NavDropdown.Item href="/semester2">Semester2</NavDropdown.Item>
@@ -40,7 +41,7 @@ const NavigationBar = () => {
             <NavDropdown.Item href="#action/3.4">
               Separated link
             </NavDropdown.Item> */}
-            </NavDropdown>
+            {/* </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

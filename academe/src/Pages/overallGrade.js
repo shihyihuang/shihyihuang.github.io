@@ -1,16 +1,13 @@
-import DynamicTable from "../Components/dynamicTable";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import StaticTable from "../Components/staticTable";
 import { useNavigate } from "react-router-dom";
 
 const OverallGrade = () => {
-  const header = ["Subject", "Average"];
   const navigate = useNavigate();
 
   const handleClick = (event) => {
     const id = event.target.id;
-    navigate("/staticTable", { state: { header: header, id: id } });
+    navigate("/SemesterOneGrade", { state: { id: id } });
     console.log("handleClick b4 st");
     console.log("handleClick id: ", id);
   };

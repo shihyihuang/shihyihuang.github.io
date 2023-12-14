@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import DynamicTable from "../Components/dynamicTable";
+import { useLocation } from "react-router-dom";
 
 const EditAssignment = () => {
   const location = useLocation();
-  const { item } = location.state;
-  const STORAGE_KEY = "assignments";
-  const header = ["Assignment", "Grade"];
+  const { id } = location.state;
+  const header = ["assignment", "grade"];
+  const STORAGE_KEY = id;
+  //   const assignments = [{ assignment: "ass1", grade: "80" }];
 
-  return (
-    <DynamicTable header={header} STORAGE_KEY={STORAGE_KEY} editItem={item} />
-  );
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(assignments));
+
+  return <DynamicTable header={header} STORAGE_KEY={STORAGE_KEY} />;
 };
 
 export default EditAssignment;
