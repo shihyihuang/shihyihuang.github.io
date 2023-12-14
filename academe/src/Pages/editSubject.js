@@ -1,26 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import DynamicTable from "../Components/dynamicTable";
 
 const EditSubject = () => {
   const location = useLocation();
-  const semester = location.state;
+  const { item } = location.state;
   const STORAGE_KEY = "subjects";
-  const header = ["Subjects", "Average"];
-  console.log("EditSubject semester: ", semester);
+  const header = ["subject", "average"];
 
-  return <DynamicTable header={header} STORAGE_KEY={STORAGE_KEY} />;
-  //   const [items, setItems] = useState(
-  //     JSON.parse(localStorage.getItem("items")) || []
-  //   );
-  //   useEffect(() => {
-  //     localStorage.setItem("items", JSON.stringify(items));
-  //   }, [items]);
-  //   return (
-  //     <>
-  //       <DynamicTable column1={"Subject"} column2={"Average"} />
-  //     </>
-  //   );
+  return (
+    <DynamicTable header={header} STORAGE_KEY={STORAGE_KEY} editItem={item} />
+  );
 };
 
 export default EditSubject;
+
+// console.log("EditSubject type of semester: ", typeof semester);
+// console.log("EditSubject semester: ", semester);
+
+// const subjectData = JSON.parse(localStorage.getItem(STORAGE_KEY)); //obj
+// console.log("type of subjectData", typeof subjectData);
+// const addSemester = () => {
+//   if (subjectData == null || !subjectData.hasOwnProperty(semester)) {
+//     localStorage.setItem(
+//       STORAGE_KEY,
+//       JSON.stringify(semester:[{column1: "", column2: ""},])
+//     );
+//   }
+// };
+
+// useEffect(() => {
+//   addSemester();
+// }, []);
+
+// const storedSubjectData = {
+//   [semester]: [
+//     {
+//       subject: "",
+//       average: "",
+//     },
+//   ],
+// };
+
+// useEffect(() => {
+//   localStorage.setItem(STORAGE_KEY, JSON.stringify(storedSubjectData));
+// }, []);
