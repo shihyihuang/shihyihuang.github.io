@@ -5,22 +5,26 @@ import HandleAdd from "./handleAdd";
 import Icon from "../Components/icon";
 // //https://app.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
 
-const DynamicTable = ({ header, STORAGE_KEY, editItem }) => {
+const DynamicTable = ({ header, STORAGE_KEY }) => {
   const navigate = useNavigate();
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+    JSON.parse(localStorage.getItem(STORAGE_KEY)) ||
+      [
+        // {
+        //   column1: "",
+        //   column2: "",
+        // },
+      ]
   );
 
-  const handleSave = () => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  };
-
   useEffect(() => {
-    handleSave();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
   const renderHeader = () => {
-    return header.map((header, index) => <th key={index}> {header} </th>);
+    return header.map((header, index) => (
+      <th key={"item-" + index}> {header} </th>
+    ));
   };
 
   const handleModifyColumn = (index, event, target) => {
@@ -32,19 +36,29 @@ const DynamicTable = ({ header, STORAGE_KEY, editItem }) => {
     setItems(updatedItems);
   };
 
-  // const handleAdd = (STORAGE_KEY, semesterIndex, subjectIndex) => {
-  //   HandleAdd(STORAGE_KEY, semesterIndex, subjectIndex);
+  const handleAdd = () => {
+    setItems([...items, ""]);
+  };
+
+  // const pageRoutes = {
+  //   editSubject: "/grade/editSubject",
+  // };
+
+  // const navigatePage = (page) => {
+  //   const route = pageRoutes[page];
+  //   if (route) {
+  //     navigate(route);
+  //   } else {
+  //     console.error("Can't find your page:", page);
+  //   }
   // };
 
   const handleEdit = (item) => {
-    // console.log("handleEdit item: ", item);
-    const { column1, column2 } = item;
-    if (header[0] === "semester")
-      navigate("/editSubject", { state: { semester: column1, wam: column2 } });
-    if (header[0] === "subjects")
-      navigate("/editAssignment", {
-        state: { subject: column1, average: column2 },
-      });
+    console.log("handleEdit item: ", item);
+    const semester = item.column1;
+    console.log("handleEdit semester: ", semester);
+    console.log("handleEdit type of semester: ", typeof semester);
+    navigate("/editSubject", { state: semester });
   };
 
   const handleDelete = (index) => {
@@ -68,63 +82,29 @@ const DynamicTable = ({ header, STORAGE_KEY, editItem }) => {
           </td>
         ))}
         <td>
-          <HandleAdd
-            STORAGE_KEY={{ STORAGE_KEY }}
-            semesterIndex={index}
-            subjectIndex={index}
-          />
-          <button
+          {/* <button
             className="btn btn-outline-primary"
             style={{ marginRight: "10px" }}
             onClick={() => handleEdit(item)}>
             Edit
-          </button>
+          </button> */}
           <DeleteConfirmation context={{ handleDelete }} index={index} />
         </td>
       </tr>
     ));
   };
 
-  const renderEditRows = () => {
-    return editItem ? (
-      <tr>
-        {header.map((header, columnIndex) => (
-          <td key={`column-${columnIndex}`}>
-            <input
-              type="text"
-              name={header}
-              value={editItem[header] || ""}
-              onChange={(event) => handleModifyColumn(0, event, header)}
-              style={{ border: "none", background: "transparent" }}
-            />
-          </td>
-        ))}
-        <td>
-          {/* <button
-            className="btn btn-outline-primary"
-            style={{ marginRight: "10px" }}
-            onClick={() => handleSave}>
-            Save
-          </button> */}
-          <DeleteConfirmation context={{ handleDelete }} index={0} />
-        </td>
-      </tr>
-    ) : null;
-  };
-
   return (
     <div className="container">
       <br />
-      <HandleAdd
-        STORAGE_KEY={{ STORAGE_KEY }}
-        semesterIndex={0}
-        subjectIndex={0}
-      />
+      <button id="#addSemesterBtn" onClick={handleAdd}>
+        <Icon name="add" />
+      </button>
       <table className="table table-striped table-hover">
         <thead>
           <tr>{renderHeader()}</tr>
         </thead>
-        <tbody>{editItem ? renderEditRows() : renderRows()}</tbody>
+        <tbody>{renderRows()}</tbody>
       </table>
     </div>
   );
