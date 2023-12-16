@@ -3,16 +3,10 @@ import DeleteConfirmation from "../Components/deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
 
-const StaticTable = ({ header, id }) => {
+const StaticTable = ({ header, id, averageArray }) => {
   const navigate = useNavigate();
-
+  console.log("StaticTable averageArray: ", averageArray);
   const STORAGE_KEY = id;
-  console.log("<StaticTable>STORAGE_KEY: ", STORAGE_KEY);
-  console.log(
-    "<StaticTable> local storage of sem1: ",
-    localStorage.getItem(STORAGE_KEY)
-  );
-
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem(STORAGE_KEY) || [])
   );
@@ -47,7 +41,7 @@ const StaticTable = ({ header, id }) => {
   };
 
   const handleAdd = () => {
-    setItems([...items, { unit: "", average: "" }]);
+    setItems([...items, ""]);
   };
 
   const handleEdit = (event) => {
@@ -55,20 +49,33 @@ const StaticTable = ({ header, id }) => {
     navigate("/editAssignment", { state: { id: editId } });
   };
 
+  const retrieveAverageOfUnit = (unit) => {
+    const averageData = averageArray.find((arrayItem) => arrayItem.id === unit);
+    return averageData ? averageData.average : "NaN";
+    //   <td>
+    //     {averageData ? <span> {averageData.average} </span> : <span> no average found</span>}
+    //   </td>
+  };
+
+  //   {/* // return averageArray.map((average, index) => (
+  // //   <tr key={index}>
+  // //     <td>{average.average}</td>
+  // //   </tr>
+  // // )); */}
+
   const renderRows = () => {
     return items.map((item, index) => (
       <tr key={"item-" + index}>
-        {header.map((header, columnIndex) => (
-          <td key={`column-${columnIndex}`}>
-            <input
-              type="text"
-              name={header}
-              value={item[header] || ""}
-              onChange={(event) => handleModifyColumn(index, event, header)}
-              style={{ border: "none", background: "transparent" }}
-            />
-          </td>
-        ))}
+        <td>
+          <input
+            type="text"
+            name="unit"
+            value={item.unit || ""}
+            onChange={(event) => handleModifyColumn(index, event, "unit")}
+            style={{ border: "none", background: "transparent" }}
+          />
+        </td>
+        <td> {retrieveAverageOfUnit(item.unit)}</td>
         <td>
           <button
             className="btn btn-outline-primary"
@@ -100,3 +107,32 @@ const StaticTable = ({ header, id }) => {
 };
 
 export default StaticTable;
+
+//   const renderRows = () => {
+//     return items.map((item, index) => (
+//       <tr key={"item-" + index}>
+//         <td>
+//           <input
+//             type="text"
+//             name="unit"
+//             value={item.unit || ""}
+//             onChange={(event) => handleModifyColumn(index, event, "unit")}
+//             style={{ border: "none", background: "transparent" }}
+//           />
+//         </td>
+//         {averageArray.map((average, index) => (
+//           <td key={index}>{average}</td>
+//         ))}
+//         <td>
+//           <button
+//             className="btn btn-outline-primary"
+//             style={{ marginRight: "10px" }}
+//             onClick={(event) => handleEdit(event)}
+//             id={id + "-" + item.unit}>
+//             Edit
+//           </button>
+//           <DeleteConfirmation context={{ handleDelete }} index={index} />
+//         </td>
+//       </tr>
+//     ));
+//   };

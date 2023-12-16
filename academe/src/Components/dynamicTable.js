@@ -5,21 +5,18 @@ import HandleAdd from "./handleAdd";
 import Icon from "../Components/icon";
 // //https://app.pluralsight.com/guides/creating-dynamic-editable-tables-with-reactjs
 
-const DynamicTable = ({ header, STORAGE_KEY }) => {
+const DynamicTable = ({ header, STORAGE_KEY, onUpdateItems }) => {
   const navigate = useNavigate();
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem(STORAGE_KEY)) ||
-      [
-        // {
-        //   column1: "",
-        //   column2: "",
-        // },
-      ]
+    JSON.parse(localStorage.getItem(STORAGE_KEY)) || [{}]
   );
+  // localStorage.removeItem(STORAGE_KEY);
+  console.log("DynamicTable localStorage: ", localStorage.getItem(STORAGE_KEY));
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
+  // console.log("DynamicTable items: ", items);
 
   const renderHeader = () => {
     return header.map((header, index) => (
@@ -33,10 +30,18 @@ const DynamicTable = ({ header, STORAGE_KEY }) => {
       ...updatedItems[index],
       [target]: event.target.value,
     };
+    onUpdateItems(updatedItems);
+    console.log("<dt> updatedItems: ", updatedItems);
     setItems(updatedItems);
   };
 
+  // const setInitialData = () => {
+  //   return header.map((column) => ({ [column]: "" }));
+  // };
+
   const handleAdd = () => {
+    // const initialData = setInitialData();
+    // setItems([...items, initialData]);
     setItems([...items, ""]);
   };
 
@@ -54,10 +59,7 @@ const DynamicTable = ({ header, STORAGE_KEY }) => {
   // };
 
   const handleEdit = (item) => {
-    console.log("handleEdit item: ", item);
     const semester = item.column1;
-    console.log("handleEdit semester: ", semester);
-    console.log("handleEdit type of semester: ", typeof semester);
     navigate("/editSubject", { state: semester });
   };
 

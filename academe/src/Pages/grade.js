@@ -2,14 +2,13 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useNavigate } from "react-router-dom";
 
-const OverallGrade = () => {
+// localStorage.removeItem("unitAvg");
+const Grade = () => {
   const navigate = useNavigate();
 
   const handleClick = (event) => {
     const id = event.target.id;
-    navigate("/SemesterOneGrade", { state: { id: id } });
-    console.log("handleClick b4 st");
-    console.log("handleClick id: ", id);
+    navigate("/editUnit", { state: { id: id } });
   };
 
   return (
@@ -32,7 +31,7 @@ const OverallGrade = () => {
   );
 };
 
-export default OverallGrade;
+export default Grade;
 
 // localStorage.removeItem("subjects");
 // localStorage.removeItem("assignments");
