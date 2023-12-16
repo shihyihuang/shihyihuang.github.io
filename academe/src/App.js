@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/home";
 import Grade from "./Pages/grade";
@@ -13,9 +13,12 @@ import CoffeeMel from "./Pages/coffeeMel";
 
 //https://hygraph.com/blog/routing-in-react
 function App() {
+  const navigate = useNavigate();
+
   return (
     <>
       <NavigationBar />
+      <button onClick={() => navigate(-1)}>go back</button>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/coffeeMel" element={<CoffeeMel />} />

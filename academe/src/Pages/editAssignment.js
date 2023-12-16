@@ -58,28 +58,51 @@ const EditAssignment = () => {
   const setAverage = () => {
     const average = calculateAverage();
     console.log("average: ", average);
-    // const updateAverageList = [...averageList];
-    const found = averageList.some((item) => item.id === id);
-    if (!found) {
-      const saveData = { id: id, average: average };
-      console.log("setAverage saveData: ", saveData);
-      setAverageList([...averageList, saveData]);
-    }
-    if (found) {
-      averageList.map((item) => {
-        // console.log("b4 if item: ", item);
-        if (item.id === id) {
-          item = {
-            ...item,
-            average: average,
-          };
-          console.log("end of if item: ", item);
-          setAverageList(averageList);
-        }
+
+    // Check if the item with the current ID exists in averageList
+    const foundIndex = averageList.findIndex((item) => item.id === id);
+
+    if (foundIndex === -1) {
+      // If not found, add a new entry
+      setAverageList((prevList) => [...prevList, { id: id, average: average }]);
+    } else {
+      // If found, update the existing entry
+      setAverageList((prevList) => {
+        const updatedList = [...prevList];
+        updatedList[foundIndex] = { id: id, average: average };
+        return updatedList;
       });
     }
+
+    // After setting the state, log the updated averageList
     console.log("setAverage averageList: ", averageList);
   };
+
+  //   const setAverage = () => {
+  //     const average = calculateAverage();
+  //     console.log("average: ", average);
+  //     // const updateAverageList = [...averageList];
+  //     const found = averageList.some((item) => item.id === id);
+  //     if (!found) {
+  //       const saveData = { id: id, average: average };
+  //       console.log("setAverage saveData: ", saveData);
+  //       setAverageList([...averageList, saveData]);
+  //     }
+  //     if (found) {
+  //       averageList.map((item) => {
+  //         // console.log("b4 if item: ", item);
+  //         if (item.id === id) {
+  //           item = {
+  //             ...item,
+  //             average: average,
+  //           };
+  //           console.log("end of if item: ", item);
+  //           setAverageList([...averageList]);
+  //         }
+  //       });
+  //     }
+  //     console.log("setAverage averageList: ", averageList);
+  //   };
 
   //   console.log("EditAssignment unitAvg: ", localStorage.getItem("unitAvg"));
 
@@ -106,10 +129,6 @@ export default EditAssignment;
 
 // console.log("EditSubject type of semester: ", typeof semester);
 // console.log("EditSubject semester: ", semester);
-
-//   useEffect(() => {
-//     setAverage();
-//   }, []);
 
 //   console.log("EditAssignment local storage id: ", localStorage.getItem(id));
 //   console.log("EditAssignment averageList: ", averageList);

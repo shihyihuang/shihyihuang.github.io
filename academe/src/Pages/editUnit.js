@@ -10,6 +10,7 @@ const EditUnit = () => {
   const [unitAvg, setUnitAvg] = useState(
     JSON.parse(localStorage.getItem("unitAvg")) || []
   );
+
   // console.log("id: ", id);
   // console.log("unitAvg[0].id.slice('-')[0]: ", unitAvg[0].id.split("-")[0]);
 
