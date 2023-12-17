@@ -1,44 +1,43 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import StaticTable from "../Components/staticTable";
 import { useState } from "react";
+import Icon from "../Components/icon";
 
 const EditUnit = () => {
   const location = useLocation();
   const { id } = location.state;
   const header = ["unit", "average"];
-  // console.log("type of id", typeof id);
+
   const [unitAvg, setUnitAvg] = useState(
     JSON.parse(localStorage.getItem("unitAvg")) || []
   );
 
-  // console.log("id: ", id);
-  // console.log("unitAvg[0].id.slice('-')[0]: ", unitAvg[0].id.split("-")[0]);
+  // console.log("unitAvg: ", unitAvg);
 
   const retrieveAvg = () => {
     const temp = [];
     unitAvg.map((unit) => {
       if (unit.id.split("-")[0] === id) {
-        // console.log("unit.id.slice(" - ")[0]: ", unit.id.split("-")[0]);
         temp.push({ id: unit.id.split("-")[1], average: unit.average });
-
-        // console.log("type of temp: ", typeof temp);
       }
     });
     return temp;
   };
 
-  // const [average, setAverage] = useState(() => {
-  //   return retrieveAvg();
-  // });
-
-  // setAverage(retrieveAvg());
-
-  console.log("unitAvg: ", unitAvg);
-
   return (
-    <>
-      <StaticTable header={header} id={id} averageArray={retrieveAvg()} />;
-    </>
+    <div className="container">
+      <h5 style={{ marginTop: "20px", marginLeft: "20px" }}>
+        {" "}
+        GARDE / {id.toUpperCase()}
+      </h5>
+      <StaticTable
+        header={header}
+        id={id}
+        averageArray={retrieveAvg()}
+        type={"one"}
+        columnToRender={"unit"}
+      />
+    </div>
   );
 };
 

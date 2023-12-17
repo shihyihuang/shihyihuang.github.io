@@ -3,20 +3,22 @@ import DeleteConfirmation from "../Components/deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
 
-const StaticTable = ({ header, id, averageArray }) => {
+const StaticTable = ({
+  header,
+  id,
+  averageArray,
+  onUpdateItems,
+  type,
+  columnToRender,
+}) => {
   const navigate = useNavigate();
-  console.log("StaticTable averageArray: ", averageArray);
-  const STORAGE_KEY = id;
+
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem(STORAGE_KEY) || [])
+    JSON.parse(localStorage.getItem(id)) || []
   );
 
-  const saveData = () => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  };
-
   useEffect(() => {
-    saveData();
+    localStorage.setItem(id, JSON.stringify(items));
   }, [items]);
 
   const renderHeader = () => {
@@ -31,6 +33,9 @@ const StaticTable = ({ header, id, averageArray }) => {
       ...updatedItems[index],
       [target]: event.target.value,
     };
+    if (id.includes("-")) {
+      onUpdateItems(updatedItems);
+    }
     setItems(updatedItems);
   };
 
@@ -52,26 +57,40 @@ const StaticTable = ({ header, id, averageArray }) => {
   const retrieveAverageOfUnit = (unit) => {
     const averageData = averageArray.find((arrayItem) => arrayItem.id === unit);
     return averageData ? averageData.average : "NaN";
-    //   <td>
-    //     {averageData ? <span> {averageData.average} </span> : <span> no average found</span>}
-    //   </td>
   };
 
-  //   {/* // return averageArray.map((average, index) => (
-  // //   <tr key={index}>
-  // //     <td>{average.average}</td>
-  // //   </tr>
-  // // )); */}
+  const editableColumns = () => {
+    return items.map((item, index) => (
+      <tr key={"item-" + index}>
+        {header.map((header, columnIndex) => (
+          <td key={`column-${columnIndex}`}>
+            <input
+              type="text"
+              name={header}
+              value={item[header] || ""}
+              onChange={(event) => handleModifyColumn(index, event, header)}
+              style={{ border: "none", background: "transparent" }}
+            />
+          </td>
+        ))}
+        <td>
+          <DeleteConfirmation context={{ handleDelete }} index={index} />
+        </td>
+      </tr>
+    ));
+  };
 
-  const renderRows = () => {
+  const autoRenderSecondColumn = (columnToRender) => {
     return items.map((item, index) => (
       <tr key={"item-" + index}>
         <td>
           <input
             type="text"
-            name="unit"
-            value={item.unit || ""}
-            onChange={(event) => handleModifyColumn(index, event, "unit")}
+            name={columnToRender}
+            value={item[columnToRender] || ""}
+            onChange={(event) =>
+              handleModifyColumn(index, event, columnToRender)
+            }
             style={{ border: "none", background: "transparent" }}
           />
         </td>
@@ -81,7 +100,7 @@ const StaticTable = ({ header, id, averageArray }) => {
             className="btn btn-outline-primary"
             style={{ marginRight: "10px" }}
             onClick={(event) => handleEdit(event)}
-            id={id + "-" + item.unit}>
+            id={id + "-" + item[columnToRender]}>
             Edit
           </button>
           <DeleteConfirmation context={{ handleDelete }} index={index} />
@@ -90,49 +109,34 @@ const StaticTable = ({ header, id, averageArray }) => {
     ));
   };
 
+  const renderRows = (type) => {
+    switch (type) {
+      case "one":
+        return autoRenderSecondColumn(columnToRender);
+      case "two":
+        return editableColumns();
+      default:
+        return editableColumns();
+    }
+  };
+
   return (
     <div className="container">
       <br />
-      <button id="#addSemesterBtn" onClick={handleAdd}>
+      <button onClick={() => navigate(-1)}>
+        <Icon name="back" />
+      </button>
+      <button onClick={handleAdd}>
         <Icon name="add" />
       </button>
       <table className="table table-striped table-hover">
         <thead>
           <tr>{renderHeader()}</tr>
         </thead>
-        <tbody>{renderRows()}</tbody>
+        <tbody>{renderRows(type)}</tbody>
       </table>
     </div>
   );
 };
 
 export default StaticTable;
-
-//   const renderRows = () => {
-//     return items.map((item, index) => (
-//       <tr key={"item-" + index}>
-//         <td>
-//           <input
-//             type="text"
-//             name="unit"
-//             value={item.unit || ""}
-//             onChange={(event) => handleModifyColumn(index, event, "unit")}
-//             style={{ border: "none", background: "transparent" }}
-//           />
-//         </td>
-//         {averageArray.map((average, index) => (
-//           <td key={index}>{average}</td>
-//         ))}
-//         <td>
-//           <button
-//             className="btn btn-outline-primary"
-//             style={{ marginRight: "10px" }}
-//             onClick={(event) => handleEdit(event)}
-//             id={id + "-" + item.unit}>
-//             Edit
-//           </button>
-//           <DeleteConfirmation context={{ handleDelete }} index={index} />
-//         </td>
-//       </tr>
-//     ));
-//   };

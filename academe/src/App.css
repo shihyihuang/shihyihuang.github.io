@@ -60,5 +60,7 @@ button {
 
 #addSemesterBtn{
   height:'40px';
+  margin-left: auto; 
+margin-right: 0;
   align-items: 'center';
 }
