@@ -1,18 +1,104 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { isAccordionItemSelected } from "react-bootstrap/esm/AccordionContext";
 import { useNavigate } from "react-router-dom";
 
 // localStorage.removeItem("unitAvg");
 const Grade = () => {
   const navigate = useNavigate();
+  const header = ["semester", "unit", "average"];
 
   const handleClick = (event) => {
     const id = event.target.id;
     navigate("/editUnit", { state: { id: id } });
   };
 
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("unitAvg")) || []
+  );
+
+  const data = [];
+
+  const retrieveOverallData = () => {
+    const sem1Unit = [];
+    const sem2Unit = [];
+    const sem3Unit = [];
+    const sem4Unit = [];
+    var sem1GradeSum = 0;
+    var sem2GradeSum = 0;
+    var sem3GradeSum = 0;
+    var sem4GradeSum = 0;
+    items.map((item) => {
+      const semester = item.id.split("-")[0];
+      const unit = item.id.split("-")[1];
+      switch (semester) {
+        case "sem1":
+          sem1Unit.push(unit);
+          sem1GradeSum += item.average;
+          break;
+        case "sem2":
+          sem2Unit.push(unit);
+          sem2GradeSum += item.average;
+          break;
+        case "sem3":
+          sem3Unit.push(unit);
+          sem3GradeSum += item.average;
+          break;
+        case "sem4":
+          sem4Unit.push(unit);
+          sem4GradeSum += item.average;
+          break;
+        default:
+          return [];
+      }
+    });
+    data.push({
+      semester: "1",
+      unit: sem1Unit.toString(),
+      average: Math.round((sem1GradeSum / sem1Unit.length) * 100) / 100,
+    });
+    data.push({
+      semester: "2",
+      unit: sem2Unit.toString(),
+      average: Math.round((sem2GradeSum / sem2Unit.length) * 100) / 100,
+    });
+    data.push({
+      semester: "3",
+      unit: sem3Unit.toString(),
+      average: Math.round((sem3GradeSum / sem3Unit.length) * 100) / 100,
+    });
+    data.push({
+      semester: "4",
+      unit: sem4Unit.toString(),
+      average: Math.round((sem4GradeSum / sem4Unit.length) * 100) / 100,
+    });
+    return data;
+  };
+
+  console.log("data: ", JSON.stringify(retrieveOverallData()));
+
+  const renderHeader = () => {
+    return header.map((column, index) => <th key={index}> {column} </th>);
+  };
+
+  const renderRows = () => {
+    return data.map((item, dataIndex) => (
+      <tr key={`row-${dataIndex}`}>
+        {header.map((header, headerIndex) => (
+          <td
+            key={`column-${headerIndex}`}
+            name={header}
+            value={item[header] || ""}>
+            {item[header] || "" || []}
+          </td>
+        ))}
+      </tr>
+    ));
+  };
+
   return (
-    <>
+    <div className="container">
       <ButtonGroup aria-label="Basic example" style={{ margin: "50px" }}>
         <Button variant="secondary" id="sem1" onClick={handleClick}>
           Semester1
@@ -27,15 +113,17 @@ const Grade = () => {
           Semester4
         </Button>
       </ButtonGroup>
-    </>
+      <table className="table table-striped table-hover">
+        <thead>
+          <tr>{renderHeader()}</tr>
+        </thead>
+        <tbody>{renderRows()}</tbody>
+      </table>
+    </div>
   );
 };
 
-export default Grade;
+console.log("unitAvg: ", localStorage.getItem("unitAvg"));
+console.log("sem1: ", localStorage.getItem("sem1"));
 
-// localStorage.removeItem("subjects");
-// localStorage.removeItem("assignments");
-// localStorage.removeItem("semesters");
-//   console.log("localStorage subjects", localStorage.getItem("subjects"));
-//   console.log("localStorage semesters", localStorage.getItem("semesters"));
-//   console.log("localStorage assignment", localStorage.getItem("assignments"));
+export default Grade;

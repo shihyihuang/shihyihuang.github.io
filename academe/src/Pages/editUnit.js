@@ -12,7 +12,7 @@ const EditUnit = () => {
     JSON.parse(localStorage.getItem("unitAvg")) || []
   );
 
-  // console.log("unitAvg: ", unitAvg);
+  console.log("<editUnit> unitAvg: ", unitAvg);
 
   const retrieveAvg = () => {
     const temp = [];
@@ -28,7 +28,7 @@ const EditUnit = () => {
     <div className="container">
       <h5 style={{ marginTop: "20px", marginLeft: "20px" }}>
         {" "}
-        GARDE / {id.toUpperCase()}
+        GARDE / {id.toUpperCase()} /{" "}
       </h5>
       <StaticTable
         header={header}

@@ -120,6 +120,15 @@ const StaticTable = ({
     }
   };
 
+  const calculateAverage = () => {
+    var sum = 0;
+    items.map((item) => {
+      sum += item.grade * item.percentage;
+    });
+    if (isNaN(sum)) return "NaN";
+    return sum / 100;
+  };
+
   return (
     <div className="container">
       <br />

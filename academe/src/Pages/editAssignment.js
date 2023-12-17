@@ -35,7 +35,7 @@ const EditAssignment = () => {
     items.map((item) => {
       sum += item.grade * item.percentage;
     });
-    if (isNaN(sum)) return "NaN";
+    if (isNaN(sum)) return 0;
     return sum / 100;
   };
 
