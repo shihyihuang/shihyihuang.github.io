@@ -27,23 +27,57 @@ const StaticTable = ({
     ));
   };
 
+  const [unitAvgArray, setUnitAvgArray] = useState(
+    JSON.parse(localStorage.getItem("unitAvg")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("unitAvg", JSON.stringify(unitAvgArray));
+  }, [unitAvgArray]);
+
+  const [wamArray, setWamArray] = useState(
+    JSON.parse(localStorage.getItem("wam")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("wam", JSON.stringify(wamArray));
+  }, [wamArray]);
+
   const handleModifyColumn = (index, event, target) => {
     const updatedItems = [...items];
     updatedItems[index] = {
       ...updatedItems[index],
       [target]: event.target.value,
     };
-    if (id.includes("-")) {
-      onUpdateItems(updatedItems);
-    }
+    onUpdateItems(updatedItems);
     setItems(updatedItems);
   };
 
-  const handleDelete = (index) => {
+  const remove = (array, key, value) => {
+    const index = array.findIndex((obj) => obj[key] === value);
+    return array.splice(index, 1);
+  };
+
+  const handleDelete = (index, id) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
     setItems(updatedItems);
+    console.log("<table> delete id: ", id);
+
+    const updataedUnitAvg = [...unitAvgArray];
+    remove(updataedUnitAvg, "id", id);
+    setUnitAvgArray(updataedUnitAvg);
+    console.log("updataedUnitAvg: ", updataedUnitAvg);
+
+    const updataedWamAvg = [...wamArray];
+    remove(updataedWamAvg, "id", id);
+    setWamArray(updataedWamAvg);
+    console.log("handleDelete's id", id);
+    console.log("updataedWamAvg: ", updataedWamAvg);
   };
+
+  console.log("unitAvgArray: ", unitAvgArray);
+  console.log("wam: ", JSON.parse(localStorage.getItem("wam")));
 
   const handleAdd = () => {
     setItems([...items, ""]);
@@ -56,12 +90,12 @@ const StaticTable = ({
 
   const retrieveAverageOfUnit = (unit) => {
     const averageData = averageArray.find((arrayItem) => arrayItem.id === unit);
-    return averageData ? averageData.average : "NaN";
+    return averageData ? averageData.average : 0;
   };
 
   const editableColumns = () => {
     return items.map((item, index) => (
-      <tr key={"item-" + index}>
+      <tr key={"row-" + index}>
         {header.map((header, columnIndex) => (
           <td key={`column-${columnIndex}`}>
             <input
@@ -82,28 +116,32 @@ const StaticTable = ({
 
   const autoRenderSecondColumn = (columnToRender) => {
     return items.map((item, index) => (
-      <tr key={"item-" + index}>
-        <td>
-          <input
-            type="text"
-            name={columnToRender}
-            value={item[columnToRender] || ""}
-            onChange={(event) =>
-              handleModifyColumn(index, event, columnToRender)
-            }
-            style={{ border: "none", background: "transparent" }}
-          />
-        </td>
+      <tr key={"row-" + index}>
+        {columnToRender.map((column, columnIndex) => (
+          <td key={"column-" + columnIndex}>
+            <input
+              type="text"
+              name={column}
+              value={item[column] || ""}
+              onChange={(event) => handleModifyColumn(index, event, column)}
+              style={{ border: "none", background: "transparent" }}
+            />
+          </td>
+        ))}
         <td> {retrieveAverageOfUnit(item.unit)}</td>
         <td>
           <button
             className="btn btn-outline-primary"
             style={{ marginRight: "10px" }}
             onClick={(event) => handleEdit(event)}
-            id={id + "-" + item[columnToRender]}>
+            id={id + "-" + item.unit}>
             Edit
           </button>
-          <DeleteConfirmation context={{ handleDelete }} index={index} />
+          <DeleteConfirmation
+            context={{ handleDelete }}
+            index={index}
+            id={id + "-" + item.unit}
+          />
         </td>
       </tr>
     ));
@@ -123,7 +161,7 @@ const StaticTable = ({
   const calculateAverage = () => {
     var sum = 0;
     items.map((item) => {
-      sum += item.grade * item.percentage;
+      sum += item.mark * item.percentage;
     });
     if (isNaN(sum)) return "NaN";
     return sum / 100;

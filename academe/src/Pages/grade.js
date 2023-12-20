@@ -4,10 +4,14 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { isAccordionItemSelected } from "react-bootstrap/esm/AccordionContext";
 import { useNavigate } from "react-router-dom";
 
-// localStorage.removeItem("unitAvg");
 const Grade = () => {
   const navigate = useNavigate();
-  const header = ["semester", "unit", "grade"];
+  const header = ["semester", "unit", "mark"];
+
+  console.log(
+    "<grade> unitAvg's local: ",
+    JSON.parse(localStorage.getItem("unitAvg"))
+  );
 
   const handleClick = (event) => {
     const id = event.target.id;
@@ -25,18 +29,18 @@ const Grade = () => {
       const unit = item.id.split("-")[1];
 
       if (!temp[semester]) {
-        temp[semester] = { units: [], gradeSum: 0 };
+        temp[semester] = { units: [], markSum: 0 };
       }
       temp[semester].units.push(unit);
-      temp[semester].gradeSum += item.average;
+      temp[semester].markSum += item.average;
     });
 
     return Object.keys(temp).map((semester) => ({
       semester: semester,
       unit: temp[semester].units.join(", "),
-      grade:
+      mark:
         Math.round(
-          (temp[semester].gradeSum / temp[semester].units.length) * 100
+          (temp[semester].markSum / temp[semester].units.length) * 100
         ) / 100,
     }));
   };
