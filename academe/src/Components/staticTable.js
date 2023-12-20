@@ -64,22 +64,11 @@ const StaticTable = ({
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
     setItems(updatedItems);
-    console.log("<table> delete id: ", id);
 
     const updataedUnitAvg = [...unitAvgArray];
     remove(updataedUnitAvg, "id", id);
     setUnitAvgArray(updataedUnitAvg);
-    console.log("updataedUnitAvg: ", updataedUnitAvg);
-
-    const updataedWamAvg = [...wamArray];
-    remove(updataedWamAvg, "id", id);
-    setWamArray(updataedWamAvg);
-    console.log("handleDelete's id", id);
-    console.log("updataedWamAvg: ", updataedWamAvg);
   };
-
-  console.log("unitAvgArray: ", unitAvgArray);
-  console.log("wam: ", JSON.parse(localStorage.getItem("wam")));
 
   const handleAdd = () => {
     setItems([...items, ""]);
@@ -96,7 +85,7 @@ const StaticTable = ({
   };
 
   const allAutoRenderColumns = () => {
-    return wamArray.map((item, dataIndex) => (
+    return array.map((item, dataIndex) => (
       <tr key={`row-${dataIndex}`}>
         {header.map((header, headerIndex) => (
           <td

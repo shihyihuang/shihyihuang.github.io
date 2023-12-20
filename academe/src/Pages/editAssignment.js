@@ -9,22 +9,9 @@ const EditAssignment = () => {
   const { id } = location.state;
   const header = ["assignment", "percentage", "mark"];
 
-  console.log(
-    "<editAssignment>",
-    id,
-    "'s local: ",
-    JSON.parse(localStorage.getItem(id))
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem(id)) || []
   );
-
-  const [items, setItems] = useState(() => {
-    const initialData = [{ assignment: "", percentage: "", mark: "" }];
-    const localStorageData = JSON.parse(localStorage.getItem(id));
-    if (localStorageData === null) {
-      localStorage.setItem(id, JSON.stringify(initialData));
-      return initialData;
-    }
-    return localStorageData;
-  });
 
   const handleUpdateItems = (updatedItems) => {
     setItems(updatedItems);

@@ -9,13 +9,6 @@ const EditUnit = () => {
   const { id } = location.state;
   const header = ["unit", "year level", "credit points", "mark"];
 
-  console.log(
-    "<editUnit>",
-    id,
-    "'s local: ",
-    JSON.parse(localStorage.getItem(id))
-  );
-
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem(id)) || []
   );
@@ -46,47 +39,40 @@ const EditUnit = () => {
     return temp;
   };
 
-  console.log("wamArray: ", wamArray);
-
   const calculateWam = () => {
     const unitArray = [];
     var weightedMark = 0;
-    var weightCredit = 0;
+    var weightedCredit = 0;
     items.map((item) => {
       const avgItem = unitAvg.find(
         (avgItem) => item.unit === avgItem.id.split("-")[1]
       );
-      unitArray.push(item.unit);
       if (avgItem) {
+        unitArray.push(item.unit);
         switch (item["year level"]) {
           case "1":
             weightedMark += avgItem.average * 0.5 * item["credit points"];
-            weightCredit += 0.5 * item["credit points"];
+            weightedCredit += 0.5 * item["credit points"];
             break;
           case undefined:
             return NaN;
-          // wamObjArray.push({
-          //   id: avgItem.id,
-          //   wam: NaN,
-          // });
           default:
             weightedMark += avgItem.average * 1 * item["credit points"];
-            weightCredit += 1 * item["credit points"];
+            weightedCredit += 1 * item["credit points"];
         }
       }
     });
-    const wamOfSemester =
-      Math.round((weightedMark / weightCredit + Number.EPSILON) * 1000) / 1000;
-    // console.log("<eu >typeof wamOfSemester: ", typeof wamOfSemester);
     const infoOfSemester = {
       semester: id,
-      unit: unitArray.join(", "),
-      wam: wamOfSemester,
+      unit: unitArray,
+      weightedMark: weightedMark,
+      weightedCredit: weightedCredit,
+      wam:
+        Math.round((weightedMark / weightedCredit + Number.EPSILON) * 1000) /
+        1000,
     };
     return infoOfSemester;
   };
-
-  console.log("infoOfSemester: ", calculateWam());
 
   const setWam = () => {
     const infoOfSemester = calculateWam();
@@ -99,6 +85,8 @@ const EditUnit = () => {
         {
           semester: infoOfSemester.semester,
           unit: infoOfSemester.unit,
+          weightedMark: infoOfSemester.weightedMark,
+          weightedCredit: infoOfSemester.weightedCredit,
           wam: infoOfSemester.wam,
         },
       ]);
@@ -108,33 +96,14 @@ const EditUnit = () => {
         updatedItems[foundIndex] = {
           semester: infoOfSemester.semester,
           unit: infoOfSemester.unit,
+          weightedMark: infoOfSemester.weightedMark,
+          weightedCredit: infoOfSemester.weightedCredit,
           wam: infoOfSemester.wam,
         };
         return updatedItems;
       });
     }
   };
-
-  // const WamOfSemester = () => {
-  //   const wamObjArray = calculateWam();
-  //   var wamOfSemester = 0;
-  //   var temp = 0;
-  //   wamObjArray.map((wamObj) => {
-  //     temp += wamObj.wam;
-  //   });
-  //   wamOfSemester = temp / wamObjArray.length;
-  //   return wamOfSemester;
-  // };
-
-  // console.log("calculateWam's return: ", calculateWam());
-  // console.log("wamArray: ", wamArray);
-
-  // console.log("<editUnit> unitAvg: ", unitAvg);
-  // console.log("<editUnit> retrieveAvg's return array: ", retrieveAvg());
-  // console.log(
-  //   "<editUnit> wamArray's local: ",
-  //   JSON.parse(localStorage.getItem("wam"))
-  // );
 
   return (
     <div className="container">
