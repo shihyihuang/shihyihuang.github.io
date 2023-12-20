@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 const StaticTable = ({
   header,
   id,
-  averageArray,
+  array,
   onUpdateItems,
   type,
   columnToRender,
+  hasBack,
+  hasAdd,
 }) => {
   const navigate = useNavigate();
 
@@ -89,11 +91,26 @@ const StaticTable = ({
   };
 
   const retrieveAverageOfUnit = (unit) => {
-    const averageData = averageArray.find((arrayItem) => arrayItem.id === unit);
+    const averageData = array.find((arrayItem) => arrayItem.id === unit);
     return averageData ? averageData.average : 0;
   };
 
-  const editableColumns = () => {
+  const allAutoRenderColumns = () => {
+    return wamArray.map((item, dataIndex) => (
+      <tr key={`row-${dataIndex}`}>
+        {header.map((header, headerIndex) => (
+          <td
+            key={`column-${headerIndex}`}
+            name={header}
+            value={item[header] || ""}>
+            {item[header] || "" || []}
+          </td>
+        ))}
+      </tr>
+    ));
+  };
+
+  const allEditableColumns = () => {
     return items.map((item, index) => (
       <tr key={"row-" + index}>
         {header.map((header, columnIndex) => (
@@ -114,7 +131,7 @@ const StaticTable = ({
     ));
   };
 
-  const autoRenderSecondColumn = (columnToRender) => {
+  const autoRenderOneColumn = (columnToRender) => {
     return items.map((item, index) => (
       <tr key={"row-" + index}>
         {columnToRender.map((column, columnIndex) => (
@@ -149,12 +166,14 @@ const StaticTable = ({
 
   const renderRows = (type) => {
     switch (type) {
+      case "zero":
+        return allEditableColumns();
       case "one":
-        return autoRenderSecondColumn(columnToRender);
-      case "two":
-        return editableColumns();
+        return autoRenderOneColumn(columnToRender);
+      case "all":
+        return allAutoRenderColumns();
       default:
-        return editableColumns();
+        return allEditableColumns();
     }
   };
 
@@ -167,15 +186,37 @@ const StaticTable = ({
     return sum / 100;
   };
 
+  const hasBackBtn = () => {
+    if (hasBack) {
+      return (
+        <button onClick={() => navigate(-1)}>
+          <Icon name="back" />
+        </button>
+      );
+    }
+  };
+
+  const hasAddBtn = () => {
+    if (hasAdd) {
+      return (
+        <button onClick={handleAdd}>
+          <Icon name="add" />
+        </button>
+      );
+    }
+  };
+
   return (
     <div className="container">
       <br />
-      <button onClick={() => navigate(-1)}>
+      {hasBackBtn()}
+      {hasAddBtn()}
+      {/* <button onClick={() => navigate(-1)}>
         <Icon name="back" />
       </button>
       <button onClick={handleAdd}>
         <Icon name="add" />
-      </button>
+      </button> */}
       <table className="table table-striped table-hover">
         <thead>
           <tr>{renderHeader()}</tr>

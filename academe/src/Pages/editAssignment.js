@@ -86,7 +86,9 @@ const EditAssignment = () => {
         header={header}
         id={id}
         onUpdateItems={handleUpdateItems}
-        type={"two"}
+        type={"zero"}
+        hasBack={true}
+        hasAdd={true}
       />
     </div>
   );

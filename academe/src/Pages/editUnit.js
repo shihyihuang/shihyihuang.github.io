@@ -49,73 +49,82 @@ const EditUnit = () => {
   console.log("wamArray: ", wamArray);
 
   const calculateWam = () => {
-    const wamObjArray = [];
+    const unitArray = [];
+    var weightedMark = 0;
+    var weightCredit = 0;
     items.map((item) => {
       const avgItem = unitAvg.find(
         (avgItem) => item.unit === avgItem.id.split("-")[1]
       );
+      unitArray.push(item.unit);
       if (avgItem) {
         switch (item["year level"]) {
           case "1":
-            wamObjArray.push({
-              id: avgItem.id,
-              wam:
-                (avgItem.average * 0.5 * item["credit points"]) /
-                (0.5 * item["credit points"]),
-            });
+            weightedMark += avgItem.average * 0.5 * item["credit points"];
+            weightCredit += 0.5 * item["credit points"];
             break;
           case undefined:
-            wamObjArray.push({
-              id: avgItem.id,
-              wam: NaN,
-            });
-            break;
+            return NaN;
+          // wamObjArray.push({
+          //   id: avgItem.id,
+          //   wam: NaN,
+          // });
           default:
-            wamObjArray.push({
-              id: avgItem.id,
-              wam:
-                (avgItem.average * 1 * item["credit points"]) /
-                (1 * item["credit points"]),
-            });
+            weightedMark += avgItem.average * 1 * item["credit points"];
+            weightCredit += 1 * item["credit points"];
         }
       }
     });
-    return wamObjArray;
+    const wamOfSemester =
+      Math.round((weightedMark / weightCredit + Number.EPSILON) * 1000) / 1000;
+    // console.log("<eu >typeof wamOfSemester: ", typeof wamOfSemester);
+    const infoOfSemester = {
+      semester: id,
+      unit: unitArray.join(", "),
+      wam: wamOfSemester,
+    };
+    return infoOfSemester;
   };
 
-  console.log("wamObjArray: ", calculateWam());
-
-  const calculateWamOfSemester = () => {
-    const wamObjArray = calculateWam();
-    var wamOfSemester = 0;
-    var temp = 0;
-    wamObjArray.map((wamObj) => {
-      temp += wamObj.wam;
-    });
-    wamOfSemester = temp / wamObjArray.length;
-    return wamOfSemester;
-  };
+  console.log("infoOfSemester: ", calculateWam());
 
   const setWam = () => {
-    const wamObjArray = calculateWam();
-    wamObjArray.map((wamObj) => {
-      const foundIndex = wamArray.findIndex(
-        (wamItem) => wamItem.id === wamObj.id
-      );
-      if (foundIndex === -1) {
-        setWamArray((prevArray) => [
-          ...prevArray,
-          { id: wamObj.id, wam: wamObj.wam },
-        ]);
-      } else {
-        setWamArray((prevArray) => {
-          const updatedItems = [...prevArray];
-          updatedItems[foundIndex] = { id: wamObj.id, wam: wamObj.wam };
-          return updatedItems;
-        });
-      }
-    });
+    const infoOfSemester = calculateWam();
+    const foundIndex = wamArray.findIndex(
+      (wamItem) => wamItem.semester === infoOfSemester.semester
+    );
+    if (foundIndex === -1) {
+      setWamArray((prevArray) => [
+        ...prevArray,
+        {
+          semester: infoOfSemester.semester,
+          unit: infoOfSemester.unit,
+          wam: infoOfSemester.wam,
+        },
+      ]);
+    } else {
+      setWamArray((prevArray) => {
+        const updatedItems = [...prevArray];
+        updatedItems[foundIndex] = {
+          semester: infoOfSemester.semester,
+          unit: infoOfSemester.unit,
+          wam: infoOfSemester.wam,
+        };
+        return updatedItems;
+      });
+    }
   };
+
+  // const WamOfSemester = () => {
+  //   const wamObjArray = calculateWam();
+  //   var wamOfSemester = 0;
+  //   var temp = 0;
+  //   wamObjArray.map((wamObj) => {
+  //     temp += wamObj.wam;
+  //   });
+  //   wamOfSemester = temp / wamObjArray.length;
+  //   return wamOfSemester;
+  // };
 
   // console.log("calculateWam's return: ", calculateWam());
   // console.log("wamArray: ", wamArray);
@@ -135,7 +144,7 @@ const EditUnit = () => {
       </h5>
       <h3 style={{ float: "right", margin: "20px" }}>
         {" "}
-        WAM: {calculateWamOfSemester()}{" "}
+        WAM: {calculateWam().wam}{" "}
       </h3>
       <Button
         onClick={setWam}
@@ -146,10 +155,12 @@ const EditUnit = () => {
       <StaticTable
         header={header}
         id={id}
-        averageArray={retrieveAvg()}
+        array={retrieveAvg()}
         onUpdateItems={handleUpdateItems}
         type={"one"}
         columnToRender={["unit", "year level", "credit points"]}
+        hasBack={true}
+        hasAdd={true}
       />
     </div>
   );

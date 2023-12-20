@@ -3,57 +3,63 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { isAccordionItemSelected } from "react-bootstrap/esm/AccordionContext";
 import { useNavigate } from "react-router-dom";
+import StaticTable from "../Components/staticTable";
 
 const Grade = () => {
   const navigate = useNavigate();
-  const header = ["semester", "unit", "mark"];
-
-  console.log(
-    "<grade> unitAvg's local: ",
-    JSON.parse(localStorage.getItem("unitAvg"))
-  );
+  const header = ["semester", "unit", "wam"];
 
   const handleClick = (event) => {
     const id = event.target.id;
     navigate("/editUnit", { state: { id: id } });
   };
 
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("unitAvg")) || []
+  const [wamArray, setWamArray] = useState(
+    JSON.parse(localStorage.getItem("wam")) || []
   );
 
-  const retrieveOverallData = () => {
-    const temp = {};
-    items.forEach((item) => {
-      const semester = item.id.split("-")[0];
-      const unit = item.id.split("-")[1];
+  // console.log("typeof wamArray[0].wam: ", typeof wamArray[0].wam);
 
-      if (!temp[semester]) {
-        temp[semester] = { units: [], markSum: 0 };
-      }
-      temp[semester].units.push(unit);
-      temp[semester].markSum += item.average;
+  const calculateOverallWam = () => {
+    var tempSum = 0;
+    wamArray.map((wamObj) => {
+      tempSum += wamObj.wam;
     });
-
-    return Object.keys(temp).map((semester) => ({
-      semester: semester,
-      unit: temp[semester].units.join(", "),
-      mark:
-        Math.round(
-          (temp[semester].markSum / temp[semester].units.length) * 100
-        ) / 100,
-    }));
+    console.log("tempSum: ", tempSum);
+    console.log("wamArray.length: ", wamArray.length);
+    return (tempSum / wamArray.length).toFixed(3);
   };
 
-  console.log("data: ", JSON.stringify(retrieveOverallData()));
+  // const retrieveOverallData = () => {
+  //   const temp = {};
+  //   items.forEach((item) => {
+  //     const semester = item.id.split("-")[0];
+  //     const unit = item.id.split("-")[1];
+
+  //     if (!temp[semester]) {
+  //       temp[semester] = { units: [], markSum: 0 };
+  //     }
+  //     temp[semester].units.push(unit);
+  //     temp[semester].markSum += item.average;
+  //   });
+
+  //   return Object.keys(temp).map((semester) => ({
+  //     semester: semester,
+  //     unit: temp[semester].units.join(", "),
+  //     wam:
+  //       Math.round(
+  //         (temp[semester].markSum / temp[semester].units.length) * 100
+  //       ) / 100,
+  //   }));
+  // };
 
   const renderHeader = () => {
     return header.map((column, index) => <th key={index}> {column} </th>);
   };
 
   const renderRows = () => {
-    const data = retrieveOverallData();
-    return data.map((item, dataIndex) => (
+    // const data = wamArray;
+    return wamArray.map((item, dataIndex) => (
       <tr key={`row-${dataIndex}`}>
         {header.map((header, headerIndex) => (
           <td
@@ -69,6 +75,10 @@ const Grade = () => {
 
   return (
     <div className="container">
+      <h3 style={{ float: "right", margin: "20px" }}>
+        {" "}
+        WAM: {calculateOverallWam()}{" "}
+      </h3>
       <ButtonGroup aria-label="Basic example" style={{ margin: "50px" }}>
         {[1, 2, 3, 4].map((semester) => (
           <Button
@@ -79,30 +89,34 @@ const Grade = () => {
             Semester {semester}
           </Button>
         ))}
-        {/* <Button variant="secondary" id="sem1" onClick={handleClick}>
-          Semester1
-        </Button>
-        <Button variant="secondary" id="sem2" onClick={handleClick}>
-          Semester2
-        </Button>
-        <Button variant="secondary" id="sem3" onClick={handleClick}>
-          Semester3
-        </Button>
-        <Button variant="secondary" id="sem4" onClick={handleClick}>
-          Semester4
-        </Button> */}
       </ButtonGroup>
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>{renderHeader()}</tr>
-        </thead>
-        <tbody>{renderRows()}</tbody>
-      </table>
+      <StaticTable
+        header={header}
+        array={wamArray}
+        // onUpdateItems={handleUpdateItems}
+        type={"all"}
+        columnToRender={["unit", "year level", "credit points"]}
+        hasBack={false}
+        hasAdd={false}
+      />
     </div>
   );
 };
 
 export default Grade;
+
+// {/* <Button variant="secondary" id="sem1" onClick={handleClick}>
+//   Semester1
+// </Button>
+// <Button variant="secondary" id="sem2" onClick={handleClick}>
+//   Semester2
+// </Button>
+// <Button variant="secondary" id="sem3" onClick={handleClick}>
+//   Semester3
+// </Button>
+// <Button variant="secondary" id="sem4" onClick={handleClick}>
+//   Semester4
+// </Button> */}
 
 // const data = [];
 
