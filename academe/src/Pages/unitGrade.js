@@ -1,10 +1,9 @@
-import StaticTable from "../Components/staticTable";
-import { useLocation } from "react-router-dom";
+import Table from "../Components/table";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useSearchParams } from "react-router-dom";
 
-const EditAssignment = () => {
+const UnitGrade = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const header = ["assignment", "percentage", "mark"];
@@ -75,9 +74,10 @@ const EditAssignment = () => {
         variant="outline-secondary">
         Update Average Mark
       </Button>
-      <StaticTable
+      <Table
         header={header}
         id={id}
+        hasOnUpdateItems={true}
         onUpdateItems={handleUpdateItems}
         type={"zero"}
         hasBack={true}
@@ -87,4 +87,4 @@ const EditAssignment = () => {
   );
 };
 
-export default EditAssignment;
+export default UnitGrade;

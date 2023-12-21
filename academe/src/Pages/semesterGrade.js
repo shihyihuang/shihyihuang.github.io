@@ -1,9 +1,8 @@
-import { useLocation } from "react-router-dom";
-import StaticTable from "../Components/staticTable";
+import Table from "../Components/table";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const EditUnit = () => {
+const SemesterGrade = () => {
   const header = ["unit", "year level", "credit points", "mark"];
 
   const [searchParams] = useSearchParams();
@@ -123,10 +122,11 @@ const EditUnit = () => {
         {" "}
         WAM: {calculateWam().wam}{" "}
       </h3>
-      <StaticTable
+      <Table
         header={header}
         id={id}
         array={retrieveAvg()}
+        hasOnUpdateItems={true}
         onUpdateItems={handleUpdateItems}
         type={"one"}
         columnToRender={["unit", "year level", "credit points"]}
@@ -137,4 +137,4 @@ const EditUnit = () => {
   );
 };
 
-export default EditUnit;
+export default SemesterGrade;

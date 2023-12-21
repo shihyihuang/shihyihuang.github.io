@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { createSearchParams, useNavigate } from "react-router-dom";
-import StaticTable from "../Components/staticTable";
+import Table from "../Components/table";
 import { NavbarCollapse } from "react-bootstrap";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
 
@@ -12,7 +11,7 @@ const Grade = () => {
 
   const handleClick = (event) => {
     const id = event.target.id;
-    navigateWithId("/editUnit", { id: id });
+    navigateWithId("/semesterGrade", { id: id });
   };
 
   const [wamArray, setWamArray] = useState(
@@ -68,9 +67,10 @@ const Grade = () => {
           </Button>
         ))}
       </ButtonGroup>
-      <StaticTable
+      <Table
         className="centerDiv"
         header={header}
+        hasOnUpdateItems={false}
         array={retrieveDisplayedArray()}
         type={"all"}
         hasBack={false}

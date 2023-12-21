@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import DeleteConfirmation from "../Components/deleteConfirmation";
+import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
 
-const StaticTable = ({
+const Table = ({
   header,
   id,
   array,
+  hasOnUpdateItems,
   onUpdateItems,
   type,
   columnToRender,
@@ -45,8 +46,10 @@ const StaticTable = ({
       ...updatedItems[index],
       [target]: event.target.value,
     };
-    onUpdateItems(updatedItems);
     setItems(updatedItems);
+    if (hasOnUpdateItems) {
+      onUpdateItems(updatedItems);
+    }
   };
 
   const remove = (array, key, value) => {
@@ -57,12 +60,13 @@ const StaticTable = ({
   const handleDelete = (index, id) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
-    onUpdateItems(updatedItems);
     setItems(updatedItems);
-
-    const updataedUnitAvg = [...unitAvgArray];
-    remove(updataedUnitAvg, "id", id);
-    setUnitAvgArray(updataedUnitAvg);
+    if (hasOnUpdateItems) {
+      onUpdateItems(updatedItems);
+      const updataedUnitAvg = [...unitAvgArray];
+      remove(updataedUnitAvg, "id", id);
+      setUnitAvgArray(updataedUnitAvg);
+    }
   };
 
   const handleAdd = () => {
@@ -71,7 +75,7 @@ const StaticTable = ({
 
   const handleEdit = (event) => {
     const editId = event.target.id;
-    navigateWithId("/editAssignment", { id: editId });
+    navigateWithId("/unitGrade", { id: editId });
     // navigate("/editAssignment", { state: { id: editId } });
   };
 
@@ -197,4 +201,4 @@ const StaticTable = ({
   );
 };
 
-export default StaticTable;
+export default Table;
