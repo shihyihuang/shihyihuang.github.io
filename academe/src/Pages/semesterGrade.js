@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const SemesterGrade = () => {
-  const header = ["unit", "year level", "credit points", "mark"];
-
+  const header = ["unit", "credit points", "year level", "mark"];
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
@@ -20,17 +19,15 @@ const SemesterGrade = () => {
     JSON.parse(localStorage.getItem("wam")) || []
   );
 
+  console.log(localStorage.getItem(id));
+
   useEffect(() => {
     localStorage.setItem("wam", JSON.stringify(wamArray));
   }, [wamArray]);
 
   useEffect(() => {
     setWam();
-  }, [unitAvg]);
-
-  useEffect(() => {
-    setWam();
-  }, [items]);
+  }, [unitAvg, items]);
 
   const handleUpdateItems = (updatedItems) => {
     setItems(updatedItems);
@@ -61,11 +58,19 @@ const SemesterGrade = () => {
             weightedMark += avgItem.average * 0.5 * item["credit points"];
             weightedCredit += 0.5 * item["credit points"];
             break;
-          case undefined:
-            return NaN;
-          default:
+          case "2":
             weightedMark += avgItem.average * 1 * item["credit points"];
             weightedCredit += 1 * item["credit points"];
+            break;
+          case "Select Year":
+            return NaN;
+          default:
+            return NaN;
+          // case undefined:
+          //   return NaN;
+          // default:
+          //   weightedMark += avgItem.average * 1 * item["credit points"];
+          //   weightedCredit += 1 * item["credit points"];
         }
       }
     });
@@ -128,8 +133,8 @@ const SemesterGrade = () => {
         array={retrieveAvg()}
         hasOnUpdateItems={true}
         onUpdateItems={handleUpdateItems}
-        type={"one"}
-        columnToRender={["unit", "year level", "credit points"]}
+        type={"dropdown"}
+        columnToRender={["unit", "credit points"]}
         hasBack={true}
         hasAdd={true}
       />

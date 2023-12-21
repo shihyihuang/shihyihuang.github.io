@@ -3,6 +3,7 @@ import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
+import { DropdownButton, ButtonGroup, Dropdown, Form } from "react-bootstrap";
 
 const Table = ({
   header,
@@ -153,12 +154,69 @@ const Table = ({
     ));
   };
 
+  const autoRenderOneColumnWithDropdown = (columnToRender) => {
+    return items.map((item, index) => (
+      <tr key={"row-" + index}>
+        {columnToRender.map((column, columnIndex) => (
+          <td key={"column-" + columnIndex}>
+            <input
+              type="text"
+              name={column}
+              value={item[column] || ""}
+              onChange={(event) => handleModifyColumn(index, event, column)}
+              style={{ border: "none", background: "transparent" }}
+            />
+          </td>
+        ))}
+        <td>
+          <Form.Select
+            size="sm"
+            name="year level"
+            value={item["year level"] || ""}
+            style={{ border: "none", background: "transparent" }}
+            onChange={(event) =>
+              handleModifyColumn(index, event, "year level")
+            }>
+            <option>Select Year</option>
+            <option value="1">1</option>
+            <option value="2">2+</option>
+          </Form.Select>
+          {/* <DropdownButton
+            as={ButtonGroup}
+            size="sm"
+            variant="secondary"
+            title="year">
+            <Dropdown.Item eventKey="1">1</Dropdown.Item>
+            <Dropdown.Item eventKey="2">2+</Dropdown.Item>
+          </DropdownButton> */}
+        </td>
+        <td> {retrieveAverageOfUnit(item.unit)}</td>
+        <td>
+          <button
+            className="btn btn-outline-primary"
+            style={{ marginRight: "10px" }}
+            onClick={(event) => handleEdit(event)}
+            id={id + "-" + item.unit}>
+            Edit
+          </button>
+          <DeleteConfirmation
+            context={{ handleDelete }}
+            index={index}
+            id={id + "-" + item.unit}
+          />
+        </td>
+      </tr>
+    ));
+  };
+
   const renderRows = (type) => {
     switch (type) {
       case "zero":
         return allEditableColumns();
       case "one":
         return autoRenderOneColumn(columnToRender);
+      case "dropdown":
+        return autoRenderOneColumnWithDropdown(columnToRender);
       case "all":
         return allAutoRenderColumns();
       default:

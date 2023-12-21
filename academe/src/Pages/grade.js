@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { DropdownButton, Dropdown } from "react-bootstrap";
 import Table from "../Components/table";
-import { NavbarCollapse } from "react-bootstrap";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
+//https://ultimatecourses.com/blog/navigate-to-url-query-strings-search-params-react-router
+//https://ultimatecourses.com/blog/query-strings-search-params-react-router
 
 const Grade = () => {
   const navigateWithId = useNavigateWithId();
@@ -54,19 +54,23 @@ const Grade = () => {
         {" "}
         WAM: {calculateOverallWam()}{" "}
       </h3>
-      <ButtonGroup
+      <DropdownButton
+        id="dropdown-basic-button"
+        title="Edit / Detail "
+        drop="end"
+        variant="secondary"
         aria-label="Basic example"
         style={{ marginTop: "20px", marginLeft: "20px" }}>
         {[1, 2, 3, 4].map((semester) => (
-          <Button
+          <Dropdown.Item
             key={semester}
-            variant="secondary"
+            // variant="secondary"
             id={`sem${semester}`}
             onClick={handleClick}>
             Semester {semester}
-          </Button>
+          </Dropdown.Item>
         ))}
-      </ButtonGroup>
+      </DropdownButton>
       <Table
         className="centerDiv"
         header={header}
