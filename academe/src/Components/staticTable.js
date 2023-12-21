@@ -63,6 +63,7 @@ const StaticTable = ({
   const handleDelete = (index, id) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
+    onUpdateItems(updatedItems);
     setItems(updatedItems);
 
     const updataedUnitAvg = [...unitAvgArray];

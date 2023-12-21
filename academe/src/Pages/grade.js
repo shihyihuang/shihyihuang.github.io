@@ -1,13 +1,14 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { isAccordionItemSelected } from "react-bootstrap/esm/AccordionContext";
 import { useNavigate } from "react-router-dom";
 import StaticTable from "../Components/staticTable";
 
 const Grade = () => {
   const navigate = useNavigate();
   const header = ["semester", "unit", "wam"];
+
+  // localStorage.removeItem("unitAvg");
 
   const handleClick = (event) => {
     const id = event.target.id;

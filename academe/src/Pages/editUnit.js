@@ -13,10 +13,6 @@ const EditUnit = () => {
     JSON.parse(localStorage.getItem(id)) || []
   );
 
-  const handleUpdateItems = (updatedItems) => {
-    setItems(updatedItems);
-  };
-
   const [unitAvg, setUnitAvg] = useState(
     JSON.parse(localStorage.getItem("unitAvg")) || []
   );
@@ -28,6 +24,18 @@ const EditUnit = () => {
   useEffect(() => {
     localStorage.setItem("wam", JSON.stringify(wamArray));
   }, [wamArray]);
+
+  useEffect(() => {
+    setWam();
+  }, [unitAvg]);
+
+  useEffect(() => {
+    setWam();
+  }, [items]);
+
+  const handleUpdateItems = (updatedItems) => {
+    setItems(updatedItems);
+  };
 
   const retrieveAvg = () => {
     const temp = [];
@@ -115,12 +123,6 @@ const EditUnit = () => {
         {" "}
         WAM: {calculateWam().wam}{" "}
       </h3>
-      <Button
-        onClick={setWam}
-        style={{ float: "right", marginTop: "20px" }}
-        variant="outline-secondary">
-        Save
-      </Button>
       <StaticTable
         header={header}
         id={id}
