@@ -37,14 +37,6 @@ const StaticTable = ({
     localStorage.setItem("unitAvg", JSON.stringify(unitAvgArray));
   }, [unitAvgArray]);
 
-  const [wamArray, setWamArray] = useState(
-    JSON.parse(localStorage.getItem("wam")) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem("wam", JSON.stringify(wamArray));
-  }, [wamArray]);
-
   const handleModifyColumn = (index, event, target) => {
     const updatedItems = [...items];
     updatedItems[index] = {

@@ -40,7 +40,7 @@ const Grade = () => {
       processedArray.push({
         semester: semesterNum,
         unit: wamObj.unit.join(", "),
-        wam: wamObj.wam,
+        wam: wamObj.wam === 0 ? "0" : wamObj.wam,
       });
     });
     const sortedArray = processedArray.sort((a, b) =>

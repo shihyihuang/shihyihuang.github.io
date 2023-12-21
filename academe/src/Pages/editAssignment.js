@@ -44,23 +44,20 @@ const EditAssignment = () => {
     const foundIndex = unitAvgArray.findIndex((unitObj) => unitObj.id === id);
 
     if (foundIndex === -1) {
-      console.log("setAverage -1 id", id);
       setUnitAvgArray((prevList) => [
         ...prevList,
         { id: id, average: average },
       ]);
     } else {
-      setUnitAvgArray((prevList) => {
-        console.log("setAverage else id", id);
-        const updatedList = [...prevList];
-        updatedList[foundIndex] = { id: id, average: average };
-        return updatedList;
-      });
+      if (unitAvgArray[foundIndex].average !== average) {
+        setUnitAvgArray((prevList) => {
+          const updatedList = [...prevList];
+          updatedList[foundIndex] = { id: id, average: average };
+          return updatedList;
+        });
+      }
     }
   };
-
-  console.log("<editAss> unitAvgArray: ", unitAvgArray);
-  console.log("<editAss>", id, "'s local: ", localStorage.getItem(id));
 
   return (
     <div className="container">
