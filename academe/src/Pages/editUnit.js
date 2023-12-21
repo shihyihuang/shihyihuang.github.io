@@ -1,13 +1,13 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import StaticTable from "../Components/staticTable";
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Icon from "../Components/icon";
+import { useSearchParams } from "react-router-dom";
 
 const EditUnit = () => {
-  const location = useLocation();
-  const { id } = location.state;
   const header = ["unit", "year level", "credit points", "mark"];
+
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
 
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem(id)) || []
@@ -138,6 +138,3 @@ const EditUnit = () => {
 };
 
 export default EditUnit;
-
-//   const units = [{ unit: "FIT5032", average: "80" }];
-//   localStorage.setItem(STORAGE_KEY, JSON.stringify(units));

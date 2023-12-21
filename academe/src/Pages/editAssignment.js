@@ -2,12 +2,11 @@ import StaticTable from "../Components/staticTable";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Icon from "../Components/icon";
-import EditUnit from "./editUnit";
+import { useSearchParams } from "react-router-dom";
 
 const EditAssignment = () => {
-  const location = useLocation();
-  const { id } = location.state;
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
   const header = ["assignment", "percentage", "mark"];
 
   const [items, setItems] = useState(

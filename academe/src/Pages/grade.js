@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import StaticTable from "../Components/staticTable";
+import { NavbarCollapse } from "react-bootstrap";
+import useNavigateWithId from "../Hooks/useNavigateWithId";
 
 const Grade = () => {
-  const navigate = useNavigate();
+  const navigateWithId = useNavigateWithId();
   const header = ["semester", "unit", "wam"];
-
-  // localStorage.removeItem("unitAvg");
 
   const handleClick = (event) => {
     const id = event.target.id;
-    navigate("/editUnit", { state: { id: id } });
+    navigateWithId("/editUnit", { id: id });
   };
 
   const [wamArray, setWamArray] = useState(
@@ -72,7 +72,6 @@ const Grade = () => {
         className="centerDiv"
         header={header}
         array={retrieveDisplayedArray()}
-        // onUpdateItems={handleUpdateItems}
         type={"all"}
         hasBack={false}
         hasAdd={false}

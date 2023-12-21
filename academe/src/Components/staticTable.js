@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DeleteConfirmation from "../Components/deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
+import useNavigateWithId from "../Hooks/useNavigateWithId";
 
 const StaticTable = ({
   header,
@@ -14,6 +15,7 @@ const StaticTable = ({
   hasAdd,
 }) => {
   const navigate = useNavigate();
+  const navigateWithId = useNavigateWithId();
 
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem(id)) || []
@@ -69,7 +71,8 @@ const StaticTable = ({
 
   const handleEdit = (event) => {
     const editId = event.target.id;
-    navigate("/editAssignment", { state: { id: editId } });
+    navigateWithId("/editAssignment", { id: editId });
+    // navigate("/editAssignment", { state: { id: editId } });
   };
 
   const retrieveAverageOfUnit = (unit) => {
@@ -159,15 +162,6 @@ const StaticTable = ({
     }
   };
 
-  const calculateAverage = () => {
-    var sum = 0;
-    items.map((item) => {
-      sum += item.mark * item.percentage;
-    });
-    if (isNaN(sum)) return "NaN";
-    return sum / 100;
-  };
-
   const hasBackBtn = () => {
     if (hasBack) {
       return (
@@ -193,12 +187,6 @@ const StaticTable = ({
       <br />
       {hasBackBtn()}
       {hasAddBtn()}
-      {/* <button onClick={() => navigate(-1)}>
-        <Icon name="back" />
-      </button>
-      <button onClick={handleAdd}>
-        <Icon name="add" />
-      </button> */}
       <table className="table table-striped table-hover">
         <thead>
           <tr>{renderHeader()}</tr>
