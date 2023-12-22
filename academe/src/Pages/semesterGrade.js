@@ -129,7 +129,7 @@ const SemesterGrade = () => {
         type={"dropdown"}
         columnToRender={["unit", "credit points"]}
         columnDropdown={"year level"}
-        navigatePath="/unitGrade"
+        navigateTo="/unitGrade"
         hasBack={true}
         hasAdd={true}
       />

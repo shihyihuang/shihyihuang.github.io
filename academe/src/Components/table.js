@@ -14,6 +14,7 @@ const Table = ({
   type,
   columnToRender,
   columnDropdown,
+  navigateTo,
   hasBack,
   hasAdd,
 }) => {
@@ -77,7 +78,7 @@ const Table = ({
 
   const handleEdit = (event) => {
     const editId = event.target.id;
-    navigateWithId("/unitGrade", { id: editId });
+    navigateWithId(navigateTo, { id: editId });
     // navigate("/editAssignment", { state: { id: editId } });
   };
 
@@ -166,6 +167,7 @@ const Table = ({
           <td key={"column-" + columnIndex}>
             <input
               type="text"
+              id={column}
               name={column}
               value={item[column] || ""}
               onChange={(event) => handleModifyColumn(index, event, column)}

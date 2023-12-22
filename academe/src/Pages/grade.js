@@ -15,6 +15,8 @@ const Grade = () => {
     navigateWithId("/semesterGrade", { id: id });
   };
 
+  // localStorage.removeItem("wam");
+
   const [wamArray, setWamArray] = useState(
     JSON.parse(localStorage.getItem("wam")) || []
   );
