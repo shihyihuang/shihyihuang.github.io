@@ -43,11 +43,11 @@ const Table = ({
     localStorage.setItem("unitAvg", JSON.stringify(unitAvgArray));
   }, [unitAvgArray]);
 
-  const handleModifyColumn = (index, event, target) => {
+  const handleModifyColumn = (index, event, column) => {
     const updatedItems = [...items];
     updatedItems[index] = {
       ...updatedItems[index],
-      [target]: event.target.value,
+      [column]: event.target.value,
     };
     setItems(updatedItems);
     if (hasOnUpdateItems) {
