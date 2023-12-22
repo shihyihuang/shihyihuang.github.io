@@ -19,8 +19,6 @@ const SemesterGrade = () => {
     JSON.parse(localStorage.getItem("wam")) || []
   );
 
-  console.log(localStorage.getItem(id));
-
   useEffect(() => {
     localStorage.setItem("wam", JSON.stringify(wamArray));
   }, [wamArray]);
@@ -66,11 +64,6 @@ const SemesterGrade = () => {
             return NaN;
           default:
             return NaN;
-          // case undefined:
-          //   return NaN;
-          // default:
-          //   weightedMark += avgItem.average * 1 * item["credit points"];
-          //   weightedCredit += 1 * item["credit points"];
         }
       }
     });
@@ -135,6 +128,8 @@ const SemesterGrade = () => {
         onUpdateItems={handleUpdateItems}
         type={"dropdown"}
         columnToRender={["unit", "credit points"]}
+        columnDropdown={"year level"}
+        navigatePath="/unitGrade"
         hasBack={true}
         hasAdd={true}
       />

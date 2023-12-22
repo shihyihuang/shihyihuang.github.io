@@ -3,7 +3,7 @@ import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
-import { DropdownButton, ButtonGroup, Dropdown, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const Table = ({
   header,
@@ -13,6 +13,7 @@ const Table = ({
   onUpdateItems,
   type,
   columnToRender,
+  columnDropdown,
   hasBack,
   hasAdd,
 }) => {
@@ -121,7 +122,7 @@ const Table = ({
     ));
   };
 
-  const autoRenderOneColumn = (columnToRender) => {
+  const autoRenderOneColumn = () => {
     return items.map((item, index) => (
       <tr key={"row-" + index}>
         {columnToRender.map((column, columnIndex) => (
@@ -154,7 +155,7 @@ const Table = ({
     ));
   };
 
-  const autoRenderOneColumnWithDropdown = (columnToRender) => {
+  const autoRenderOneColumnWithDropdown = () => {
     return items.map((item, index) => (
       <tr key={"row-" + index}>
         {columnToRender.map((column, columnIndex) => (
@@ -171,24 +172,16 @@ const Table = ({
         <td>
           <Form.Select
             size="sm"
-            name="year level"
-            value={item["year level"] || ""}
+            name={columnDropdown}
+            value={item[columnDropdown] || ""}
             style={{ border: "none", background: "transparent" }}
             onChange={(event) =>
-              handleModifyColumn(index, event, "year level")
+              handleModifyColumn(index, event, columnDropdown)
             }>
             <option>Select Year</option>
             <option value="1">1</option>
             <option value="2">2+</option>
           </Form.Select>
-          {/* <DropdownButton
-            as={ButtonGroup}
-            size="sm"
-            variant="secondary"
-            title="year">
-            <Dropdown.Item eventKey="1">1</Dropdown.Item>
-            <Dropdown.Item eventKey="2">2+</Dropdown.Item>
-          </DropdownButton> */}
         </td>
         <td> {retrieveAverageOfUnit(item.unit)}</td>
         <td>
@@ -214,9 +207,9 @@ const Table = ({
       case "zero":
         return allEditableColumns();
       case "one":
-        return autoRenderOneColumn(columnToRender);
+        return autoRenderOneColumn();
       case "dropdown":
-        return autoRenderOneColumnWithDropdown(columnToRender);
+        return autoRenderOneColumnWithDropdown();
       case "all":
         return allAutoRenderColumns();
       default:

@@ -24,16 +24,16 @@ const UnitGrade = () => {
     localStorage.setItem("unitAvg", JSON.stringify(unitAvgArray));
   }, [unitAvgArray]);
 
-  // useEffect(() => {
-  //   setAverage();
-  // }, [items]);
+  useEffect(() => {
+    setAverage();
+  }, [items]);
 
   const calculateAverage = () => {
     var sum = 0;
     items.map((item) => {
       sum += item.mark * item.percentage;
     });
-    if (isNaN(sum)) return 0;
+    if (isNaN(sum)) return NaN;
     return sum / 100;
   };
 
@@ -47,13 +47,11 @@ const UnitGrade = () => {
         { id: id, average: average },
       ]);
     } else {
-      if (unitAvgArray[foundIndex].average !== average) {
-        setUnitAvgArray((prevList) => {
-          const updatedList = [...prevList];
-          updatedList[foundIndex] = { id: id, average: average };
-          return updatedList;
-        });
-      }
+      setUnitAvgArray((prevList) => {
+        const updatedList = [...prevList];
+        updatedList[foundIndex] = { id: id, average: average };
+        return updatedList;
+      });
     }
   };
 
@@ -68,12 +66,12 @@ const UnitGrade = () => {
         {" "}
         Average: {calculateAverage()}{" "}
       </h3>
-      <Button
+      {/* <Button
         onClick={setAverage}
         style={{ float: "right", marginTop: "20px" }}
         variant="outline-secondary">
         Update Average Mark
-      </Button>
+      </Button> */}
       <Table
         header={header}
         id={id}
