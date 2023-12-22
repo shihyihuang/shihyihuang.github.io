@@ -106,13 +106,17 @@ const Table = ({
       <tr key={"row-" + index}>
         {header.map((header, columnIndex) => (
           <td key={`column-${columnIndex}`}>
-            <input
-              type="text"
-              name={header}
-              value={item[header] || ""}
-              onChange={(event) => handleModifyColumn(index, event, header)}
-              style={{ border: "none", background: "transparent" }}
-            />
+            <div className="resize-container">
+              <span className="resize-text">{item[header] || ""}</span>
+              <input
+                className="resize-input"
+                type="text"
+                name={header}
+                value={item[header] || ""}
+                onChange={(event) => handleModifyColumn(index, event, header)}
+                style={{ border: "none", background: "transparent" }}
+              />
+            </div>
           </td>
         ))}
         <td>

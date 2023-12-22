@@ -64,3 +64,33 @@ button {
 margin-right: 0;
   align-items: 'center';
 }
+
+.resize-container {
+  display: inline-block;
+  position: relative;
+}
+
+.resize-input,
+.resize-text {
+  margin: 0;
+  padding: 2px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  height: 36px;
+  max-width: 640px;
+}
+
+.resize-text {
+  padding-right: 20px;
+  display: inline-block;
+  visibility: hidden;
+  white-space: pre;
+}
+  
+.resize-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
