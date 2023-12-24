@@ -21,12 +21,12 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/coffeeMel">Coffee</Nav.Link>
-            <Nav.Link href="/profile">Profile</Nav.Link>
-            <Nav.Link href="/calendar">Calendar</Nav.Link>
-            <Nav.Link href="/todolist">To-Do List</Nav.Link>
-            <Nav.Link href="/grade">Grade</Nav.Link>
+            <Nav.Link href="/#/">Home</Nav.Link>
+            <Nav.Link href="/#/coffeeMel">Coffee</Nav.Link>
+            {/* <Nav.Link href="/#/profile">Profile</Nav.Link>
+            <Nav.Link href="/#/calendar">Calendar</Nav.Link> */}
+            <Nav.Link href="/#/todolist">To-Do List</Nav.Link>
+            <Nav.Link href="/#/grade">Grade</Nav.Link>
             {/* <NavDropdown title="Grade" id="basic-nav-dropdown">
               <NavDropdown.Item href="/overallGrade">Overall</NavDropdown.Item>
               <NavDropdown.Item href="/semesterOneGrade" id="sem1">

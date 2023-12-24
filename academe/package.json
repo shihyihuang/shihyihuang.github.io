@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://shihyihuang.github.io/shihyihuang.github.io",
   "private": true,
+  "homepage": "https://shihyihuang.github.io/#",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
