@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DeleteConfirmation from "./deleteConfirmation";
 import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const Table = ({
   type,
   columnToRender,
   columnDropdown,
+  columnCheckbox,
   navigateTo,
   hasBack,
   hasAdd,
@@ -28,6 +29,10 @@ const Table = ({
   useEffect(() => {
     localStorage.setItem(id, JSON.stringify(items));
   }, [items]);
+
+  useEffect(() => {
+    setCheck();
+  }, []);
 
   const renderHeader = () => {
     return header.map((header, index) => (
@@ -48,6 +53,7 @@ const Table = ({
     updatedItems[index] = {
       ...updatedItems[index],
       [column]: event.target.value,
+      Status: "incomplete",
     };
     setItems(updatedItems);
     if (hasOnUpdateItems) {
@@ -80,6 +86,60 @@ const Table = ({
     const editId = event.target.id;
     navigateWithId(navigateTo, { id: editId });
     // navigate("/editAssignment", { state: { id: editId } });
+  };
+
+  const handleCheck = (event, index) => {
+    const id = event.target.id;
+    if (document.getElementById(id).checked) {
+      const updatedItems = [...items];
+      updatedItems[index] = {
+        ...updatedItems[index],
+        Status: "done",
+      };
+      setItems(updatedItems);
+    }
+  };
+
+  const setCheck = () => {
+    items.map((item, index) => {
+      if (item.Status === "done") {
+        console.log("todo-" + index);
+        document.getElementById("todo-" + index).checked = true;
+      }
+    });
+  };
+
+  const allEditableColumnsWithCheckboxes = () => {
+    return items.map((item, index) => (
+      <tr key={"row-" + index}>
+        <td>
+          <Form.Check
+            type="checkbox"
+            name={columnCheckbox}
+            id={"todo-" + index}
+            // style={{ border: "none", background: "transparent" }}
+            onChange={(event) => handleCheck(event, index)}></Form.Check>
+        </td>
+        {columnToRender.map((column, columnIndex) => (
+          <td key={`column-${columnIndex}`}>
+            <div className="resize-container">
+              <span className="resize-text">{item[column] || ""}</span>
+              <input
+                className="resize-input"
+                type="text"
+                name={column}
+                value={item[column] || ""}
+                onChange={(event) => handleModifyColumn(index, event, column)}
+                style={{ border: "none", background: "transparent" }}
+              />
+            </div>
+          </td>
+        ))}
+        <td>
+          <DeleteConfirmation context={{ handleDelete }} index={index} />
+        </td>
+      </tr>
+    ));
   };
 
   const retrieveAverageOfUnit = (unit) => {
@@ -212,6 +272,8 @@ const Table = ({
     switch (type) {
       case "zero":
         return allEditableColumns();
+      case "checkbox":
+        return allEditableColumnsWithCheckboxes();
       case "one":
         return autoRenderOneColumn();
       case "dropdown":
