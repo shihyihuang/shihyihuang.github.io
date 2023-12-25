@@ -94,3 +94,25 @@ margin-right: 0;
   right: 0;
   bottom: 0;
 }
+
+.DateContainer {
+  display: flex;
+  align-items: center;
+  width: 9vw;
+  height: 25px;
+  border: none;
+  /* border-radius: 8px; */
+}
+
+.dateInput {
+  width: 100%;
+  height: 100%;
+}
+
+.dateInput input {
+  width: calc(100% + 25px);
+  height: 25px; 
+  border: none;
+  background: transparent;
+  z-index: 1;
+}

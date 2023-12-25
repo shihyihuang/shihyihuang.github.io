@@ -4,6 +4,7 @@ const Todolist = () => {
   const STORAGE_KEY = "toDoList";
 
   // localStorage.removeItem(STORAGE_KEY);
+  console.log("localStorage todo:", localStorage.getItem("toDoList"));
 
   return (
     <Table
@@ -11,7 +12,7 @@ const Todolist = () => {
       id={STORAGE_KEY}
       hasOnUpdateItems={false}
       type={"checkbox"}
-      columnToRender={["Date", "Note"]}
+      columnToRender={["Note"]}
       columnCheckbox={"Status"}
       hasBack={false}
       hasAdd={true}

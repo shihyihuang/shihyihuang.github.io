@@ -3,6 +3,7 @@ import {
   faCirclePlus,
   faCircleLeft,
   faArrowsRotate,
+  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Icon = ({ name }) => {
@@ -13,6 +14,8 @@ const Icon = ({ name }) => {
       return <FontAwesomeIcon icon={faCircleLeft} size="2x" />;
     case "update":
       return <FontAwesomeIcon icon={faArrowsRotate} size="2x" />;
+    case "calendar":
+      return <FontAwesomeIcon icon={faCalendarDays} />;
     default:
       return "icon error";
   }

@@ -4,6 +4,8 @@ import Icon from "./icon";
 import { useNavigate } from "react-router-dom";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
 import { Form } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Table = ({
   header,
@@ -109,6 +111,35 @@ const Table = ({
     });
   };
 
+  const dateFormatter = Intl.DateTimeFormat("sv-SE");
+
+  const [selectedDates, setSelectedDates] = useState([]);
+
+  const handleDateChange = (dateValue, index) => {
+    const newSelectedDates = [...selectedDates];
+    newSelectedDates[index] = dateValue;
+    setSelectedDates(newSelectedDates);
+
+    const updatedItems = [...items];
+    updatedItems[index] = {
+      ...updatedItems[index],
+      Date: dateFormatter.format(dateValue),
+    };
+    console.log("handleDateChange Date", Date);
+    setItems(updatedItems);
+  };
+
+  useEffect(() => {
+    const dates = items.map((item) => {
+      if (item.Date != null) {
+        console.log("useEffect item.Date: ", item.Date);
+        return new Date(item.Date);
+      }
+    });
+    console.log("useEffect dates: ", dates);
+    setSelectedDates(dates);
+  }, [items]);
+
   const allEditableColumnsWithCheckboxes = () => {
     return items.map((item, index) => (
       <tr key={"row-" + index}>
@@ -116,9 +147,28 @@ const Table = ({
           <Form.Check
             type="checkbox"
             name={columnCheckbox}
-            id={"todo-" + index}
-            // style={{ border: "none", background: "transparent" }}
+            id={"check-" + index}
             onChange={(event) => handleCheck(event, index)}></Form.Check>
+        </td>
+        <td>
+          <div className="DateContainer">
+            <span className="dateInput">
+              {" "}
+              <DatePicker
+                selectsStart
+                selected={selectedDates[index]}
+                onChange={(dateValue) => handleDateChange(dateValue, index)}
+                dayClassName={() => "example-datepicker-day-class"}
+                popperClassName="example-datepicker-class"
+                dateFormat="dd/MM/yyyy"
+                // className="picker"
+                // style={{ border: "none", background: "transparent" }}
+              />
+            </span>
+            <span className="icon">
+              <Icon name="calendar" />
+            </span>
+          </div>
         </td>
         {columnToRender.map((column, columnIndex) => (
           <td key={`column-${columnIndex}`}>
@@ -130,7 +180,7 @@ const Table = ({
                 name={column}
                 value={item[column] || ""}
                 onChange={(event) => handleModifyColumn(index, event, column)}
-                style={{ border: "none", background: "transparent" }}
+                style={{ border: "none", backgroundColor: "transparent" }}
               />
             </div>
           </td>
@@ -141,6 +191,8 @@ const Table = ({
       </tr>
     ));
   };
+
+  console.log("items: ", items);
 
   const retrieveAverageOfUnit = (unit) => {
     const averageData = array.find((arrayItem) => arrayItem.id === unit);
