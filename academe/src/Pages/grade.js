@@ -10,13 +10,6 @@ const Grade = () => {
   const navigateWithId = useNavigateWithId();
   const header = ["Semester", "Unit", "Wam"];
 
-  // localStorage.removeItem("sem1");
-  // localStorage.removeItem("sem2");
-  // localStorage.removeItem("sem3");
-  // localStorage.removeItem("sem4");
-  // localStorage.removeItem("wam");
-  // localStorage.removeItem("unitAvg");
-
   const handleClick = (event) => {
     const id = event.target.id;
     navigateWithId("/semesterGrade", { id: id });
@@ -38,7 +31,6 @@ const Grade = () => {
       ) / 1000
     );
   };
-  console.log("wamArray: ", wamArray);
 
   const retrieveDisplayedArray = () => {
     const processedArray = [];
