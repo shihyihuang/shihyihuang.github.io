@@ -161,8 +161,6 @@ const Table = ({
                 dayClassName={() => "example-datepicker-day-class"}
                 popperClassName="example-datepicker-class"
                 dateFormat="dd/MM/yyyy"
-                // className="picker"
-                // style={{ border: "none", background: "transparent" }}
               />
             </span>
             <span className="icon">
