@@ -6,6 +6,13 @@ import useNavigateWithId from "../Hooks/useNavigateWithId";
 //https://ultimatecourses.com/blog/navigate-to-url-query-strings-search-params-react-router
 //https://ultimatecourses.com/blog/query-strings-search-params-react-router
 
+localStorage.removeItem("sem1");
+localStorage.removeItem("sem2");
+localStorage.removeItem("sem3");
+localStorage.removeItem("sem4");
+localStorage.removeItem("wam");
+localStorage.removeItem("unitAvg");
+
 const Grade = () => {
   const navigateWithId = useNavigateWithId();
   const header = ["Semester", "Unit", "Wam"];
