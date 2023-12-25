@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
 import { Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const Table = ({
   header,
@@ -105,8 +104,7 @@ const Table = ({
   const setCheck = () => {
     items.map((item, index) => {
       if (item.Status === "done") {
-        console.log("todo-" + index);
-        document.getElementById("todo-" + index).checked = true;
+        document.getElementById("check-" + index).checked = true;
       }
     });
   };
@@ -125,18 +123,15 @@ const Table = ({
       ...updatedItems[index],
       Date: dateFormatter.format(dateValue),
     };
-    console.log("handleDateChange Date", Date);
     setItems(updatedItems);
   };
 
   useEffect(() => {
     const dates = items.map((item) => {
       if (item.Date != null) {
-        console.log("useEffect item.Date: ", item.Date);
         return new Date(item.Date);
       }
     });
-    console.log("useEffect dates: ", dates);
     setSelectedDates(dates);
   }, [items]);
 
@@ -189,8 +184,6 @@ const Table = ({
       </tr>
     ));
   };
-
-  console.log("items: ", items);
 
   const retrieveAverageOfUnit = (unit) => {
     const averageData = array.find((arrayItem) => arrayItem.id === unit);
