@@ -245,19 +245,19 @@ const Table = ({
             />
           </td>
         ))}
-        <td> {retrieveAverageOfUnit(item.unit)}</td>
+        <td> {retrieveAverageOfUnit(item.Unit)}</td>
         <td>
           <button
             className="btn btn-outline-primary"
             style={{ marginRight: "10px" }}
             onClick={(event) => handleEdit(event)}
-            id={id + "-" + item.unit}>
+            id={id + "-" + item.Unit}>
             Edit
           </button>
           <DeleteConfirmation
             context={{ handleDelete }}
             index={index}
-            id={id + "-" + item.unit}
+            id={id + "-" + item.Unit}
           />
         </td>
       </tr>
@@ -293,19 +293,19 @@ const Table = ({
             <option value="2">2+</option>
           </Form.Select>
         </td>
-        <td> {retrieveAverageOfUnit(item.unit)}</td>
+        <td> {retrieveAverageOfUnit(item.Unit)}</td>
         <td>
           <button
             className="btn btn-outline-primary"
             style={{ marginRight: "10px" }}
             onClick={(event) => handleEdit(event)}
-            id={id + "-" + item.unit}>
+            id={id + "-" + item.Unit}>
             Edit
           </button>
           <DeleteConfirmation
             context={{ handleDelete }}
             index={index}
-            id={id + "-" + item.unit}
+            id={id + "-" + item.Unit}
           />
         </td>
       </tr>

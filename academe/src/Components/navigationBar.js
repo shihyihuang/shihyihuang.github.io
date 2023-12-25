@@ -22,24 +22,11 @@ const NavigationBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/#/">Home</Nav.Link>
+            <Nav.Link href="/#/todolist">To-Do List</Nav.Link>
+            <Nav.Link href="/#/grade">Grade</Nav.Link>
             <Nav.Link href="/#/coffeeMel">Coffee</Nav.Link>
             {/* <Nav.Link href="/#/profile">Profile</Nav.Link>
             <Nav.Link href="/#/calendar">Calendar</Nav.Link> */}
-            <Nav.Link href="/#/todolist">To-Do List</Nav.Link>
-            <Nav.Link href="/#/grade">Grade</Nav.Link>
-            {/* <NavDropdown title="Grade" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/overallGrade">Overall</NavDropdown.Item>
-              <NavDropdown.Item href="/semesterOneGrade" id="sem1">
-                Semester1
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/semester2">Semester2</NavDropdown.Item>
-              <NavDropdown.Item href="/semester3">Semester3</NavDropdown.Item>
-              <NavDropdown.Item href="/semester4">Semester4</NavDropdown.Item>
-              {/* <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item> */}
-            {/* </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

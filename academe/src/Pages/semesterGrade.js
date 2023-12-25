@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const SemesterGrade = () => {
-  const header = ["unit", "credit points", "year level", "mark"];
+  const header = ["Unit", "Credit Points", "Year Level", "Mark"];
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
@@ -47,18 +47,18 @@ const SemesterGrade = () => {
     var weightedCredit = 0;
     items.map((item) => {
       const avgItem = unitAvg.find(
-        (avgItem) => item.unit === avgItem.id.split("-")[1]
+        (avgItem) => item.Unit === avgItem.id.split("-")[1]
       );
       if (avgItem) {
-        unitArray.push(item.unit);
-        switch (item["year level"]) {
+        unitArray.push(item.Unit);
+        switch (item["Year Level"]) {
           case "1":
-            weightedMark += avgItem.average * 0.5 * item["credit points"];
-            weightedCredit += 0.5 * item["credit points"];
+            weightedMark += avgItem.average * 0.5 * item["Credit Points"];
+            weightedCredit += 0.5 * item["Credit Points"];
             break;
           case "2":
-            weightedMark += avgItem.average * 1 * item["credit points"];
-            weightedCredit += 1 * item["credit points"];
+            weightedMark += avgItem.average * 1 * item["Credit Points"];
+            weightedCredit += 1 * item["Credit Points"];
             break;
           case "Select Year":
             return NaN;
@@ -68,11 +68,11 @@ const SemesterGrade = () => {
       }
     });
     const infoOfSemester = {
-      semester: id,
-      unit: unitArray,
+      Semester: id,
+      Unit: unitArray,
       weightedMark: weightedMark,
       weightedCredit: weightedCredit,
-      wam:
+      Wam:
         Math.round((weightedMark / weightedCredit + Number.EPSILON) * 1000) /
         1000,
     };
@@ -82,28 +82,28 @@ const SemesterGrade = () => {
   const setWam = () => {
     const infoOfSemester = calculateWam();
     const foundIndex = wamArray.findIndex(
-      (wamItem) => wamItem.semester === infoOfSemester.semester
+      (wamItem) => wamItem.Semester === infoOfSemester.Semester
     );
     if (foundIndex === -1) {
       setWamArray((prevArray) => [
         ...prevArray,
         {
-          semester: infoOfSemester.semester,
-          unit: infoOfSemester.unit,
+          Semester: infoOfSemester.Semester,
+          Unit: infoOfSemester.Unit,
           weightedMark: infoOfSemester.weightedMark,
           weightedCredit: infoOfSemester.weightedCredit,
-          wam: infoOfSemester.wam,
+          Wam: infoOfSemester.Wam,
         },
       ]);
     } else {
       setWamArray((prevArray) => {
         const updatedItems = [...prevArray];
         updatedItems[foundIndex] = {
-          semester: infoOfSemester.semester,
-          unit: infoOfSemester.unit,
+          Semester: infoOfSemester.Semester,
+          Unit: infoOfSemester.Unit,
           weightedMark: infoOfSemester.weightedMark,
           weightedCredit: infoOfSemester.weightedCredit,
-          wam: infoOfSemester.wam,
+          Wam: infoOfSemester.Wam,
         };
         return updatedItems;
       });
@@ -118,7 +118,7 @@ const SemesterGrade = () => {
       </h5>
       <h3 style={{ float: "right", margin: "20px" }}>
         {" "}
-        WAM: {calculateWam().wam}{" "}
+        WAM: {calculateWam().Wam}{" "}
       </h3>
       <Table
         header={header}
@@ -127,8 +127,8 @@ const SemesterGrade = () => {
         hasOnUpdateItems={true}
         onUpdateItems={handleUpdateItems}
         type={"dropdown"}
-        columnToRender={["unit", "credit points"]}
-        columnDropdown={"year level"}
+        columnToRender={["Unit", "Credit Points"]}
+        columnDropdown={"Year Level"}
         navigateTo="/unitGrade"
         hasBack={true}
         hasAdd={true}

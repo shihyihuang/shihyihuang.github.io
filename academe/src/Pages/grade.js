@@ -8,15 +8,19 @@ import useNavigateWithId from "../Hooks/useNavigateWithId";
 
 const Grade = () => {
   const navigateWithId = useNavigateWithId();
-  const header = ["semester", "unit", "wam"];
+  const header = ["Semester", "Unit", "Wam"];
+
+  // localStorage.removeItem("sem1");
+  // localStorage.removeItem("sem2");
+  // localStorage.removeItem("sem3");
+  // localStorage.removeItem("sem4");
+  // localStorage.removeItem("wam");
+  // localStorage.removeItem("unitAvg");
 
   const handleClick = (event) => {
     const id = event.target.id;
     navigateWithId("/semesterGrade", { id: id });
   };
-
-  // localStorage.removeItem("wam");
-
   const [wamArray, setWamArray] = useState(
     JSON.parse(localStorage.getItem("wam")) || []
   );
@@ -34,19 +38,20 @@ const Grade = () => {
       ) / 1000
     );
   };
+  console.log("wamArray: ", wamArray);
 
   const retrieveDisplayedArray = () => {
     const processedArray = [];
     wamArray.map((wamObj) => {
-      const semesterNum = wamObj.semester.substr(-1, 1);
+      const semesterNum = wamObj.Semester.substr(-1, 1);
       processedArray.push({
-        semester: semesterNum,
-        unit: wamObj.unit.join(", "),
-        wam: wamObj.wam === 0 ? "0" : wamObj.wam,
+        Semester: semesterNum,
+        Unit: wamObj.Unit.join(", "),
+        Wam: wamObj.Wam === 0 ? "0" : wamObj.Wam,
       });
     });
     const sortedArray = processedArray.sort((a, b) =>
-      a.semester > b.semester ? 1 : a.semester < b.semester ? -1 : 0
+      a.Semester > b.Semester ? 1 : a.Semester < b.Semester ? -1 : 0
     );
     return sortedArray;
   };
@@ -59,7 +64,7 @@ const Grade = () => {
       </h3>
       <DropdownButton
         id="dropdown-basic-button"
-        title="Edit / Detail "
+        title="Select Semester "
         drop="end"
         variant="secondary"
         aria-label="Basic example"

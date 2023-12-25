@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 const UnitGrade = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const header = ["assignment", "percentage", "mark"];
+  const header = ["Assignment", "Percentage", "Mark"];
 
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem(id)) || []
@@ -30,7 +30,7 @@ const UnitGrade = () => {
   const calculateAverage = () => {
     var sum = 0;
     items.map((item) => {
-      sum += item.mark * item.percentage;
+      sum += item.Mark * item.Percentage;
     });
     if (isNaN(sum)) return NaN;
     return sum / 100;
