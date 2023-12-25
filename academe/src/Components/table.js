@@ -105,7 +105,7 @@ const Table = ({
   const setCheck = () => {
     items.map((item, index) => {
       if (item.Status === "done") {
-        document.getElementById("todo-" + index).checked = true;
+        document.getElementById("check-" + index).checked = true;
       }
     });
   };
