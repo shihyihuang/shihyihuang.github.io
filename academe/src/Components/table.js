@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useNavigateWithId from "../Hooks/useNavigateWithId";
 import { Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Table = ({
   header,
@@ -104,7 +105,7 @@ const Table = ({
   const setCheck = () => {
     items.map((item, index) => {
       if (item.Status === "done") {
-        document.getElementById("check-" + index).checked = true;
+        document.getElementById("todo-" + index).checked = true;
       }
     });
   };
