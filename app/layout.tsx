@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./component/navigation";
-
+import ThemeRegistry from './ThemeRegistry';
 
 export const metadata: Metadata = {
   title: "Claire Huang",
@@ -22,10 +22,11 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        <Navigation/> 
-        {children}
+        <ThemeRegistry>
+          <Navigation/>
+          {children}
+        </ThemeRegistry>
       </body>
     </html>
   );
 }
-
