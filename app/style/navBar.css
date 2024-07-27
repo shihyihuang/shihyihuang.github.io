@@ -1,0 +1,13 @@
+
+.btn-circle {
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.bg-transparent {
+    background-color: transparent; /* Ensure initial background is transparent */
+}
+
+.bg-transparent:hover {
+    background-color: var(--primary-color); /* Define this variable in your CSS or replace with a specific color */
+}
