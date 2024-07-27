@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 
-
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,6 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            fontFamily: ['Coming Soon', 'cursive'].join(','),
+            textTransform: "none",
+          },
+        },
+      },
       colors: {
         'primary': '#EBE9E1',
         'secondary': '#D6536D',
@@ -26,6 +33,5 @@ const config: Config = {
     require('daisyui'),
   ],
 };
-// export default config;
 
 export default config;
