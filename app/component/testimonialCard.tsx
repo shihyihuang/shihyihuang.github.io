@@ -19,7 +19,7 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ name, position, content }
             display: 'flex', 
             flexDirection: 'column'
         }}>
-            <CardContent sx={{ flex: '0 0 auto' }}>
+            <CardContent sx={{ flexShrink: 0, paddingBottom: 1 }}>
                 <div className="flex items-center">
                     <Stack direction="row" spacing={2}>
                         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -35,7 +35,20 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ name, position, content }
                 </div>
                 <Rating className="my-0.5" name="read-only" value={5} readOnly />
             </CardContent>
-            <CardContent sx={{ flex: '1 1 auto', overflow: 'auto' }}>
+            <CardContent       
+            sx={{ 
+                flexGrow: 1,
+                overflowY: 'auto',
+                paddingTop: 0,
+                paddingBottom: '16px !important', 
+                '&::-webkit-scrollbar': {
+                width: '5px',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'rgba(0,0,0,.2)',
+                borderRadius: '4px',
+                },
+            }}>
                 <Typography variant="body2">
                 {content}
                 </Typography>
