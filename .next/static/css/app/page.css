@@ -1,0 +1,42 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./app/style/testimonial.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+ul {
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: 50px;
+  }
+  
+  circle {
+    stroke-dashoffset: 0;
+    stroke-width: 18%;
+    fill: none;
+  }
+  
+  .bg {
+    stroke: #E43D12;
+    opacity: 0.3;
+  }
+  
+  #progress .indicator {
+    stroke: #E43D12;
+  }
+  
+  #progress {
+    transform: rotate(-90deg);
+  }
+
+  /* ::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    -webkit-border-radius: 1ex;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #E43D12;
+    -webkit-border-radius: 1ex;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background: #fff3;
+  } */
