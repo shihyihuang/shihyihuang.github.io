@@ -12,9 +12,9 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ name, position, content }
 
   return (
     <div className='px-2'>
-        <Card className='shadow-xl'  sx={{ 
+        <Card className='shadow-xl rounded-lg'  sx={{ 
             width: { xs: 320, sm: 350, md: 400},
-            maxWidth: '100%', // Ensures it never exceeds the parent container
+            maxWidth: '100%', 
             height: 280, 
             display: 'flex', 
             flexDirection: 'column'
