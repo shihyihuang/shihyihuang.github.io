@@ -1,7 +1,6 @@
 'use client';
 import React from 'react'
 import {Card, Stack, CardContent, Typography, Avatar, Rating} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 interface TestimonialProps {
     name:string;
@@ -10,12 +9,10 @@ interface TestimonialProps {
 }
 
 const TestimonialCard: React.FC<TestimonialProps> = ({ name, position, content }) => {
-    const theme = useTheme();
-    console.log(theme.typography); 
 
   return (
     <div className='px-2'>
-        <Card sx={{ minWidth: 100, maxWidth: 300 }}>
+        <Card sx={{ minWidth: 345}}>
             <CardContent>
                 <div className="flex items-center">
                     <Stack direction="row" spacing={2}>
