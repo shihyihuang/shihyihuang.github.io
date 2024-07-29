@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      minHeight: {
+        'screen-minus-nav': 'calc(100dvh - var(--nav-height))',
+      },
       typography: {
         DEFAULT: {
           css: {

@@ -9,7 +9,11 @@ const Icon : React.FC<IconProps> = ({name}) => {
     
     switch (name){
         case 'contact' : 
-            return <FontAwesomeIcon icon={faAddressBook} size="xl" style={{color:" #113946"}} />;
+            return <FontAwesomeIcon 
+            icon={faAddressBook} 
+            className="text-[#113946] w-6 h-6" // Use fixed width and height
+            style={{ fontSize: '1.25rem' }} // Ensure consistent size
+          />;
         case 'menu' : 
             return <FontAwesomeIcon icon={faBars} size="xl" />;
         case 'close' :

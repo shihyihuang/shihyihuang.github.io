@@ -48,7 +48,7 @@ export default function Home() {
       {/* https://medium.com/designly/creating-a-modern-hero-image-using-nextjs-13-images-and-tailwind-css-746fb5c92541 */}
       <div
       ref={observe}
-      className="w-full h-screen flex items-center overflow-hidden relative bg-black flex-col justify-between">
+      className="w-full min-h-screen-minus-nav flex items-center overflow-hidden relative bg-black flex-col justify-between">
         <Image
           src={`/home/${heroImage}`}
           alt="Imag of Claire"
