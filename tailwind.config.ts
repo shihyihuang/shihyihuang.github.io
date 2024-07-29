@@ -20,14 +20,14 @@ const config: Config = {
         },
       },
       colors: {
-        'primary': '#EBE9E1',
-        'secondary': '#D6536D',
-        'accent': '#EFA2B6',
-        'neutral': '#EFB11D',
-        'base-100': '#E43D12',
-        'info': '#425664',
+        'primary': '#EBE9E1', //background
+        'secondary': '#D6536D', //dark pink
+        'accent': '#EFA2B6', // light pink
+        'neutral': '#EFB11D', //orange
+        'base-100': '#E43D12', //red
+        'info': '#425664', //dark grey
         // 'success': '#A1C398',
-        'warning': '#FEDD89',
+        'warning': '#FEDD89', //yellow
         // 'error': '#FA7070'
       }
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAddressBook, faBars, faXmark, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { faAddressBook, faBars, faXmark, faAnglesDown, faUpLong, faDownLong } from "@fortawesome/free-solid-svg-icons";
 
 interface IconProps {
     name: string;
@@ -22,6 +22,10 @@ const Icon : React.FC<IconProps> = ({name}) => {
             return <FontAwesomeIcon icon={faXmark} size="lg" />;
         case 'scroll down' :
             return <FontAwesomeIcon icon={faAnglesDown} size="lg" style={{color:" #fff"}}/>;
+        case 'up' :
+            return <FontAwesomeIcon icon={faUpLong} size="lg" style={{color:" #425664"}} />;
+        case 'down' :
+            return <FontAwesomeIcon icon={faDownLong} size="lg" style={{color:" #EBE9E1"}} />;
         default:
             return null;  
     }
