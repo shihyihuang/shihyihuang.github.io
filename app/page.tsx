@@ -50,7 +50,7 @@ export default function Home() {
       ref={observe}
       className="w-full h-screen flex items-center overflow-hidden relative bg-black flex-col justify-between">
         <Image
-          src={`/${heroImage}`}
+          src={`/home/${heroImage}`}
           alt="Imag of Claire"
           className="opacity-60 object-cover"
           fill
@@ -67,7 +67,16 @@ export default function Home() {
       </div>
 
       {/* Testimonial section */}
-      <div className="flex justify-center items-center gap-4 my-20">
+      <motion.div 
+        className="flex justify-center items-center gap-4 my-20"
+        initial={{ opacity: 1, scale: 1, y: 0 }}
+        whileInView={{ opacity: 1, scale: 1, y: 30 }}
+        transition={{
+          duration: 1,
+          ease: "easeOut",
+          y: { type: "spring", stiffness: 80 },
+        }}
+      >
         <svg id="progress" width="50" height="50" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="30" className="bg" />
           <motion.circle
@@ -81,20 +90,40 @@ export default function Home() {
         <Typography className='text-3xl' >
           Testimonials      
         </Typography>
-      </div>
-      <ul className='mx-5 mb-16' ref={ref}>
-        <TestimonialCard name="Claire" position="Software Engineer" content={content1} /> 
-        <TestimonialCard name="Claire" position="Software Engineer" content={content2} /> 
-        <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-        <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-        <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-        <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-      </ul>
+      </motion.div>
+      <motion.div
+          initial={{ opacity: 1, scale: 1, x: -50 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{
+            duration: 1,
+            ease: "easeOut",
+            x: { type: "spring", stiffness: 100 },
+          }} >
+          <ul className='mx-6 mb-16' ref={ref}>
+            <TestimonialCard name="Claire" position="Software Engineer" content={content1} /> 
+            <TestimonialCard name="Claire" position="Software Engineer" content={content2} /> 
+            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
+            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
+            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
+            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
+          </ul>
+
+      </motion.div>
     </div>
-    <div className='my-20 mx-5'>
-      <Typography className='text-3xl flex justify-center mb-20' >
+    <motion.div 
+      initial={{ opacity: 1, scale: 1, y: 0 }}
+      whileInView={{ opacity: 1, scale: 1, y: 30 }}
+      transition={{
+        duration: 1,
+        ease: "easeOut",
+        y: { type: "spring", stiffness: 80 },
+      }}
+      className='my-20'>
+      <Typography className='text-3xl flex justify-center' >
         Skills      
       </Typography>
+    </motion.div>
+    <div className='mb-20 mx-6'>
       <TapCard />
     </div>
   </main>

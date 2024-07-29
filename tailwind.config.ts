@@ -24,7 +24,7 @@ const config: Config = {
         'base-100': '#E43D12',
         'info': '#425664',
         // 'success': '#A1C398',
-        // 'warning': '#FFB534',
+        'warning': '#FEDD89',
         // 'error': '#FA7070'
       }
     }
