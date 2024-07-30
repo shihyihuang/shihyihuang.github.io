@@ -1,9 +1,8 @@
-import { AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from '@mui/material';
 import Icon from "./icon";
-import zIndex from "@mui/material/styles/zIndex";
 
 interface Item {
     id: number;

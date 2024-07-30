@@ -2,52 +2,69 @@
 import * as React from 'react';
 import Icon from '../component/icon';
 import { motion } from "framer-motion";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 import { createTheme, ThemeProvider, Stepper, Step, StepLabel, Box, StepContent, Button, Paper, Typography } from '@mui/material';
 
 
 const Projects = () => {
+  const MyRouter = useRouter();
   const projectList = [
     {
       label: 'VibeRight',
       time: "April 2024 - May 2024",
       imgSrc: "/projects/viberight/viberight.png",
+      detail: "projects/viberight",
+      url: "http://viberight.net/",
       skills: "React.js · Node.js · AWS (Lambda, DynamoDB, S3, API Gateway, CloudFront, Route 53) · Figma · UI/UX Design · Agile",
     },
     {
       label: 'Xkeleton',
       time: "October 2023",
-      skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
       imgSrc: "/projects/xkeleton/xkeleton.png",
+      detail: "/projects/viberight",
+      url: "https://github.com/shihyihuang/xkelentonXrayService",
+      skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
     },
     {
       label: 'Geospatial Analysis of Public Transportation Stops',
       time: "October 2023",
       imgSrc: "/projects/data/data.png",
+      detail: "/projects/viberight",
+      url: "https://github.com/shihyihuang/MelbourneBusStops",
       skills: "QGIS · Docker · SQL · PostgreSQL",
     },
     {
       label: 'CloudSnap',
       time: "June 2023",
-      skills: "React.js · AWS · RESTful API · HTML · CSS",
       imgSrc: "/projects/cloudsnap/cloudsnap.png",
+      detail: "/projects/viberight",
+      url: "https://drive.google.com/file/d/12onexGD3swyudgGHhyXCPHUDvn242CTT/view?usp=embed_facebook",
+      skills: "React.js · AWS · RESTful API · HTML · CSS",
     },
     {
       label: 'Android App',
       time: "May 2023",
-      skills: "Git · Java · Android Studio · Firebase",
       imgSrc: "/projects/android/android.jpg",
+      detail: "/projects/viberight",
+      url: "",
+      skills: "Git · Java · Android Studio · Firebase",
     },
     {
       label: 'Image Object Detection Web Service',
       time: "April 2023",
-      skills: "Python · Docker · Kubernetes · Oracle Cloud Infrastructure",
       imgSrc: "/projects/cloudiod/cloudiod.png",
+      detail: "/projects/viberight",
+      url: "https://github.com/shihyihuang/cloudiod",
+      skills: "Python · Docker · Kubernetes · Oracle Cloud Infrastructure",
     },
     {
       label: 'Save The Bilby',
       time: "October 2022",
-      skills: "Java · Object-Oriented Programming · Single Responsibility Principle",
       imgSrc: "/projects/bilby/bilby.png",
+      detail: "/projects/viberight",
+      url: "",
+      skills: "Java · Object-Oriented Programming · Single Responsibility Principle",
     },
   ];
 
@@ -67,7 +84,7 @@ const Projects = () => {
   
 
   return (
-      <Box className="w-full flex justify-center" >
+      <Box  >
         <Stepper 
           activeStep={activeStep} orientation="vertical" className='m-10' 
           sx={{
@@ -87,17 +104,42 @@ const Projects = () => {
         >
           {projectList.map((project, index) => (
             <Step key={project.label}>
-              <StepLabel
+              <StepLabel>
                 
-                // optional={
-                //   index === 2 ? (
-                //     <Typography variant="caption">Last step</Typography>
-                //   ) : null
-                // }
-              >
-                <Typography className={`text-2xl ${ index === activeStep ? "text-base-100" : "text-neutral"}  ml-4`}>
-                  {project.label}
-                </Typography>
+                <div 
+                  style={{ backgroundColor: 'transparent'}}
+                  className={`flex items-center ${ index === activeStep ? "text-base-100" : "text-neutral"}`}
+                >
+                  <Typography 
+                    className="text-2xl ml-4 mr-3"                 
+                  >
+                    {project.label}
+                  </Typography>
+                  {project.url == "" ? "" : 
+                    <motion.a
+                      className='mr-4'
+                      whileHover={{
+                        scale: 1.3
+                      }}
+                      whileTap={{
+                        scale: 0.9
+                      }}
+                      href={`${project.url}`}
+                      target='_blank' rel='noreferrer'>
+                      <Icon name="upright"/>
+                    </motion.a>
+                  }
+                  <motion.button
+                    className='shadow-md shadow-gray-400 rounded-full'
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => {
+                      MyRouter.push(`/${project.detail}`)
+                    }}
+                  >
+                    <Icon name="circleInfo"/>
+                  </motion.button>
+                </div>
                 
               </StepLabel>
               <StepContent>
@@ -107,15 +149,16 @@ const Projects = () => {
                     alt="Tailwind-CSS-Avatar-component" 
                     className='rounded-lg w-full md:w-1/2 my-4 ml-3 '/>
                 <Typography className='ml-4 text-info'>Skills : {project.skills}</Typography>
+
                 <Box sx={{ mb: 2 }}>
                   <div>
                   {index === projectList.length - 1 ? "" : 
                     <motion.button 
-                      whileHover={{ scale: 1.2 }}
-                      whileTap={{ scale: 0.9 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
                       // variant="contained"
                       onClick={handleNext}
-                      className='mt-4 ml-3 mr-5 p-2 h-10 w-10 rounded-full shadow-lg bg-info border-2 border-info hover:bg-neutral hover:border-none'
+                      className='mt-4 ml-3 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-info  hover:bg-neutral '
                     >
                       {index === projectList.length - 1 ? "" : <Icon name="down"/>}
                     </motion.button>
@@ -123,15 +166,25 @@ const Projects = () => {
 
                   {index === 0 ? "" : 
                     <motion.button 
-                      whileHover={{ scale: 1.2 }}
-                      whileTap={{ scale: 0.9 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
                       disabled={index === 0}
                       onClick={handleBack}
-                      className='mt-4 h-10 w-10 rounded-full shadow-lg bg-transparent border-2 border-info hover:bg-neutral hover:border-none'
+                      className='mt-4 ml-5 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-transparent border-2 border-info hover:bg-neutral hover:border-none'
                     >
                       <Icon name="up"/>
                     </motion.button>
                   }
+                  {/* <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => {
+                      MyRouter.push(`/${project.detail}`)
+                    }}
+                    // className='mt-4 ml-5 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-accent hover:bg-secondary '
+                  >
+                    <Icon name="more"/>
+                  </motion.button> */}
 
                   </div>
                 </Box>
