@@ -158,7 +158,7 @@ const Projects = () => {
                       whileTap={{ scale: 0.8 }}
                       // variant="contained"
                       onClick={handleNext}
-                      className='mt-4 ml-3 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-info  hover:bg-neutral '
+                      className='mt-4 ml-3 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-info  hover:bg-accent '
                     >
                       {index === projectList.length - 1 ? "" : <Icon name="down"/>}
                     </motion.button>
@@ -170,22 +170,11 @@ const Projects = () => {
                       whileTap={{ scale: 0.8 }}
                       disabled={index === 0}
                       onClick={handleBack}
-                      className='mt-4 ml-5 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-transparent border-2 border-info hover:bg-neutral hover:border-none'
+                      className='mt-4 ml-5 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-transparent border-2 border-info hover:bg-accent hover:border-none hover:color-primary'
                     >
                       <Icon name="up"/>
                     </motion.button>
                   }
-                  {/* <motion.button
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => {
-                      MyRouter.push(`/${project.detail}`)
-                    }}
-                    // className='mt-4 ml-5 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-accent hover:bg-secondary '
-                  >
-                    <Icon name="more"/>
-                  </motion.button> */}
-
                   </div>
                 </Box>
               </StepContent>

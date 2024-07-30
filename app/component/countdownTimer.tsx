@@ -1,24 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Typography } from '@mui/material';
 
 const CountdownTimer: React.FC = () => {
     const [counter, setCounter] = useState<number>(60);
+    const [missedCount, setMissedCount] = useState<number>(0);
+    const hasIncrementedRef = useRef<boolean>(false);
 
     useEffect(() => {
       const timer = setInterval(() => {
         setCounter((prevCounter) => {
           if (prevCounter <= 1) {
+            if (!hasIncrementedRef.current) {
+              setMissedCount(prevMissed => prevMissed + 1);
+              hasIncrementedRef.current = true;
+            }
             return 60;
           }
+          hasIncrementedRef.current = false;
           return prevCounter - 1;
         });
       }, 1000);
-    
+  
       return () => clearInterval(timer);
     }, []);
 
   return (
     <div className="max-w-full overflow-x-hidden">
-        <div className="flex flex-wrap justify-center gap-2 text-center">
+        <Typography className='!text-3xl !mt-5 text-info text-center' gutterBottom>
+            Beat the Buzzer
+        </Typography>
+        <div className="flex flex-wrap justify-center gap-2 text-center mt-5">
             <div className="flex flex-col p-3 rounded-box bg-secondary text-primary">
                 <span className="countdown text-5xl">
                 <span style={{ '--value': 0 } as React.CSSProperties}></span>
@@ -38,6 +49,11 @@ const CountdownTimer: React.FC = () => {
                 sec
             </div>
         </div>
+        <Typography className='!text-xl !mt-5 text-info text-center' gutterBottom>
+            Time to connect is slipping away ! 
+            <br/>
+            Missed chances: {missedCount}
+        </Typography>
     </div>
   );
 };
