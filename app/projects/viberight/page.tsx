@@ -9,7 +9,7 @@ const page = () => {
             <div className="mt-4 md:mt-8 md:ml-8 my-4">
                 <Card  className='!bg-transparent !border-transparent !shadow-none !max-w-xl'>
                     <CardContent>
-                        <Typography className='!text-2xl !text-base-100 pb-5'>
+                        <Typography className='!text-2xl !text-base-100 pb-5 '>
                         VibeRight
                         </Typography>
                         <Typography className='!text-md !text-info' >
@@ -29,7 +29,17 @@ const page = () => {
                 </Card>
             </div>
         </div>
-        
+        <div className="chat chat-start">
+            <div className="chat-bubble">
+                It's over Anakin,
+                <br />
+                I have the high ground.
+            </div>
+        </div>
+            <div className="chat chat-end">
+            <div className="chat-bubble">You underestimate my power!</div>
+        </div>
+
     </div>
   )
 }
