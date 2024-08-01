@@ -1,3 +1,5 @@
 node_modules
 *.mp4
-# public/projects/viberight/*.mp4
+sendgrid.env
+.env.local
+# public/projects/viberight/*.mp4sendgrid.env
