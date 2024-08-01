@@ -2,6 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import sgMail from "@sendgrid/mail";
 
+//https://medium.com/@toralf.frich/simple-email-delivery-from-next-js-with-sendgrid-b12ce04cffe3
+
 if (!process.env.SENDGRID_API_KEY) {
   console.error('SENDGRID_API_KEY is not set');
   process.exit(1);

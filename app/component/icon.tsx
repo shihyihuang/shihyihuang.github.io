@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { 
   faAddressBook, 
   faBars, 
@@ -10,9 +11,20 @@ import {
   faInfo, 
   faRightFromBracket, 
   faCircleInfo,
-  faArrowUpRightFromSquare 
+  faArrowUpRightFromSquare,
+  faQuestionCircle 
 } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'framer-motion';
+library.add(  faAddressBook, 
+    faBars, 
+    faXmark, 
+    faAnglesDown, 
+    faUpLong, 
+    faDownLong, 
+    faInfo, 
+    faRightFromBracket, 
+    faCircleInfo,
+    faArrowUpRightFromSquare,faQuestionCircle
+ );
 
 interface IconProps {
   name: string;
@@ -49,7 +61,7 @@ const Icon: React.FC<IconProps> = ({ name }) => {
     case 'upright':
       return <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xl" />;
     default:
-      return null; // Or some default icon
+        return <FontAwesomeIcon icon={faQuestionCircle} size="xl" />;
   }
 };
 
