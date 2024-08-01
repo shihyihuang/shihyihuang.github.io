@@ -170,41 +170,4 @@ const page: React.FC = () => {
   )
 }
 
-export default page
-
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   setStatus('idle');
-
-  //   const formData = new FormData(e.currentTarget);
-  //   const emailInfo: EmailInfo = {
-  //     name: formData.get('name') as string,
-  //     email: formData.get('email') as string,
-  //     message: formData.get('message') as string,
-  //   };
-    
-  //   try {
-  //     const response = await fetch('/api/send-email', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(emailInfo),
-  //     });
-
-  //     if (response.ok) {
-  //       setStatus('success');
-  //       // Reset form
-  //       e.currentTarget.reset();
-  //     } else {
-  //       setStatus('error');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error sending email:', error);
-  //     setStatus('error');
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+export default page;
