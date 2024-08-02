@@ -1,30 +1,35 @@
+'use client';
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { 
-  faAddressBook, 
-  faBars, 
-  faXmark, 
-  faAnglesDown, 
-  faUpLong, 
-  faDownLong, 
-  faInfo, 
-  faRightFromBracket, 
+import {
+  faAddressBook,
+  faBars,
+  faXmark,
+  faAnglesDown,
+  faUpLong,
+  faDownLong,
+  faInfo,
+  faRightFromBracket,
   faCircleInfo,
   faArrowUpRightFromSquare,
-  faQuestionCircle 
+  faQuestionCircle
 } from '@fortawesome/free-solid-svg-icons';
-library.add(  faAddressBook, 
-    faBars, 
-    faXmark, 
-    faAnglesDown, 
-    faUpLong, 
-    faDownLong, 
-    faInfo, 
-    faRightFromBracket, 
-    faCircleInfo,
-    faArrowUpRightFromSquare,faQuestionCircle
- );
+
+library.add(
+  faAddressBook,
+  faBars,
+  faXmark,
+  faAnglesDown,
+  faUpLong,
+  faDownLong,
+  faInfo,
+  faRightFromBracket,
+  faCircleInfo,
+  faArrowUpRightFromSquare,
+  faQuestionCircle
+);
 
 interface IconProps {
   name: string;

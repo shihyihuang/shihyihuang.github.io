@@ -19,12 +19,6 @@ const Navbar = ({toggle} : {
             <motion.li key={item}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}>
-              {/* <Link href={`/${item}`} 
-                className={`border-secondary rounded-none hover:border-b-2 w-auto px-1 mr-5 bg-transparent focus:border-b-2 focus:text-secondary ${pathName===`/${item}`? 'border-b-2' : '' } ${pathName===`/${item}`? 'text-secondary' : '' }`}
-                style={{ backgroundColor: 'transparent', color: 'inherit' }}>
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </Link> */}
-              
               <Link 
                 href={`/${item}`}
                 className={`border-neutral rounded-none hover:border-b-2 hover:text-neutral hover:font-extrabold focus:border-b-2 focus:text-neutral focus:font-extrabold w-auto px-1 mr-5 bg-transparent ${pathName === `/${item}` ? 'border-b-2 text-neutral font-extrabold' : ''}`}
