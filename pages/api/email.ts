@@ -34,8 +34,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const msg = {
     to: 'hclaire1007@gmail.com',
-    from: 'hclaire1007@gmail.com',
-    subject: 'New Contact Form Submission',
+    from: 'www.clairehuang.tech',
+    subject: 'New Contact From Portfolio',
     text: `Sender: ${sender}\nEmail: ${email}\nContent: ${content}`,
     html: `<strong>Sender:</strong> ${sender}<br><strong>Email:</strong> ${email}<br><strong>Content:</strong> ${content}`,
   };

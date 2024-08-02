@@ -14,7 +14,7 @@ const Projects = () => {
       time: "April 2024 - May 2024",
       imgSrc: "/projects/viberight/viberight.png",
       detail: "projects/viberight",
-      url: "http://viberight.net/",
+      url: "http://vibe-right.s3-website-ap-southeast-2.amazonaws.com/",
       skills: "React.js · Node.js · AWS (Lambda, DynamoDB, S3, API Gateway, CloudFront, Route 53) · Figma · UI/UX Design · Agile",
     },
     {
