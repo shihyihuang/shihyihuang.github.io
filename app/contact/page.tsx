@@ -2,9 +2,8 @@
 
 import React from 'react';
 import {motion} from "framer-motion";
-import Icon from '../component/icon';
 import { Card, CardContent, Typography } from '@mui/material';
-import CountdownTimer from '../component/countdownTimer';
+import CountdownTimer from '../../components/countdownTimer';
 import { useState } from 'react';
 
 

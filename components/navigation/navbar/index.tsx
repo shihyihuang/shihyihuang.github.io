@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import Icon from "../../icon";
+import Icon from "../../Icon";
 import {motion} from "framer-motion"
 import { usePathname } from 'next/navigation'
 import Button from './button';

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navigation from "./component/navigation";
+import Navigation from "@/components/navigation";
 import ThemeRegistry from './ThemeRegistry';
 
 export const metadata: Metadata = {

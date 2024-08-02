@@ -1,13 +1,13 @@
 'use client';
 import {Box, Card, Stack, CardContent, Typography, Avatar, Rating} from '@mui/material';
-import TestimonialCard from "./component/testimonialCard";
+import TestimonialCard from '@/components/testimonialCard';
 import { useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import "./style/testimonial.css";
 import Image from 'next/image'
 import useDimensions from 'react-cool-dimensions';
-import FlashingArrow from "./component/flashingArrow";
-import TapCard from "./component/tapCard";
+import FlashingArrow from "@/components/flashingArrow";
+import TapCard from "@/components/tapCard";
 
 
 //https://blog.uxfol.io/professional-portfolio/

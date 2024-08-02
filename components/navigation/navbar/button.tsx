@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Icon from "../../icon";
+import Icon from "../../Icon";
 import {motion} from "framer-motion";
 
 const Button = () => {

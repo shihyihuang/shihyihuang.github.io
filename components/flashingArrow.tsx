@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import Icon from "./icon";
+import Icon from "./Icon";
 
 // Define the animation variants
 const variants: Variants = {

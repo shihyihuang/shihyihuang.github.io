@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
 import {motion} from "framer-motion";
-import Icon from '../component/icon';
+import Icon from './Icon';
 
 const Button = (text: string, icon: string) => {
   return (

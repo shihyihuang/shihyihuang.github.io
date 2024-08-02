@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from "next/link";
 import {motion} from "framer-motion";
-import Icon from "../../icon";
+import Icon from "../../Icon";
 
 const Sidebar = ({
   isOpen,

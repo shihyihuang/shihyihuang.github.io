@@ -1,8 +1,7 @@
 'use client';
 import * as React from 'react';
-import Icon from '../component/icon';
+import Icon from '../../components/Icon';
 import { motion } from "framer-motion";
-import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import { createTheme, ThemeProvider, Stepper, Step, StepLabel, Box, StepContent, Button, Paper, Typography } from '@mui/material';
 
