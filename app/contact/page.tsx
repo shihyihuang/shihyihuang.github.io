@@ -16,6 +16,49 @@ interface EmailInfo {
 const page: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [nameErrorMessage, setNameErrorMessage] = useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [contentErrorMessage, setContentErrorMessage] = useState('');
+
+  const inputValidation = (sender: string, email: string, content: string): boolean => {
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // only letters, spaces, and hyphens, prevent < or >
+    const namePattern = /^[a-zA-Z\s-]+$/;
+    // only alphanumeric, some punctuation, prevent < or >
+    const contentPattern = /^[a-zA-Z0-9\s.,!?()'";\-:]+$/;
+    // Pattern to check for potentially dangerous strings
+    const dangerousPattern = /<|>|javascript:|data:|file:|vbscript:|onload=|onerror=|eval\(|expression\(|url\(|alert\(|document\.cookie|document\.write|window\.location/i;
+  
+    let isValid = true;
+  
+    if (!namePattern.test(sender) || dangerousPattern.test(sender)) {
+      setNameErrorMessage('Please enter a valid name (letters, spaces, and hyphens only)');
+      // console.log("Name validation failed");
+      isValid = false;
+    } else {
+      setNameErrorMessage('');
+    }
+
+    if (!emailPattern.test(email) || dangerousPattern.test(email)) {
+      setEmailErrorMessage('Please enter a valid email address');
+      // console.log("Email validation failed");
+      isValid = false;
+    } else {
+      setEmailErrorMessage('');
+    }
+  
+    if (!contentPattern.test(content) || dangerousPattern.test(content)) {
+      setContentErrorMessage('Please include alphanumeric characters and punctuation only)');
+      // console.log("Content validation failed");
+      isValid = false;
+    } else {
+      setContentErrorMessage('');
+    }
+  
+    return isValid;
+  };
+
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
 
@@ -25,6 +68,7 @@ const page: React.FC = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+
     const emailInfo: EmailInfo = {
       sender: formData.get('sender') as string,
       email: formData.get('email') as string,
@@ -33,8 +77,11 @@ const page: React.FC = () => {
   
     try {
 
-      console.log('Sending email with data:', emailInfo);
-
+      if (!inputValidation(emailInfo.sender, emailInfo.email, emailInfo.content)) {
+        setIsLoading(false);
+        setStatus('error');
+        return;
+      } 
       const res = await fetch('/api/email', {
         method: 'POST',
         body: JSON.stringify(emailInfo),
@@ -46,23 +93,26 @@ const page: React.FC = () => {
       const responseData = await res.json();
       console.log('Server response:', responseData);
 
-    if (res.ok) {
-      setStatus('success');
-      if (form) {
-        form.reset();
+      if (res.ok) {
+        setStatus('success');
+        if (form) {
+          form.reset();
+          setNameErrorMessage('');
+          setEmailErrorMessage('');
+          setContentErrorMessage('');
+        } else {
+          console.warn('Form reference is null, unable to reset');
+        }
       } else {
-        console.warn('Form reference is null, unable to reset');
+        console.error('Server error:', responseData);
+        setStatus('error');
       }
-    } else {
-      console.error('Server error:', responseData);
+    } catch (error) {
+      console.error('Error sending email:', error);
       setStatus('error');
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error('Error sending email:', error);
-    setStatus('error');
-  } finally {
-    setIsLoading(false);
-  }
   };
 
   const socialMedia = [
@@ -90,8 +140,8 @@ const page: React.FC = () => {
             <form onSubmit={sendEmail}>
               <div className='card w-full md:max-w-xl shadow-lg shadow-gray-500 my-3 bg-neutral !max-w-full'>
                 <div className="card-body flex flex-col ">
-                  <h2 className="card-title text-info !text-3xl">Contact Me</h2>
-                  <label className="input flex items-center gap-2 mt-2 bg-primary border-primary text-info">
+                  <h2 className="card-title !text-info !text-3xl">Contact Me</h2>
+                  <label className="input flex items-center gap-2 mt-2 bg-primary border-primary !text-info">
                     Name
                     <input 
                       required
@@ -101,7 +151,8 @@ const page: React.FC = () => {
                       placeholder="How to address you" 
                     />
                   </label>
-                  <label className="input flex items-center gap-2 mt-4 bg-primary border-primary text-info">
+                  <p className="!text-base-100">{nameErrorMessage}</p>
+                  <label className="input flex items-center gap-2 mt-4 bg-primary border-primary !text-info">
                     Email
                     <input 
                       required
@@ -111,13 +162,14 @@ const page: React.FC = () => {
                       placeholder="Your contact email" 
                     />
                   </label>
+                  <p className="!text-base-100">{emailErrorMessage}</p>
                   <textarea 
                     required        
                     name="content"
-                    className="textarea textarea-bordered mt-4 bg-primary border-primary flex-grow h-48 text-info" 
+                    className="textarea textarea-bordered mt-4 bg-primary border-primary flex-grow h-48 !text-info" 
                     placeholder="Message">
                   </textarea>
-                  
+                  <p className="!text-base-100">{contentErrorMessage}</p>
                   <motion.button
                     type="submit" 
                     className="btn bg-secondary border-none hover:bg-warning hover:text-info text-primary shadow-md shadow-gray-400 mt-4 text-base"
@@ -130,9 +182,11 @@ const page: React.FC = () => {
                     {isLoading ? 'Sending...' : 'Send'}
                     {/* <Icon name="send"/> */}
                   </motion.button>
-                  
-                    {status === 'success' && <SnackBar content="Message sent successfully!" status={status}/>}
-                    {status === 'error' && <SnackBar content="Failed to send message. Please try again!" status={status}/>}
+                  {/* {status  !== 'idle' && (
+                    <SnackBar content={snackBarMessage} status={status} />
+                  )} */}
+                  {status === 'success' && <SnackBar content="Message sent successfully!" status={status}/>}
+                  {status === 'error' && <SnackBar content="Failed to send message. Please try again!" status={status}/>}
                 </div>
               </div>
             </form>
