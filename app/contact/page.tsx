@@ -49,7 +49,7 @@ const page: React.FC = () => {
     }
   
     if (!contentPattern.test(content) || dangerousPattern.test(content)) {
-      setContentErrorMessage('Please include alphanumeric characters and punctuation only)');
+      setContentErrorMessage('Please include alphanumeric characters and basic punctuation only');
       // console.log("Content validation failed");
       isValid = false;
     } else {

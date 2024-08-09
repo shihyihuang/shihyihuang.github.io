@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from "next/link";
 import {motion} from "framer-motion";
-import Icon from "../../Icon";
+import Icon from "@/components/Icon";
 
 const Sidebar = ({
   isOpen,
@@ -20,69 +20,47 @@ const Sidebar = ({
         }}
       >
         <motion.button
-                className="absolute right-0 p-5"
-                onClick={toggle}
-                whileHover={{
-                    scale: 1.5
-                }}
-                whileTap={{
-                    scale: 0.9
-                }}>
-                <Icon name="close"/>
-          </motion.button> 
-        <motion.div 
+          className="absolute right-0 p-5"
+          onClick={toggle}
+          whileHover={{
+            scale: 1.5
+          }}
+          whileTap={{
+            scale: 0.9
+          }}>
+          <Icon name="close"/>
+        </motion.button>
+
+        <motion.div
+          className="flex flex-col items-center justify-center h-full"
           initial={{ opacity: 1, scale: 1, y: 100 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{
             duration: 1,
             ease: "easeOut",
-            // y: { type: "spring", stiffness: 30 },
           }}>
-            <ul className="sidebar-nav text-center leading-relaxed text-xl">
-                <motion.li whileHover={{
-                    scale: 1.5
+          <ul className="sidebar-nav text-center leading-relaxed text-xl flex flex-col space-y-8">
+            {[
+              { href: "/", text: "Home" },
+              { href: "/about", text: "About" },
+              { href: "/projects", text: "Projects" },
+              { href: "/contact", text: "Contact" }
+            ].map((item, index) => (
+              <motion.li 
+                key={index}
+                whileHover={{
+                  scale: 1.5
                 }}
                 whileTap={{
-                    scale: 0.9
+                  scale: 0.9
                 }}>
-                    <Link href="/about" onClick={toggle}>
-                        <p>About</p>
-                    </Link>
-                </motion.li>
-                <motion.li whileHover={{
-                    scale: 1.5
-                }}
-                whileTap={{
-                    scale: 0.9
-                }}>
-                    <Link href="/projects" onClick={toggle}>
-                        <p>Projects</p>
-                    </Link>
-                </motion.li>
-                <motion.li whileHover={{
-                    scale: 1.5
-                }}
-                whileTap={{
-                    scale: 0.9
-                }}> 
-                    <Link href="/about" onClick={toggle}>
-                        <p>life</p>
-                    </Link>
-                </motion.li>
-                <motion.li whileHover={{
-                    scale: 1.5
-                }}
-                whileTap={{
-                    scale: 0.9
-                }}> 
-                    <Link href="/contact" onClick={toggle}>
-                        <p>Contact</p>
-                    </Link>
-                </motion.li>
-            </ul>
+                <Link href={item.href} onClick={toggle}>
+                  <p>{item.text}</p>
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
         </motion.div>
-
-
       </div>
     </>
   );

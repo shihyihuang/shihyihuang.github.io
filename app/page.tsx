@@ -56,10 +56,10 @@ export default function Home() {
           fill
         />
         <div className="flex-grow flex flex-col justify-center items-center px-3">
-          <h1 className=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg">Hello! <br />
+          <h1 className=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg">Hey there! <br />
               <span className="text-primary">This is Claire</span>
           </h1>
-          <p className="mt-5 text-center text-lg text-white opacity-90">a full stack developer</p>
+          <p className="mt-5 text-center text-lg text-white opacity-90"> A caffeine-fueled full-stack developer crafting code with a shot of creativity!</p>
         </div>
         <div className="mb-16">
           <FlashingArrow />
