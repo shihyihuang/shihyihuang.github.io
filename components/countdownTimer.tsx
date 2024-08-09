@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Typography } from '@mui/material';
 
-const CountdownTimer: React.FC = () => {
+interface CountdownTimerProps {
+  status: string;
+}
+
+const CountdownTimer: React.FC<CountdownTimerProps> = ({status}) => {
     const [counter, setCounter] = useState<number>(60);
     const [missedCount, setMissedCount] = useState<number>(0);
     const hasIncrementedRef = useRef<boolean>(false);
+
+    useEffect(() => { if (status === 'success'){
+      setCounter(60);
+      setMissedCount(0);
+    }}, [status]);
 
     useEffect(() => {
       const timer = setInterval(() => {

@@ -26,8 +26,8 @@ const config: Config = {
         'neutral': '#EFB11D', //orange
         'base-100': '#E43D12', //red
         'info': '#425664', //dark grey
-        // 'success': '#A1C398',
         'warning': '#FEDD89', //yellow
+        // 'success': '#A1C398',
         // 'error': '#FA7070'
       }
     }

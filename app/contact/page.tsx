@@ -2,10 +2,10 @@
 
 import React from 'react';
 import {motion} from "framer-motion";
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography} from '@mui/material';
 import CountdownTimer from '../../components/countdownTimer';
 import { useState } from 'react';
-
+import SnackBar from '@/components/snackBar';
 
 interface EmailInfo {
   sender: string;
@@ -114,7 +114,7 @@ const page: React.FC = () => {
                   <textarea 
                     required        
                     name="content"
-                    className="textarea textarea-bordered mt-4 bg-primary border-primary flex-grow h-48 text-base" 
+                    className="textarea textarea-bordered mt-4 bg-primary border-primary flex-grow h-48 text-info" 
                     placeholder="Message">
                   </textarea>
                   
@@ -130,8 +130,9 @@ const page: React.FC = () => {
                     {isLoading ? 'Sending...' : 'Send'}
                     {/* <Icon name="send"/> */}
                   </motion.button>
-                    {status === 'success' && <p>Message sent successfully!</p>}
-                    {status === 'error' && <p>Failed to send message. Please try again.</p>}
+                  
+                    {status === 'success' && <SnackBar content="Message sent successfully!" status={status}/>}
+                    {status === 'error' && <SnackBar content="Failed to send message. Please try again!" status={status}/>}
                 </div>
               </div>
             </form>
@@ -141,7 +142,7 @@ const page: React.FC = () => {
         <div className=" my-4 md:ml-20 max-w-full overflow-x-hidden ">
           <Card  className='!bg-transparent !border-transparent !shadow-none'>
             <CardContent>
-              <CountdownTimer/>
+              <CountdownTimer status={status}/>
               <Typography className='!text-3xl !mt-16 text-info text-center' gutterBottom>
                 Ready, Set, Connect !
               </Typography>

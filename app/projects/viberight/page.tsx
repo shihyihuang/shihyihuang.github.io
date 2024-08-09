@@ -32,9 +32,9 @@ const page = () => {
         </div>
         <div className='flex justify-center mb-10 md:mb-20 mt-5 md:mt-20 mx-4'>
             <div className='md:w-10/12 rounded-xl '>
-                <Accordion className='bg-warning text-info p-2' defaultExpanded>
+                <Accordion className='!bg-warning !text-info p-2' defaultExpanded>
                     <AccordionSummary
-                    className='!text-lg text-neutral font-black'
+                    className='!text-lg !text-neutral font-black'
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header"
@@ -42,30 +42,34 @@ const page = () => {
                     Tamagotchu - Virtual Pet
                     </AccordionSummary>
                     <AccordionDetails >
-                    Feed your virtual pet by uploading photos of the foods you've eaten that day. 
+                    Users can feed their virtual pet by uploading photos of the foods they've eaten that day, 
+                    earning up to 100 experience points per day if the food is evaluated as healthy. 
+                    The virtual pet can evolve to the next stage after accumulating 500 experience points. 
                     <br/>
-                    Earn 100 experience points if the food is evaluated as healthy. 
                     <br/>
-                    Your Tamagotchu can evolve to the next stage after accumulating 500 experience points.
+                    Users can also select a food group they're lacking and aim to consume it daily for 7 days, 
+                    earning one stamp per day upon successful consumption. After collecting 7 stamps, the Tamagotchu's house can be updated. 
+                    Users have the option to select another food group or continue with the current one for the next challenge.
                     </AccordionDetails>
                 </Accordion>
-                <Accordion className='bg-neutral text-info p-2'>
+                <Accordion className='!bg-neutral !text-info p-2'>
                     <AccordionSummary
-                    className='!text-lg text-warning font-black'
+                    className='!text-lg !text-warning font-black'
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2-content"
                     id="panel2-header"
                     >
-                    Accordion 2
+                    Smart Grocery
                     </AccordionSummary>
                     <AccordionDetails>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    Users can enter their intended grocery items, and the system will display the nutrition information, 
+                    including a healthy rating and allergen content, if included, for the selected items. 
+                    Users can also swipe to view detailed macronutrient information.
                     </AccordionDetails>
                 </Accordion>
-                <Accordion className='bg-warning text-info p-2'>
+                <Accordion className='!bg-warning !text-info p-2'>
                     <AccordionSummary
-                    className='!text-lg text-neutral font-black'
+                    className='!text-lg !text-neutral !font-black'
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel3-content"
                     id="panel3-header"
@@ -80,6 +84,21 @@ const page = () => {
                     <button>Cancel</button>
                     <button>Agree</button>
                     </AccordionActions>
+                </Accordion>
+                <Accordion className='!bg-neutral !text-info p-2'>
+                    <AccordionSummary
+                    className='!text-lg !text-warning font-black'
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2-content"
+                    id="panel2-header"
+                    >
+                    Intake Calculator
+                    </AccordionSummary>
+                    <AccordionDetails>
+                    Users can enter their intended grocery items, and the system will display the nutrition information, 
+                    including a healthy rating and allergen content, if included, for the selected items. 
+                    Users can also swipe to view detailed macronutrient information.
+                    </AccordionDetails>
                 </Accordion>
             </div>
         </div>
