@@ -14,7 +14,8 @@ import {
   faRightFromBracket,
   faCircleInfo,
   faArrowUpRightFromSquare,
-  faQuestionCircle
+  faQuestionCircle,
+  faCircleArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -28,7 +29,8 @@ library.add(
   faRightFromBracket,
   faCircleInfo,
   faArrowUpRightFromSquare,
-  faQuestionCircle
+  faQuestionCircle,
+  faCircleArrowLeft
 );
 
 interface IconProps {
@@ -65,6 +67,8 @@ const Icon: React.FC<IconProps> = ({ name }) => {
       return <FontAwesomeIcon icon={faRightFromBracket} size="lg" style={{ color: "#EBE9E1" }} />;
     case 'upright':
       return <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xl" />;
+    case 'back':
+      return <FontAwesomeIcon icon={faCircleArrowLeft} size="2xl" />;
     default:
         return <FontAwesomeIcon icon={faQuestionCircle} size="xl" />;
   }

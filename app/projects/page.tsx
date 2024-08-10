@@ -37,7 +37,7 @@ const Projects = () => {
       label: 'CloudSnap',
       time: "June 2023",
       imgSrc: "/projects/cloudsnap/cloudsnap.png",
-      detail: "/projects/viberight",
+      detail: "",
       url: "https://drive.google.com/file/d/12onexGD3swyudgGHhyXCPHUDvn242CTT/view?usp=embed_facebook",
       skills: "React.js · AWS · RESTful API · HTML · CSS",
     },
@@ -53,7 +53,7 @@ const Projects = () => {
       label: 'Image Object Detection Web Service',
       time: "April 2023",
       imgSrc: "/projects/cloudiod/cloudiod.png",
-      detail: "/projects/viberight",
+      detail: "",
       url: "https://github.com/shihyihuang/cloudiod",
       skills: "Python · Docker · Kubernetes · Oracle Cloud Infrastructure",
     },
@@ -61,7 +61,7 @@ const Projects = () => {
       label: 'Save The Bilby',
       time: "October 2022",
       imgSrc: "/projects/bilby/bilby.png",
-      detail: "/projects/viberight",
+      detail: "",
       url: "",
       skills: "Java · Object-Oriented Programming · Single Responsibility Principle",
     },
@@ -96,9 +96,6 @@ const Projects = () => {
                 color: '#EFB11D', // completed color
               },
             },
-            '& .MuiStepConnector-line': {
-              borderColor: '#bdbdbd', // line color
-            },
           }}
         >
           {projectList.map((project, index) => (
@@ -128,16 +125,19 @@ const Projects = () => {
                       <Icon name="upright"/>
                     </motion.a>
                   }
-                  <motion.button
+                  {project.detail == "" ? "" :             
+                    <motion.button
                     className='shadow-md shadow-gray-400 rounded-full'
                     whileHover={{ scale: 1.3 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => {
                       MyRouter.push(`/${project.detail}`)
                     }}
-                  >
-                    <Icon name="circleInfo"/>
-                  </motion.button>
+                    >
+                      <Icon name="circleInfo"/>
+                    </motion.button>
+                  }
+      
                 </div>
                 
               </StepLabel>
