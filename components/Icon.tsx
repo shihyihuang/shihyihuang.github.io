@@ -68,7 +68,7 @@ const Icon: React.FC<IconProps> = ({ name }) => {
     case 'upright':
       return <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xl" />;
     case 'back':
-      return <FontAwesomeIcon icon={faCircleArrowLeft} size="2xl" />;
+      return <FontAwesomeIcon icon={faCircleArrowLeft} size="xl" />;
     default:
         return <FontAwesomeIcon icon={faQuestionCircle} size="xl" />;
   }

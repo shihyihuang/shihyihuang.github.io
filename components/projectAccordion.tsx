@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface ProjectAccordionProps {
@@ -11,9 +11,9 @@ interface ProjectAccordionProps {
 }
 
 const ProjectAccordion: React.FC<ProjectAccordionProps>  = ({ bgColor,titleColor, textColor, title, content }) => (
-    <Accordion className={`!${bgColor} !${textColor} p-2`}>
+    <Accordion className={`${bgColor} ${textColor} p-2`}>
         <AccordionSummary
-            className={`!text-lg !${titleColor} font-black`}
+            className={`!text-lg ${titleColor} font-black`}
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`${title}-content`}
             id={`${title}-header`}

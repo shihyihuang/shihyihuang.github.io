@@ -8,12 +8,12 @@ export default function BackButton() {
   return (
     <div className='w-full px-2 md:px-[calc(8.33%)]'>
         <motion.button
-            whileHover={{ scale: 1.3 }}
+            whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={router.back}
-            // style={{ marginBottom: "20px" }}
-            className="mb-2 mt-2">
+            className="flex items-center">
             <Icon name="back" />
+            <span className='text-base-100 text-2xl px-3'>Back</span>
         </motion.button>
     </div>
   )

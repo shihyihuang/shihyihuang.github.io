@@ -1,15 +1,12 @@
 import React from 'react'
-import { Card, CardContent, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Card, CardContent, Typography} from '@mui/material';
 import ProjectAccordion from '@/components/projectAccordion';
-import { motion } from "framer-motion";
-import Icon from '@/components/Icon';
 import BackButton from '@/components/BackButton';
 
 const page = () => {
   return (
     <div className='flex flex-col items-start justify-start relative mx-3'>
-        <div className='w-full my-4 mx-3'>
+        <div className='w-full my-8 mx-3'>
             <BackButton />
         </div>
         <div className='min-h-screen-minus-nav flex flex-col justify-center mx-2'>
