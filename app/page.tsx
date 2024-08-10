@@ -15,7 +15,7 @@ export default function Home() {
   const ref = useRef(null);
   const { scrollXProgress } = useScroll({ container: ref });
 
-  const content1 = "Track the metrics from all embedded videos, help your marketing team understand the performance at a glance, even promote the best-performing videos to different marketing channels even promote the best-performing videos to different marketing channels. even promote the best-performing videos to different marketing channels. even promote the best-performing videos to different marketing channels. even promote the best-performing videos to different marketing channels."
+  const thomasContent = "Claire has been an incredibly helpful and dedicated classmate from Taiwan. She is a positive and hardworking individual who always tries her best. Her eagerness to learn and her supportive nature have made a significant impact on our class. I am confident she will be a valuable asset to any organization."
   const content2 = "even promote the best-performing videos to different marketing channels."
 
   function arrayCeil(arr: any, number:any ) {
@@ -100,12 +100,14 @@ export default function Home() {
             x: { type: "spring", stiffness: 100 },
           }} >
           <ul className='mx-6 mb-16' ref={ref}>
-            <TestimonialCard name="Claire" position="Software Engineer" content={content1} /> 
-            <TestimonialCard name="Claire" position="Software Engineer" content={content2} /> 
-            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
-            <TestimonialCard name="Claire" position="Software Engineer" content="Claire's testimonial content" /> 
+            <TestimonialCard profileImage="/home/testimonial/thomas.jpeg" name="Thomas Ng" position="Senior Full Stack Developer | Web3 Developer" content={thomasContent} linkedinUrl="https://www.linkedin.com/in/thomas-ng-ka-ho/"/> 
+            <TestimonialCard profileImage="/home/testimonial/nikita.jpeg" name="Nikita Beniwal" position="Data Analyst" content={content2} linkedinUrl="https://www.linkedin.com/in/nikita-beniwal/"/> 
+            <TestimonialCard profileImage="/home/testimonial/daniel.jpeg" name="Daniel Hu" position="Senior Software Engineer" content={content2} linkedinUrl="https://www.linkedin.com/in/iamdanielhu/"/> 
+            <TestimonialCard profileImage="/home/testimonial/iris.jpeg" name="Iris Hsu" position="Business System Analyst | IT Project Management | UXUI Designer" content={content2} linkedinUrl="https://www.linkedin.com/in/iris-h-510812203/"/> 
+            <TestimonialCard profileImage="/home/testimonial/patty.jpeg" name="Patty Hung" position="Aspiring Software Developer" content={content2} linkedinUrl="https://www.linkedin.com/in/pch23/"/> 
+            <TestimonialCard profileImage="/home/testimonial/wells.jpeg" name="Wells Yu" position="Software Engineer | Web Developer" content={content2} linkedinUrl="https://www.linkedin.com/in/wells-yu/"/> 
+            <TestimonialCard profileImage="/home/testimonial/mingze.jpeg" name="Mingze Li" position="Software Engineer" content={content2} linkedinUrl="https://www.linkedin.com/in/mingze-li-aa590a161/"/> 
+            <TestimonialCard profileImage="/home/testimonial/crystal.jpeg" name="Crystal Yu" position="Software Engineer" content={content2} linkedinUrl="https://www.linkedin.com/in/ych-b577152a4/"/>           
           </ul>
 
       </motion.div>

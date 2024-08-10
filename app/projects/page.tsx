@@ -21,7 +21,7 @@ const Projects = () => {
       label: 'Xkeleton',
       time: "October 2023",
       imgSrc: "/projects/xkeleton/xkeleton.png",
-      detail: "/projects/viberight",
+      detail: "projects/xkeleton",
       url: "https://github.com/shihyihuang/xkelentonXrayService",
       skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
     },
@@ -29,7 +29,7 @@ const Projects = () => {
       label: 'Geospatial Analysis of Public Transportation Stops',
       time: "October 2023",
       imgSrc: "/projects/data/data.png",
-      detail: "/projects/viberight",
+      detail: "",
       url: "https://github.com/shihyihuang/MelbourneBusStops",
       skills: "QGIS · Docker · SQL · PostgreSQL",
     },
@@ -45,7 +45,7 @@ const Projects = () => {
       label: 'Android App',
       time: "May 2023",
       imgSrc: "/projects/android/android.jpg",
-      detail: "/projects/viberight",
+      detail: "",
       url: "",
       skills: "Git · Java · Android Studio · Firebase",
     },
@@ -155,7 +155,6 @@ const Projects = () => {
                     <motion.button 
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.8 }}
-                      // variant="contained"
                       onClick={handleNext}
                       className='mt-4 ml-3 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-info  hover:bg-accent '
                     >

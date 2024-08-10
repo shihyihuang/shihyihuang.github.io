@@ -1,16 +1,21 @@
 import React from 'react'
 
-export const metadata = {
-  title: "About - Claire",
-  description: "Know more about Claire",
-};
-
-const About = () => {
+const page = () => {
   return (
     <div>
-      About
+      <div className="diff w-full min-h-screen-minus-nav ">
+        <div className="diff-item-1">
+          <img alt="daisy" src="/life/lifeIntroPic2.png" />
+        </div>
+        <div className="diff-item-2">
+          <img
+            alt="daisy"
+            src="/life/lifeIntro.png" />
+        </div>
+        <div className="diff-resizer"></div>
+      </div>
     </div>
   )
 }
 
-export default About;
+export default page

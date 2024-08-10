@@ -1,14 +1,17 @@
 'use client';
 import React from 'react'
 import {Card, Stack, CardContent, Typography, Avatar, Rating} from '@mui/material';
+import { motion } from "framer-motion";
 
 interface TestimonialProps {
     name:string;
     position:string;
     content:string;
+    profileImage:string;
+    linkedinUrl:string;
 }
 
-const TestimonialCard: React.FC<TestimonialProps> = ({ name, position, content }) => {
+const TestimonialCard: React.FC<TestimonialProps> = ({ profileImage, name, position, content, linkedinUrl }) => {
 
   return (
     <div className='px-2'>
@@ -22,12 +25,23 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ name, position, content }
             <CardContent sx={{ flexShrink: 0, paddingBottom: 1 }}>
                 <div className="flex items-center">
                     <Stack direction="row" spacing={2}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <Avatar alt="profile photo" src={profileImage} />
                     </Stack>
                     <div className="px-3">
-                        <Typography variant="h6" component="div">
-                        {name}
-                        </Typography>
+                        <motion.a
+                        className='hover:text-neutral'
+                        whileHover={{
+                            scale: 1.3
+                        }}
+                        whileTap={{
+                            scale: 0.9
+                        }}
+                        href={`${linkedinUrl}`}
+                        target='_blank' rel='noreferrer'>
+                            <Typography variant="h6" >
+                                {name}
+                            </Typography>
+                        </motion.a>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         {position}
                         </Typography>
