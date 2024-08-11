@@ -14,6 +14,11 @@ const page = () => {
         </div>
         <div className="diff-resizer"></div>
       </div>
+      <div>
+        <img alt="daisy" src="/life/coffee.png" className='w-2/5' />
+        
+      </div>
+
     </div>
   )
 }

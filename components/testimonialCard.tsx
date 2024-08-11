@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 interface TestimonialProps {
     name:string;
     position:string;
-    content:string;
+    content:string[];
     profileImage:string;
     linkedinUrl:string;
 }
@@ -63,9 +63,12 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ profileImage, name, posit
                 borderRadius: '4px',
                 },
             }}>
-                <Typography variant="body2">
+                {content.map((paragraph, index) => (
+                <Typography key={index} variant="body2">{paragraph}</Typography>
+                ))}
+                {/* <Typography variant="body2">
                 {content}
-                </Typography>
+                </Typography> */}
             </CardContent>
         </Card>
     </div>
