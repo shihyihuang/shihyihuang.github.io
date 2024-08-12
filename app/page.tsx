@@ -29,6 +29,13 @@ export default function Home() {
     "If you’re looking for a trustworthy frontend engineer, she’s definitely on the top of my recommendation list!"]
   const content2 = ["even promote the best-performing videos to different marketing channels."]
 
+  const nikitaContent = ["I had the privilege of working with Claire on our master’s project, where she took the lead in developing VibeRight, a web application addressing body image concerns among teenagers. Claire’s leadership and technical skills were crucial to the project’s success. She expertly developed a React-based application and a robust serverless backend using Node.js on AWS Lambda, achieving an impressive 99.9% uptime. Her integration of DynamoDB and CloudFront ensured the system’s reliability and performance.",
+    "What sets Claire apart is her proactive approach to feedback and continuous improvement. She actively sought and incorporated mentor feedback, significantly enhancing the final product. Her rapid adaptation to new technologies and best practices was evident as she refined and optimized our work.",
+    "Claire also excelled as a mentor, sharing her expertise and guiding our team effectively. Her clear communication of complex concepts was invaluable to our success. Claire’s passion for using technology to solve real-world problems, combined with her proficiency in React.js, AWS, Java, SQL, and JavaScript, makes her a standout asset to any team. I highly recommend Claire for any role requiring technical excellence, leadership, and a commitment to ongoing learning."
+  ]
+
+  const wellsContent = ["I had the pleasure of working with Claire on our project, and she consistently impressed me with her responsibility and commitment to high-quality results. Her critical thinking skills enable her to identify root causes and find innovative solutions. Claire excels in planning and organization, ensuring our project stays on track. Additionally, her strong coding skills and dedication to self-learning allow her to adapt quickly and contribute effectively. Overall, Claire is a talented and valuable team member who I highly recommend for any future endeavors."]
+
   function arrayCeil(arr: any, number:any ) {
     const sorted = arr.sort((a: any, b: any) => a - b);
 
@@ -42,11 +49,11 @@ export default function Home() {
     return sorted[sorted.length - 1];
   }
 
-  const [heroImage, setHeroImage] = useState('hero-1920.jpg')
+  const [heroImage, setHeroImage] = useState('hero-1920.png')
   const imageSizes = [600, 1280, 1920]
   const { observe, unobserve, width, height, entry } = useDimensions({
       onResize: ({ observe, unobserve, width, height, entry }) => {
-          setHeroImage(`hero-${arrayCeil(imageSizes, width)}.jpg`)
+          setHeroImage(`hero-${arrayCeil(imageSizes, width)}.png`)
           unobserve(); // To stop observing the current target element
           observe(); // To re-start observing the current target element
       },
@@ -59,18 +66,20 @@ export default function Home() {
       {/* https://medium.com/designly/creating-a-modern-hero-image-using-nextjs-13-images-and-tailwind-css-746fb5c92541 */}
       <div
       ref={observe}
-      className="w-full min-h-screen-minus-nav flex items-center overflow-hidden relative bg-black flex-col justify-between">
+      className="w-full min-h-screen-minus-nav flex items-center overflow-hidden relative flex-col justify-between">
         <Image
           src={`/home/${heroImage}`}
+          // src={`/home/hero.png`}
           alt="Imag of Claire"
-          className="opacity-60 object-cover"
+          // className="opacity-60 object-cover"
           fill
         />
         <div className="flex-grow flex flex-col justify-center items-center px-3">
-          <h1 className=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg">Hey there! <br />
-              <span className="text-primary">This is Claire</span>
+          <h1 className=" text-center text-3xl md:text-5xl text-info font-bold drop-shadow-lg">Hey there! This is Claire 
+              {/* <span className="text-base-100">This is Claire</span> */}
           </h1>
-          <p className="mt-5 text-center text-lg text-white opacity-90"> A caffeine-fueled full-stack developer crafting code with a shot of creativity!</p>
+          <h2 className="mt-5 text-center text-2xl text-info opacity-90"> A full-stack developer!</h2>
+          {/* <p className="mt-5 text-center text-xl text-info opacity-90"> A caffeine-fueled full-stack developer crafting code with a shot of creativity!</p> */}
         </div>
         <div className="mb-16">
           <FlashingArrow />
@@ -110,15 +119,15 @@ export default function Home() {
             ease: "easeOut",
             x: { type: "spring", stiffness: 100 },
           }} >
-          <ul className='mx-6 mb-16' ref={ref}>
-            <TestimonialCard profileImage="/home/testimonial/thomas.jpeg" name="Thomas Ng" position="Senior Full Stack Developer | Web3 Developer" content={thomasContent} linkedinUrl="https://www.linkedin.com/in/thomas-ng-ka-ho/"/> 
-            <TestimonialCard profileImage="/home/testimonial/nikita.jpeg" name="Nikita Beniwal" position="Data Analyst" content={content2} linkedinUrl="https://www.linkedin.com/in/nikita-beniwal/"/> 
+          <ul className='mx-6 mb-16' ref={ref}> 
+            <TestimonialCard profileImage="/home/testimonial/thomas.jpeg" name="Thomas Ng" position="Senior Full Stack Developer | Web3 Developer" content={thomasContent} linkedinUrl="https://www.linkedin.com/in/thomas-ng-ka-ho/"/>
+            <TestimonialCard profileImage="/home/testimonial/nikita.jpeg" name="Nikita Beniwal" position="Data Analyst" content={nikitaContent} linkedinUrl="https://www.linkedin.com/in/nikita-beniwal/"/> 
             <TestimonialCard profileImage="/home/testimonial/mingze.jpeg" name="Mingze Li" position="Software Engineer" content={mingzeContent} linkedinUrl="https://www.linkedin.com/in/mingze-li-aa590a161/"/> 
-            <TestimonialCard profileImage="/home/testimonial/iris.jpeg" name="Iris Hsu" position="Business System Analyst | IT Project Management | UXUI Designer" content={content2} linkedinUrl="https://www.linkedin.com/in/iris-h-510812203/"/> 
-            <TestimonialCard profileImage="/home/testimonial/patty.jpeg" name="Patty Hung" position="Aspiring Software Developer" content={content2} linkedinUrl="https://www.linkedin.com/in/pch23/"/> 
-            <TestimonialCard profileImage="/home/testimonial/wells.jpeg" name="Wells Yu" position="Software Engineer | Web Developer" content={content2} linkedinUrl="https://www.linkedin.com/in/wells-yu/"/> 
+            {/* <TestimonialCard profileImage="/home/testimonial/iris.jpeg" name="Iris Hsu" position="Business System Analyst | IT Project Management | UXUI Designer" content={content2} linkedinUrl="https://www.linkedin.com/in/iris-h-510812203/"/>  */}
+            {/* <TestimonialCard profileImage="/home/testimonial/patty.jpeg" name="Patty Hung" position="Aspiring Software Developer" content={content2} linkedinUrl="https://www.linkedin.com/in/pch23/"/>  */}
+            <TestimonialCard profileImage="/home/testimonial/wells.jpeg" name="Wells Yu" position="Software Engineer | Web Developer" content={wellsContent} linkedinUrl="https://www.linkedin.com/in/wells-yu/"/> 
             <TestimonialCard profileImage="/home/testimonial/daniel.jpeg" name="Daniel Hu" position="Senior Software Engineer" content={danielContent} linkedinUrl="https://www.linkedin.com/in/iamdanielhu/"/> 
-            <TestimonialCard profileImage="/home/testimonial/crystal.jpeg" name="Crystal Yu" position="Software Engineer" content={content2} linkedinUrl="https://www.linkedin.com/in/ych-b577152a4/"/>           
+            {/* <TestimonialCard profileImage="/home/testimonial/crystal.jpeg" name="Crystal Yu" position="Software Engineer" content={content2} linkedinUrl="https://www.linkedin.com/in/ych-b577152a4/"/>            */}
           </ul>
 
       </motion.div>
