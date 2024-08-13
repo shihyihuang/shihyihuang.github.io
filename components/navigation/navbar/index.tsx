@@ -15,7 +15,7 @@ const Navbar = ({toggle} : {
     <div className="navbar bg-transparent px-4 sm:px-6 lg:px-8">
       <div className="navbar-start">
         <ul className="hidden md:flex menu menu-horizontal text-lg">
-          {['about', 'projects', 'contact'].map((item) => (
+          {['about', 'projects'].map((item) => (
           <motion.li key={item}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}>
@@ -33,6 +33,7 @@ const Navbar = ({toggle} : {
         </ul>
       </div>
       <div className="navbar-center">
+        {/* <img src="icon.png" alt="logo" className="w-12 h-12"/> */}
         <Link href='/' className="text-2xl bg-transparent border-none hover:bg-transparent">
           Claire Huang
         </Link>

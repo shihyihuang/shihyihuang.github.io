@@ -44,7 +44,7 @@ const Icon: React.FC<IconProps> = ({ name }) => {
         <FontAwesomeIcon
           icon={faAddressBook}
           className="text-[#113946] w-6 h-6"
-          style={{ fontSize: '1.25rem' }}
+          style={{ fontSize: '1.25rem', color: "#E43D12" }}
         />
       );
     case 'menu':
@@ -54,7 +54,7 @@ const Icon: React.FC<IconProps> = ({ name }) => {
     case 'closeSmall':
       return <FontAwesomeIcon icon={faXmark} size="lg" />;
     case 'scroll down':
-      return <FontAwesomeIcon icon={faAnglesDown} size="lg" style={{ color: "#fff" }} />;
+      return <FontAwesomeIcon icon={faAnglesDown} style={{ color: "#E43D12" }} />;
     case 'up':
       return <FontAwesomeIcon icon={faUpLong} size="lg" style={{ color: "#425664" }} />;
     case 'down':

@@ -2,6 +2,7 @@ import { Typography } from '@mui/material'
 import React from 'react'
 import '../style/about.css'
 import Box from '@mui/material/Box';
+import { motion } from 'framer-motion';
 
 
 const page = () => {
@@ -25,15 +26,23 @@ const page = () => {
           </h5>
           <img alt="beer" src="/life/beer.png" className='w-1/12 ml-5' />
       </div>
-      <div className='exercise-background flex items-center justify-center'>
-        <h5 className="text-xs md:text-3xl exercise-text-content text-center">
-          Enjoy outdoor activities and exercise <br/> (to indulge in more delicious food)
+
+      <div className='flex items-center justify-between'>
+        <img alt="exercise" src="/life/exerciseLeft.png" className='w-1/5'/>
+        <h5 className="text-xs md:text-3xl text-center">
+          Enjoy outdoor activities & exercise <br/> (to indulge in more delicious food)
         </h5>
+        <img alt="exercise" src="/life/exerciseRight.png" className='w-1/4' />
       </div>
-      <div className='travel-background flex items-center justify-center'>
-        <h5 className="text-xs md:text-3xl travel-text-content text-center">
+
+      <div >
+        <img alt="travel" src="/life/travelTop.png"           
+
+        />
+        <h5 className="text-xs md:text-3xl flex justify-center text-center mt-5 mb-3">
           Life is short and the world is wide!  <br/> Enjoy traveling, adventuring, and trying something new!
         </h5>
+        <img alt="travel" src="/life/travelBottom.png" />
       </div>
 
 
