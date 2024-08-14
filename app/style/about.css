@@ -1,45 +1,4 @@
-/* .exercise-background {
-    position: relative;
-    background-image: url('../../public/life/exerciseBackground.png');
-    background-size: cover;
-    background-repeat: no-repeat; 
-  }
 
-  .exercise-background-sm {
-    position: relative;
-    background-image: url('../../public/life/exerciseBackground.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-  }
-
-  .text-content {
-    position: relative;
-    z-index: 2;
-  }
-   */
-
-
-
-/* .exercise-background {
-    position: relative;
-    background-image: url('../../public/life/exerciseBackground2.png');
-    background-size: cover; 
-    background-repeat: no-repeat;
-  }
-  
-  @media (max-width: 768px) {
-    .exercise-background {
-      background-size: cover; 
-    }
-  }
-  
-  .exercise-text-content {
-    position: relative;
-    z-index: 2;
-  } */
 
   /* exercise */
    .exercise-background {
