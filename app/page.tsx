@@ -89,7 +89,7 @@ export default function Home() {
           }} >
 
               <ul className='mx-6 md:mx-12 ' ref={ref}> 
-                <TestimonialCard profileImage="/home/testimonial/thomas.jpeg" name="Thomas Ng" position="Senior Full Stack Developer | Web3 Developer" content={thomasContent} linkedinUrl="https://www.linkedin.com/in/thomas-ng-ka-ho/"/>
+                <TestimonialCard profileImage="/home/testimonial/thomas.jpeg" name="Thomas Ng" position="Full Stack Developer | Web3 Developer" content={thomasContent} linkedinUrl="https://www.linkedin.com/in/thomas-ng-ka-ho/"/>
                 <TestimonialCard profileImage="/home/testimonial/nikita.jpeg" name="Nikita Beniwal" position="Data Analyst" content={nikitaContent} linkedinUrl="https://www.linkedin.com/in/nikita-beniwal/"/> 
                 <TestimonialCard profileImage="/home/testimonial/mingze.jpeg" name="Mingze Li" position="Software Engineer" content={mingzeContent} linkedinUrl="https://www.linkedin.com/in/mingze-li-aa590a161/"/> 
                 <TestimonialCard profileImage="/home/testimonial/wells.jpeg" name="Wells Yu" position="Software Engineer | Web Developer" content={wellsContent} linkedinUrl="https://www.linkedin.com/in/wells-yu/"/> 

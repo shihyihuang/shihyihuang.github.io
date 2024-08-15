@@ -19,6 +19,11 @@ const config: Config = {
           },
         },
       },
+      spacing: {
+        'btn-sm': '25px',  // Example size for small
+        'btn-md': '40px',  // Example size for medium
+        'btn-lg': '45px',  // Example size for large
+      },
       colors: {
         'primary': '#EBE9E1', //background
         'secondary': '#D6536D', //dark pink

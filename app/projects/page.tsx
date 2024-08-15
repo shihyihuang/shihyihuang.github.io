@@ -3,7 +3,7 @@ import * as React from 'react';
 import Icon from '../../components/Icon';
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation'
-import { Typography } from '@mui/material';
+import { Typography, Tooltip } from '@mui/material';
 import {Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 import TimelineOppositeContent, {
   timelineOppositeContentClasses,
@@ -26,7 +26,7 @@ const Projects = () => {
       label: 'Xkeleton',
       time: "October 2023",
       imgSrc: "/projects/xkeleton/xkeleton.png",
-      detail: "",
+      detail: "projects/xkeleton",
       url: "https://github.com/shihyihuang/xkelentonXrayService",
       skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
     },
@@ -102,37 +102,41 @@ const Projects = () => {
               </Typography>
 
               {project.url == "" ? "" : 
-                <motion.a
-                  className='mr-4'
-                  whileHover={{
-                    scale: 1.3
-                  }}
-                  whileTap={{
-                    scale: 0.9
-                  }}
-                  href={`${project.url}`}
-                  target='_blank' rel='noreferrer'>
-                  <Icon name="upright" size={iconSize} color="#E43D12"/>
-                </motion.a>
+                <Tooltip title="open in new tab" placement="bottom-start" arrow>
+                  <motion.a
+                    className='mr-4'
+                    whileHover={{
+                      scale: 1.3
+                    }}
+                    whileTap={{
+                      scale: 0.9
+                    }}
+                    href={`${project.url}`}
+                    target='_blank' rel='noreferrer'>
+                    <Icon name="upright" size={iconSize} color="#E43D12"/>
+                  </motion.a>
+                </Tooltip>
               }
           
-              {project.detail == "" ? "" :             
-                <motion.button
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => {
-                  MyRouter.push(`/${project.detail}`)
-                }}
-                >
-                  <Icon name="circleInfo" size={iconSize} color="#E43D12"/>
-                </motion.button>
+              {project.detail == "" ? "" :    
+                <Tooltip title="more detail" placement="bottom-start" arrow>
+                  <motion.button
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => {
+                      MyRouter.push(`/${project.detail}`)
+                    }}
+                    >
+                    <Icon name="circleInfo" size={iconSize} color="#E43D12"/>
+                  </motion.button>
+                </Tooltip>         
               }
             </div>
             <img
               src={project.imgSrc}
               alt="project screenshot" 
               className='rounded-lg w-full md:w-5/6 lg:w-1/2 my-4 md:my-6 lg:my-8 ml-0 md:ml-3 lg:ml-4'/>
-            <Typography className='ml-0 md:ml-4 text-info text-sms md:text-lg lg:text-xl '>Skills : {project.skills}</Typography>
+            <Typography className='ml-0 md:ml-4 text-info text-sms md:text-lg lg:text-xl '>Development Stack : {project.skills}</Typography>
           </TimelineContent>
         </TimelineItem>
       ))}

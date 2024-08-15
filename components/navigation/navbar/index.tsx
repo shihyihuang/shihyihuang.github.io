@@ -49,16 +49,16 @@ const Navbar = ({toggle} : {
         <div className="hidden md:block">
           <Link href="/contact">
               <Tooltip title="Contact Me" placement="left-start" arrow>
-                  <motion.button
-                      className="btn btn-circle bg-primary border-transparent shadow-gray-400 shadow-md hover:border hover:bg-transparent hover:border-base-100"
-                      whileHover={{
-                          scale: 1.2
-                      }}
-                      whileTap={{
-                          scale: 0.9
-                      }}>
-                      <Icon name="contact" size="sm" color="#E43D12"/>
-                  </motion.button>
+                <motion.button
+                    className="btn btn-circle bg-primary border-transparent shadow-gray-400 shadow-md hover:border hover:bg-transparent hover:border-base-100"
+                    whileHover={{
+                        scale: 1.2
+                    }}
+                    whileTap={{
+                        scale: 0.9
+                    }}>
+                    <Icon name="contact" size="sm" color="#E43D12"/>
+                </motion.button>
               </Tooltip>
           </Link>
         </div>
