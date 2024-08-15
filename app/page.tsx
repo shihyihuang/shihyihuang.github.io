@@ -1,10 +1,9 @@
 'use client';
-import {Box, Card, Stack, CardContent, Typography, Avatar, Rating} from '@mui/material';
+import {Typography} from '@mui/material';
 import TestimonialCard from '@/components/testimonialCard';
 import { useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import "./style/testimonial.css";
-import Image from 'next/image'
 import useDimensions from 'react-cool-dimensions';
 import FlashingArrow from "@/components/flashingArrow";
 import TapCard from "@/components/tapCard";
@@ -36,40 +35,13 @@ export default function Home() {
 
   // https://medium.com/designly/creating-a-modern-hero-image-using-nextjs-13-images-and-tailwind-css-746fb5c92541
   // return the smallest image width from imageSizes that is larger than the element width
-  function arrayCeil(arr: any, number:any ) {
-    const sorted = arr.sort((a: any, b: any) => a - b);
-
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > number) {
-            return sorted[i];
-        }
-    }
-    // If no index found return the last element
-    return sorted[sorted.length - 1];
-  }
-
-  const [heroImage, setHeroImage] = useState('hero-1920.png')
-  const imageSizes = [600, 1280, 1920]
-  const { observe, unobserve, width, height, entry } = useDimensions({
-      onResize: ({ observe, unobserve, width, height, entry }) => {
-          setHeroImage(`hero-${arrayCeil(imageSizes, width)}.png`)
-          unobserve(); // stop observing the element
-          observe(); // restart observing the element
-      },
-  });
 
   return (
   <main>
     <div >
       {/* hero image section */}
       <div
-        // ref={observe}
         className="w-full min-h-screen-minus-nav hero-background flex items-center overflow-hidden relative flex-col justify-between">
-        {/* <Image
-          src={`/home/${heroImage}`}
-          alt="Imag of Claire"
-          fill
-        /> */}
         <div className="flex-grow flex flex-col justify-center items-center px-3">
           <h1 className="text-center text-2xl md:text-5xl text-info font-bold drop-shadow-lg"><br/>
               <span className="text-base-100">This is Claire,</span>
@@ -128,10 +100,6 @@ export default function Home() {
               </ul>
 
         </motion.div>
-        {/* <div className="flex justify-center">
-          <img alt="exercise" src="/home/testimonial.png"/>
-        </div> */}
-
       </div>
       <div className='my-20 px-3'>
         <motion.div 

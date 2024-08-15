@@ -1,17 +1,13 @@
 'use client';
 import * as React from 'react';
-import { useEffect, useState } from "react";
-import useDimensions from 'react-cool-dimensions';
 import Icon from '../../components/Icon';
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation'
-import { createTheme, ThemeProvider, Stepper, Step, StepLabel, Box, StepContent, Button, Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import {Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 import TimelineOppositeContent, {
   timelineOppositeContentClasses,
 } from '@mui/lab/TimelineOppositeContent';
-import { SizeProp } from '@fortawesome/fontawesome-svg-core';
-import dynamic from 'next/dynamic';
 import useWindowSize from '@/components/useWindowSize';
 
 const Projects = () => {
@@ -30,7 +26,7 @@ const Projects = () => {
       label: 'Xkeleton',
       time: "October 2023",
       imgSrc: "/projects/xkeleton/xkeleton.png",
-      detail: "projects/xkeleton",
+      detail: "",
       url: "https://github.com/shihyihuang/xkelentonXrayService",
       skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
     },
@@ -76,27 +72,6 @@ const Projects = () => {
     },
   ];
 
-  
-//   function determineSize(width: number): SizeProp {
-//     if (width <= 600) {
-//         return 'sm';
-//     } else if (width < 1280) {
-//         return 'lg'; 
-//     } else {
-//         return 'xl';
-//     }
-// }
-
-//   useEffect(() => {
-//     if (typeof window !== 'undefined') {
-//       const initialSize = determineSize(window.innerWidth);
-//       setIconSize(initialSize);
-//     }
-//   }, []);
-
-//   const initialSize = determineSize(window.innerWidth);
-//   const [iconSize, setIconSize] = useState<SizeProp>(initialSize);
-
   const iconSize = useWindowSize();
 
   return (
@@ -110,16 +85,19 @@ const Projects = () => {
     >
       {projectList.map((project, index) => (
         <TimelineItem className='my-8'>
-          <TimelineOppositeContent color="textSecondary">
-          <Typography className='mr-4 text-base-100 text-lg md:text-xl lg:text-2xl '>{project.time}</Typography>
+
+          <TimelineOppositeContent >
+            <Typography className='mr-0 md:mr-4 text-base-100 text-lg md:text-xl lg:text-2xl '>{project.time}</Typography>
           </TimelineOppositeContent>
+
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>
+
+          <TimelineContent >
             <div className='flex items-center '>
-              <Typography className="text-lg md:text-2xl ml-4 pr-3">
+              <Typography className="text-lg md:text-2xl ml-0 md:ml-4 pr-3">
               {project.label}
               </Typography>
 
@@ -153,8 +131,8 @@ const Projects = () => {
             <img
               src={project.imgSrc}
               alt="project screenshot" 
-              className='rounded-lg w-full md:w-5/6 lg:w-1/2 my-4 md:my-6 lg:my-8 ml-3 lg:ml-5'/>
-            <Typography className='ml-4 text-info text-sms md:text-lg lg:text-xl '>Skills : {project.skills}</Typography>
+              className='rounded-lg w-full md:w-5/6 lg:w-1/2 my-4 md:my-6 lg:my-8 ml-0 md:ml-3 lg:ml-4'/>
+            <Typography className='ml-0 md:ml-4 text-info text-sms md:text-lg lg:text-xl '>Skills : {project.skills}</Typography>
           </TimelineContent>
         </TimelineItem>
       ))}
@@ -165,55 +143,3 @@ const Projects = () => {
 
 
 export default Projects;
-
-// {projectList.map((project, index) => (
-//   <TimelineItem>
-//     <TimelineOppositeContent >
-//       <Typography className='ml-4 text-base-100 text-2xl'>{project.time}</Typography>
-//     </TimelineOppositeContent>
-//     <TimelineSeparator>
-//       <TimelineDot />
-//       <TimelineConnector />
-//     </TimelineSeparator>
-//     <TimelineContent>
-//       <div className='flex items-center '>
-//         <Typography className="text-2xl ml-4 mr-3">
-//           {project.label}
-//         </Typography>
-
-//         {project.url == "" ? "" : 
-//           <motion.a
-//             className='mr-4'
-//             whileHover={{
-//               scale: 1.3
-//             }}
-//             whileTap={{
-//               scale: 0.9
-//             }}
-//             href={`${project.url}`}
-//             target='_blank' rel='noreferrer'>
-//             <Icon name="upright"/>
-//           </motion.a>
-//         }
-        
-//         {project.detail == "" ? "" :             
-//           <motion.button
-//           className='shadow-md shadow-gray-400 rounded-full'
-//           whileHover={{ scale: 1.3 }}
-//           whileTap={{ scale: 0.9 }}
-//           onClick={() => {
-//             MyRouter.push(`/${project.detail}`)
-//           }}
-//           >
-//             <Icon name="circleInfo"/>
-//           </motion.button>
-//         }
-//       </div>
-      
-//       <img
-//         src={project.imgSrc}
-//         alt="project screenshot" 
-//         className='rounded-lg w-full md:w-1/2 my-4 ml-3 '/>
-//       <Typography className='ml-4 text-info'>Skills : {project.skills}</Typography>
-//     </TimelineContent>
-//   </TimelineItem>
