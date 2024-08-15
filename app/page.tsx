@@ -63,19 +63,18 @@ export default function Home() {
     <div >
       {/* hero image section */}
       <div
-        ref={observe}
-        className="w-full min-h-screen-minus-nav flex items-center overflow-hidden relative flex-col justify-between">
-        <Image
+        // ref={observe}
+        className="w-full min-h-screen-minus-nav hero-background flex items-center overflow-hidden relative flex-col justify-between">
+        {/* <Image
           src={`/home/${heroImage}`}
           alt="Imag of Claire"
-          // className="opacity-60 object-cover"
           fill
-        />
+        /> */}
         <div className="flex-grow flex flex-col justify-center items-center px-3">
           <h1 className="text-center text-3xl md:text-5xl text-info font-bold drop-shadow-lg"><br/>
-              <span className="text-base-100">Hey! This is Claire,</span>
+              <span className="text-base-100">This is Claire,</span>
           </h1>
-          <h2 className="mt-5 text-center text-2xl text-info opacity-90">a full-stack developer !</h2>
+          <h2 className="mt-5 text-center text-xl md:text-3xl text-info opacity-90">a full-stack developer !</h2>
         </div>
         <div className="mb-16">
           <FlashingArrow />

@@ -1,50 +1,26 @@
 
-  .skill-background {
+  .hero-background {
     position: relative;
-    background-image: url('../../public/home/skill.png');
+    background-image: url('../../public/home/hero-1920.png');
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 85vh; 
+    min-height: 96dvh; 
 
 
   }
   
-  @media (max-width: 768px) {
-    .skill-background {
-        min-height: 25vh;  
+  @media (max-width: 1280px) {
+    .hero-background {
+      background-image: url('../../public/home/hero-1280.png');
+        /* min-height: 25vh;   */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-background {
+      background-image: url('../../public/home/hero-600.png');
+        /* min-height: 25vh;   */
     }
   }
 
 
-  .testimonial-background {
-    position: relative;
-    background-image: url('../../public/home/testimonial.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh; 
-
-  }
-  
-  @media (max-width: 768px) {
-    .testimonial-background {
-        background-image: url('../../public/home/testimonial.png');
-        min-height: 25vh;  
-    }
-  }
-  
-  /* .skill-text-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;  
-    box-sizing: border-box;
-  } */
-  
-  /* @media (max-width: 768px) {
-    .skill-text-content {
-        position: relative;
-        align-self: flex-start;
-        padding-block: 20%;
-        max-width: 90%;
-        z-index: 2;
-      }
-  } */
