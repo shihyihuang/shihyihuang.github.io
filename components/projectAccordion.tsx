@@ -13,7 +13,7 @@ interface ProjectAccordionProps {
 const ProjectAccordion: React.FC<ProjectAccordionProps>  = ({ bgColor,titleColor, textColor, title, content }) => (
     <Accordion className={`${bgColor} ${textColor} p-2`}>
         <AccordionSummary
-            className={`!text-lg ${titleColor} font-black`}
+            className={`!text-lg ${titleColor} font-semibold`}
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`${title}-content`}
             id={`${title}-header`}

@@ -11,7 +11,10 @@ const page = () => {
         </div>
         <div className='min-h-screen-minus-nav flex flex-col justify-center mx-2'>
             <div className='flex flex-col lg:flex-row items-center justify-center mx-auto lg:w-4/5'>
-                <video autoPlay loop className="w-11/12 md:w-5/6 lg:w-1/2 shadow-lg rounded-2xl" src="https://viberight-demo.s3.ap-southeast-2.amazonaws.com/viberight.mp4" ></video>
+            <video autoPlay loop muted className="w-11/12 md:w-5/6 lg:w-1/2 shadow-lg rounded-2xl" 
+                src="https://viberight-demo.s3.ap-southeast-2.amazonaws.com/viberight.mp4">
+            </video>
+
                 {/* <video autoPlay loop className="w-11/12 md:w-5/6 lg:w-1/2 shadow-lg rounded-2xl" src="/projects/viberight/viberight.mp4" /> */}
                 <div className="mt-5 lg:mt-0 md:ml-8  flex justify-center">
                     <Card  className='!bg-transparent !border-transparent !shadow-none md:w-11/12 lg:w-md'>

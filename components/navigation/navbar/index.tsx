@@ -21,8 +21,8 @@ const Navbar = ({toggle} : {
             whileTap={{ scale: 0.9 }}>
             <Link 
               href={`/${item}`}
-              className={`border-neutral rounded-none hover:border-b-2 hover:text-neutral hover:font-extrabold focus:border-b-2 focus:text-neutral focus:font-extrabold w-auto px-1 mr-5 bg-transparent ${
-                pathName && pathName.includes(`/${item}`) ? 'border-b-2 text-neutral font-extrabold' : ''
+              className={`border-neutral rounded-none hover:border-b-2 hover:text-neutral hover:font-semibold focus:border-b-2 focus:text-neutral focus:font-semibold w-auto px-1 mr-5 bg-transparent ${
+                pathName && pathName.includes(`/${item}`) ? 'border-b-2 text-neutral font-semibold' : ''
               }`}
               style={{ backgroundColor: 'transparent' }}
             >

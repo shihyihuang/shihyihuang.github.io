@@ -140,7 +140,7 @@ const page: React.FC = () => {
             <form onSubmit={sendEmail}>
               <div className='card w-full md:max-w-xl shadow-lg shadow-gray-500 my-3 bg-neutral !max-w-full'>
                 <div className="card-body flex flex-col ">
-                  <h2 className="card-title !text-info !text-3xl">Contact Me</h2>
+                  <h2 className=" !text-info !text-3xl">Contact Me</h2>
                   <label className="input flex items-center gap-2 mt-2 bg-primary border-primary !text-info">
                     Name
                     <input 
