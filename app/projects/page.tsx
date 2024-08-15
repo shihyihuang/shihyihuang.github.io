@@ -1,12 +1,21 @@
 'use client';
 import * as React from 'react';
+import { useEffect, useState } from "react";
+import useDimensions from 'react-cool-dimensions';
 import Icon from '../../components/Icon';
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation'
 import { createTheme, ThemeProvider, Stepper, Step, StepLabel, Box, StepContent, Button, Paper, Typography } from '@mui/material';
-
+import {Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
+import TimelineOppositeContent, {
+  timelineOppositeContentClasses,
+} from '@mui/lab/TimelineOppositeContent';
+import { SizeProp } from '@fortawesome/fontawesome-svg-core';
+import dynamic from 'next/dynamic';
+import useWindowSize from '@/components/useWindowSize';
 
 const Projects = () => {
+
   const MyRouter = useRouter();
   const projectList = [
     {
@@ -26,7 +35,7 @@ const Projects = () => {
       skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
     },
     {
-      label: 'Geospatial Analysis of Public Transportation Stops',
+      label: 'Geospatial Analysis',
       time: "October 2023",
       imgSrc: "/projects/data/data.png",
       detail: "",
@@ -67,131 +76,144 @@ const Projects = () => {
     },
   ];
 
-  const [activeStep, setActiveStep] = React.useState(0);
-    
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
   
+//   function determineSize(width: number): SizeProp {
+//     if (width <= 600) {
+//         return 'sm';
+//     } else if (width < 1280) {
+//         return 'lg'; 
+//     } else {
+//         return 'xl';
+//     }
+// }
+
+//   useEffect(() => {
+//     if (typeof window !== 'undefined') {
+//       const initialSize = determineSize(window.innerWidth);
+//       setIconSize(initialSize);
+//     }
+//   }, []);
+
+//   const initialSize = determineSize(window.innerWidth);
+//   const [iconSize, setIconSize] = useState<SizeProp>(initialSize);
+
+  const iconSize = useWindowSize();
 
   return (
-      <Box  >
-        <Stepper 
-          activeStep={activeStep} orientation="vertical" className='m-10' 
-          sx={{
-            '& .MuiStepIcon-root': {
-              color: '#EFB11D', // inactive color
-              '&.Mui-active': {
-                color: '#E43D12', // active color
-              },
-              '&.Mui-completed': {
-                color: '#EFB11D', // completed color
-              },
-            },
-          }}
-        >
-          {projectList.map((project, index) => (
-            <Step key={project.label}>
-              <StepLabel>
-                
-                <div 
-                  style={{ backgroundColor: 'transparent'}}
-                  className={`flex items-center ${ index === activeStep ? "text-base-100" : "text-neutral"}`}
+    <Timeline
+      className='mx-3'
+      sx={{
+        [`& .${timelineOppositeContentClasses.root}`]: {
+          flex: 0.2,
+        },
+      }}
+    >
+      {projectList.map((project, index) => (
+        <TimelineItem className='my-8'>
+          <TimelineOppositeContent color="textSecondary">
+          <Typography className='mr-4 text-base-100 text-lg md:text-xl lg:text-2xl '>{project.time}</Typography>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <div className='flex items-center '>
+              <Typography className="text-lg md:text-2xl ml-4 pr-3">
+              {project.label}
+              </Typography>
+
+              {project.url == "" ? "" : 
+                <motion.a
+                  className='mr-4'
+                  whileHover={{
+                    scale: 1.3
+                  }}
+                  whileTap={{
+                    scale: 0.9
+                  }}
+                  href={`${project.url}`}
+                  target='_blank' rel='noreferrer'>
+                  <Icon name="upright" size={iconSize} color="#E43D12"/>
+                </motion.a>
+              }
+          
+              {project.detail == "" ? "" :             
+                <motion.button
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => {
+                  MyRouter.push(`/${project.detail}`)
+                }}
                 >
-                  <Typography 
-                    className="text-2xl ml-4 mr-3"                 
-                  >
-                    {project.label}
-                  </Typography>
-                  {project.url == "" ? "" : 
-                    <motion.a
-                      className='mr-4'
-                      whileHover={{
-                        scale: 1.3
-                      }}
-                      whileTap={{
-                        scale: 0.9
-                      }}
-                      href={`${project.url}`}
-                      target='_blank' rel='noreferrer'>
-                      <Icon name="upright"/>
-                    </motion.a>
-                  }
-                  {project.detail == "" ? "" :             
-                    <motion.button
-                    className='shadow-md shadow-gray-400 rounded-full'
-                    whileHover={{ scale: 1.3 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => {
-                      MyRouter.push(`/${project.detail}`)
-                    }}
-                    >
-                      <Icon name="circleInfo"/>
-                    </motion.button>
-                  }
-      
-                </div>
-                
-              </StepLabel>
-              <StepContent>
-                <Typography className='ml-4 text-info'>{project.time}</Typography>
-                <img
-                    src={project.imgSrc}
-                    alt="Tailwind-CSS-Avatar-component" 
-                    className='rounded-lg w-full md:w-1/2 my-4 ml-3 '/>
-                <Typography className='ml-4 text-info'>Skills : {project.skills}</Typography>
-
-                <Box sx={{ mb: 2 }}>
-                  <div>
-                  {index === projectList.length - 1 ? "" : 
-                    <motion.button 
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.8 }}
-                      onClick={handleNext}
-                      className='mt-4 ml-3 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-info  hover:bg-accent '
-                    >
-                      {index === projectList.length - 1 ? "" : <Icon name="down"/>}
-                    </motion.button>
-                  }
-
-                  {index === 0 ? "" : 
-                    <motion.button 
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.8 }}
-                      disabled={index === 0}
-                      onClick={handleBack}
-                      className='mt-4 ml-5 h-10 w-10 rounded-full shadow-md shadow-gray-400 bg-transparent border-2 border-info hover:bg-accent hover:border-none hover:color-primary'
-                    >
-                      <Icon name="up"/>
-                    </motion.button>
-                  }
-                  </div>
-                </Box>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === projectList.length && (
-          <Paper square elevation={0} sx={{ p: 3 }}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
-            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-              Reset
-            </Button>
-          </Paper>
-        )}
-      </Box>
-
-      );
-    }
+                  <Icon name="circleInfo" size={iconSize} color="#E43D12"/>
+                </motion.button>
+              }
+            </div>
+            <img
+              src={project.imgSrc}
+              alt="project screenshot" 
+              className='rounded-lg w-full md:w-5/6 lg:w-1/2 my-4 md:my-6 lg:my-8 ml-3 lg:ml-5'/>
+            <Typography className='ml-4 text-info text-sms md:text-lg lg:text-xl '>Skills : {project.skills}</Typography>
+          </TimelineContent>
+        </TimelineItem>
+      ))}
+    </Timeline>
+  );
+}
   
 
 
 export default Projects;
+
+// {projectList.map((project, index) => (
+//   <TimelineItem>
+//     <TimelineOppositeContent >
+//       <Typography className='ml-4 text-base-100 text-2xl'>{project.time}</Typography>
+//     </TimelineOppositeContent>
+//     <TimelineSeparator>
+//       <TimelineDot />
+//       <TimelineConnector />
+//     </TimelineSeparator>
+//     <TimelineContent>
+//       <div className='flex items-center '>
+//         <Typography className="text-2xl ml-4 mr-3">
+//           {project.label}
+//         </Typography>
+
+//         {project.url == "" ? "" : 
+//           <motion.a
+//             className='mr-4'
+//             whileHover={{
+//               scale: 1.3
+//             }}
+//             whileTap={{
+//               scale: 0.9
+//             }}
+//             href={`${project.url}`}
+//             target='_blank' rel='noreferrer'>
+//             <Icon name="upright"/>
+//           </motion.a>
+//         }
+        
+//         {project.detail == "" ? "" :             
+//           <motion.button
+//           className='shadow-md shadow-gray-400 rounded-full'
+//           whileHover={{ scale: 1.3 }}
+//           whileTap={{ scale: 0.9 }}
+//           onClick={() => {
+//             MyRouter.push(`/${project.detail}`)
+//           }}
+//           >
+//             <Icon name="circleInfo"/>
+//           </motion.button>
+//         }
+//       </div>
+      
+//       <img
+//         src={project.imgSrc}
+//         alt="project screenshot" 
+//         className='rounded-lg w-full md:w-1/2 my-4 ml-3 '/>
+//       <Typography className='ml-4 text-info'>Skills : {project.skills}</Typography>
+//     </TimelineContent>
+//   </TimelineItem>

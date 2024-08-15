@@ -99,7 +99,7 @@ export default function TapCard() {
                                         <motion.button 
                                             whileHover={{ scale: 1.3 }}
                                             whileTap={{ scale: 0.9 }}
-                                            className="float-right" onClick={() => setSelectedId(null)}> <Icon name="closeSmall" /> 
+                                            className="float-right" onClick={() => setSelectedId(null)}> <Icon name="closeSmall" size="lg" color="#425664"/> 
                                         </motion.button>
                                         <div className="p-5">
                                             <motion.h1 className="font-extrabold text-secondary text-xl">{items.find(item => item.id === selectedId)?.title}</motion.h1>

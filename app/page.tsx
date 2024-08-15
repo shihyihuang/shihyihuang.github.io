@@ -134,7 +134,7 @@ export default function Home() {
         </div> */}
 
       </div>
-      <div className='my-20'>
+      <div className='my-20 px-3'>
         <motion.div 
           initial={{ opacity: 1, scale: 1, y: 0 }}
           whileInView={{ opacity: 1, scale: 1, y: 30 }}

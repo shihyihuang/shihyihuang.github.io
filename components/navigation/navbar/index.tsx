@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Icon from "../../Icon";
 import {motion} from "framer-motion"
 import { usePathname } from 'next/navigation'
-import Button from './button';
+import Tooltip from '@mui/material/Tooltip';
 
 const Navbar = ({toggle} : {
     toggle: () => void
@@ -44,10 +44,23 @@ const Navbar = ({toggle} : {
           onClick={toggle}
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}>
-          <Icon name="menu"/>
+          <Icon name="menu" size="lg" color="#E43D12"/>
         </motion.button>
         <div className="hidden md:block">
-          <Button/>
+          <Link href="/contact">
+              <Tooltip title="Contact Me" placement="left-start" arrow>
+                  <motion.button
+                      className="btn btn-circle bg-primary border-transparent shadow-gray-400 shadow-md hover:border hover:bg-transparent hover:border-base-100"
+                      whileHover={{
+                          scale: 1.2
+                      }}
+                      whileTap={{
+                          scale: 0.9
+                      }}>
+                      <Icon name="contact" size="sm" color="#E43D12"/>
+                  </motion.button>
+              </Tooltip>
+          </Link>
         </div>
       </div>
     </div>

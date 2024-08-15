@@ -12,7 +12,7 @@ export default function BackButton() {
             whileTap={{ scale: 0.9 }}
             onClick={router.back}
             className="flex items-center">
-            <Icon name="back" />
+            <Icon name="back" size="xl" color="#E43D12"/>
             <span className='text-base-100 text-2xl px-3'>Back</span>
         </motion.button>
     </div>

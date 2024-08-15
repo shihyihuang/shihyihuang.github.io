@@ -5,20 +5,20 @@ import BackButton from '@/components/BackButton';
 
 const page = () => {
   return (
-    <div className='flex flex-col items-start justify-start relative mx-3'>
+    <div className='flex flex-col items-start justify-start relative mx-4'>
         <div className='w-full my-8 mx-3'>
             <BackButton />
         </div>
         <div className='min-h-screen-minus-nav flex flex-col justify-center mx-2'>
-            <div className='flex flex-col md:flex-row items-center justify-center mx-auto'>
-                <video autoPlay loop className="w-11/12 md:w-6/12 shadow-lg rounded-2xl" src="/projects/viberight/viberight.mp4" />
-                <div className="mt-5 md:mt-0 md:ml-8">
-                    <Card  className='!bg-transparent !border-transparent !shadow-none !max-w-md'>
+            <div className='flex flex-col lg:flex-row items-center justify-center mx-auto lg:w-4/5'>
+                <video autoPlay loop className="w-11/12 md:w-5/6 lg:w-1/2 shadow-lg rounded-2xl" src="/projects/viberight/viberight.mp4" />
+                <div className="mt-5 lg:mt-0 md:ml-8  flex justify-center">
+                    <Card  className='!bg-transparent !border-transparent !shadow-none md:w-11/12 lg:w-md'>
                         <CardContent>
                             <Typography className='!text-2xl !text-base-100 pb-5 '>
                             VibeRight
                             </Typography>
-                            <Typography className='!text-md !text-info' >
+                            <Typography className='text-sm md:text-lg !text-info' >
                             TARGET AUDIENCE :
                             <br />
                             Australian teenagers aged 14 to 17 who are dealing with body image concerns and are responsible for preparing their own meals.
@@ -35,7 +35,7 @@ const page = () => {
                     </Card>
                 </div>
             </div>
-            <div className="flex justify-center mb-10 md:mb-20 mt-5 md:mt-20 mx-4">
+            <div className="flex justify-center mb-10 md:mb-20 mt-5 lg:mt-20 mx-4">
                 <div className="md:w-10/12 rounded-xl">
                     <ProjectAccordion
                         bgColor="bg-warning"

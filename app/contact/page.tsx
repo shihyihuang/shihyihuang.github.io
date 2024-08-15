@@ -131,9 +131,9 @@ const page: React.FC = () => {
 
 
   return (
-      <div className='flex flex-col md:flex-row justify-center items-center min-h-screen-minus-nav p-4'>
+      <div className='flex flex-col xl:flex-row justify-center items-center min-h-screen-minus-nav'>
         {/* message card */}
-          <div>
+          <div className='px-8 pt-10 xl:pt-0'>
             <Typography className='!text-xl !mb-5 !text-info text-center'>
               Send your message now, let's make great things happen!
             </Typography>
@@ -180,11 +180,7 @@ const page: React.FC = () => {
                       scale: 0.95
                     }}>
                     {isLoading ? 'Sending...' : 'Send'}
-                    {/* <Icon name="send"/> */}
                   </motion.button>
-                  {/* {status  !== 'idle' && (
-                    <SnackBar content={snackBarMessage} status={status} />
-                  )} */}
                   {status === 'success' && <SnackBar content="Message sent successfully!" status={status}/>}
                   {status === 'error' && <SnackBar content="Failed to send message. Please try again!" status={status}/>}
                 </div>
@@ -193,7 +189,7 @@ const page: React.FC = () => {
           </div>
 
         {/* contact info */}
-        <div className=" my-4 md:ml-20 max-w-full overflow-x-hidden ">
+        <div className=" my-4 xl:ml-20 max-w-full overflow-x-hidden ">
           <Card  className='!bg-transparent !border-transparent !shadow-none'>
             <CardContent>
               <CountdownTimer status={status}/>

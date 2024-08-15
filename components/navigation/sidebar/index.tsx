@@ -28,7 +28,7 @@ const Sidebar = ({
           whileTap={{
             scale: 0.9
           }}>
-          <Icon name="close"/>
+          <Icon name="close" size="xl" color="#E43D12"/>
         </motion.button>
 
         <motion.div

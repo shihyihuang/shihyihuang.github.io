@@ -27,7 +27,7 @@ const config: Config = {
         'base-100': '#E43D12', //red
         'info': '#425664', //dark grey
         'warning': '#fee8ae', //yellow FEDD89
-        'success': '#edac11', //dark orange
+        'success': '#EFB11D', //dark orange
         // 'success': '#A1C398',
         // 'error': '#FA7070'
       }

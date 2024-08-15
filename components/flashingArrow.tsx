@@ -31,7 +31,7 @@ const FlashingArrow: React.FC = () => {
         alignItems: "center",
         height: "10%", // Set the height of the container
       }}>
-      <Icon name="scroll down" />
+      <Icon name="scroll down" size="sm" color="#E43D12"/>
     </motion.div>
   );
 };
