@@ -71,10 +71,10 @@ export default function Home() {
           fill
         /> */}
         <div className="flex-grow flex flex-col justify-center items-center px-3">
-          <h1 className="text-center text-3xl md:text-5xl text-info font-bold drop-shadow-lg"><br/>
+          <h1 className="text-center text-2xl md:text-5xl text-info font-bold drop-shadow-lg"><br/>
               <span className="text-base-100">This is Claire,</span>
           </h1>
-          <h2 className="mt-5 text-center text-xl md:text-3xl text-info opacity-90">a full-stack developer !</h2>
+          <h2 className="mt-2 text-center text-lg md:text-3xl text-info">a full-stack developer !</h2>
         </div>
         <div className="mb-16">
           <FlashingArrow />

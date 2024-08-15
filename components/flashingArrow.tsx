@@ -25,11 +25,11 @@ const FlashingArrow: React.FC = () => {
       variants={variants}
       animate="flash"
       style={{
-        fontSize: "4rem", // Set the size of the arrow
+        fontSize: "4rem",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "10%", // Set the height of the container
+        height: "10%", 
       }}>
       <Icon name="scroll down" size="sm" color="#E43D12"/>
     </motion.div>
