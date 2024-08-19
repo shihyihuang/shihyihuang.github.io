@@ -14,12 +14,12 @@ interface Item {
 export default function TapCard() {
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const items: Item[] = [
-        { id: 1, title: "Programming Languages", content: "Java, TypeScript, Python, C#, JavaScript, (ReactJS / NextJS / NodeJS)", background:"/skills/programming.jpg" },
-        { id: 2, title: "Databases", content: "SQL, (Oracle / PostgreSQL / MySQL), MongoDB", background:"/skills/data.jpg" },
-        { id: 3, title: "Cloud and Containerization", content: "AWS(Amazon Web Services), Oracle Cloud, Docker, Kubernetes", background:"/skills/cloud.jpg" },
-        { id: 4, title: "Web Development", content: "ASP.NET MVC, HTML, CSS, TailwindCSS, RESTful API Integration, MUI", background:"/skills/web.jpg" },
-        { id: 5, title: "Methodologies", content: "Agile, Waterfall, DevOps, TDD (Test-Driven Development)", background:"/skills/methodologies.jpg" },
-        { id: 6, title: "Others", content: "Git, Project Management, Figma, FCPX(Final Cut Pro X)", background:"/skills/others.jpg" },
+        { id: 1, title: "Programming Languages", content: "Java, TypeScript, Python, C#, JavaScript, (ReactJS / NextJS / NodeJS)", background:"/skills/programming.png" },
+        { id: 2, title: "Databases", content: "SQL, (Oracle / PostgreSQL / MySQL), MongoDB", background:"/skills/data.png" },
+        { id: 3, title: "Cloud and Containerization", content: "AWS(Amazon Web Services), Oracle Cloud, Docker, Kubernetes", background:"/skills/cloud.png" },
+        { id: 4, title: "Web Development", content: "ASP.NET MVC, HTML, CSS, TailwindCSS, RESTful API Integration, MUI", background:"/skills/web.png" },
+        { id: 5, title: "Methodologies", content: "Agile, Waterfall, DevOps, TDD (Test-Driven Development)", background:"/skills/methodologies.png" },
+        { id: 6, title: "Others", content: "Git, Project Management, Figma, FCPX(Final Cut Pro X)", background:"/skills/others.png" },
     ];
 
     return (

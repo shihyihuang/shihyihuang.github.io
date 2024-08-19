@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Projects | Android App - Claire",
+    title: "Android App | Projects - Claire",
     description: "Claire's Projects - Android App",
 }
 

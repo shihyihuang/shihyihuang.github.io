@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Projects | CloudSnap - Claire",
+    title: "CloudSnap | Projects - Claire",
     description: "Claire's Projects - CloudSnap",
 }
 

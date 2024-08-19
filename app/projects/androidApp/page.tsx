@@ -5,14 +5,14 @@ import { Card, CardContent, Typography} from '@mui/material';
 
 const page = () => {
   return (
-    <div className='flex flex-col items-center justify-center mx-4'>
+    <div className='flex flex-col items-center justify-center mx-5'>
 
         <div className='w-full mt-8 mx-3'>
             <BackButton />
         </div>
 
-        <div className='flex flex-col lg:flex-row items-center justify-center mx-auto lg:w-4/5 mt-10'>
-            <div className="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
+        <div className='flex flex-col lg:flex-row items-center justify-center mx-auto w-full lg:w-4/5 mt-10'>
+            <div className="carousel carousel-center bg-primary rounded-box max-w-md space-x-4 p-4">
                 <div className="carousel-item">
                     <img src="/projects/android/android1.png" className="rounded-box" />
                 </div>
@@ -47,7 +47,7 @@ const page = () => {
                     <img src="/projects/android/android11.png" className="rounded-box" />
                 </div>
             </div>
-            
+
             {/* intro */}
             <div className="mt-5 lg:mt-0 md:ml-8  flex justify-center">
                 <Card  className='!bg-transparent !border-transparent !shadow-none md:w-11/12 lg:w-md'>
@@ -71,7 +71,7 @@ const page = () => {
         </div>
 
         <div className="flex justify-center mb-10 md:mb-20 mt-5 lg:mt-20 mx-4">
-            <div className="w-11/12 md:w-10/12 lg:w-4/5 rounded-xl">
+            <div className="w-full md:w-10/12 lg:w-4/5 rounded-xl">
                 <ProjectAccordion
                     bgColor="bg-warning"
                     titleColor="text-neutral"
