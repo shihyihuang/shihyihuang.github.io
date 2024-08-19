@@ -8,7 +8,7 @@ export default function BackButton() {
   return (
     <div className='w-full px-2 md:px-[calc(8.33%)]'>
         <motion.button
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={router.back}
             className="flex items-center">

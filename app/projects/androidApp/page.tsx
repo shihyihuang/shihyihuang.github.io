@@ -50,20 +50,29 @@ const page = () => {
 
             {/* intro */}
             <div className="mt-5 lg:mt-0 md:ml-8  flex justify-center">
-                <Card  className='!bg-transparent !border-transparent !shadow-none md:w-11/12 lg:w-md'>
+                <Card  className='!bg-transparent !border-transparent !shadow-none md:w-11/12 lg:w-lg'>
                     <CardContent>
                         <Typography className='!text-2xl !text-base-100 pb-5 '>
                         PET Planning
                         </Typography>
                         <Typography className='text-sm md:text-lg !text-info' >
-                        <span className='text-lg md:text-xl !text-neutral'> | TARGET AUDIENCE | </span>
+                        <span className='text-lg md:text-xl !text-neutral'> - TARGET AUDIENCE - </span>
                         <br />
-                        The primary target audience for the PET Planning app consists of dog owners aged 15 to 45 who seek a user-friendly and efficient way to manage their pets’ daily care routines. <br/>
-                        The secondary audience includes dog care professionals such as veterinarians, groomers, and trainers who need a robust tool to manage multiple dogs' schedules and streamline communication with dog owners.
+                        The primary target audience for the PET Planning app consists of dog owners aged 15 to 45 who seek an efficient way to manage their pets’ daily care routines. <br/>
+                        The secondary audience includes dog care professionals such as veterinarians and groomers who need a robust tool to manage multiple dogs' schedules.
                         <br /><br />
-                        <span className='text-lg md:text-xl !text-neutral'> | PROBLEM STATEMENT | </span>
+                        <span className='text-lg md:text-xl !text-neutral'> - PROBLEM STATEMENT - </span>
                         <br />
                         Despite growth in the pet care market, existing apps often lack usability and dog-specific functionalities, featuring complex interfaces and insufficient customization for various dog breeds and professional requirements.
+                        <br /><br />
+                        <span className='text-lg md:text-xl !text-neutral'> - ABOUT PROJECT - </span>
+                        <br />
+                        Collaborated within a four-person team, where I implemented and coordinated the following features: 
+                        <br />
+                        - Implemented user registration using Firebase authentication.
+                        <br />
+                        - Developed schedule page using Room database, offering an overview of upcoming events, and implemented a navigation drawer accessible from the bottom menu. 
+                        <br />
                         </Typography>
                     </CardContent>
                 </Card>

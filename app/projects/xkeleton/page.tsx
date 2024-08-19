@@ -62,7 +62,7 @@ const page = () => {
                         Xkeleton
                         </Typography>
                         <Typography className='text-sm md:text-lg !text-info' >
-                        <span className='text-lg md:text-xl !text-neutral'> | Introduction | </span>
+                        <span className='text-lg md:text-xl !text-neutral'> - INTRODUCTION - </span>
                         <br />
                         A X-ray imaging service designed to optimize the interaction between patients and healthcare practitioners. The platform enables patients to book appointments, edit their profiles, and provide feedback, while allowing practitioners to upload X-ray images, view patient information, and send diagnostic reports. This streamlined service ensures efficient management of medical imaging needs, enhancing both patient care and the diagnostic process through a user-friendly online interface.
                         </Typography>

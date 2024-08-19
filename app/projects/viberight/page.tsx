@@ -22,11 +22,11 @@ const page = () => {
                             VibeRight
                             </Typography>
                             <Typography className='text-sm md:text-lg !text-info' >
-                            <span className='text-lg md:text-xl !text-neutral'> | TARGET AUDIENCE | </span>
+                            <span className='text-lg md:text-xl !text-neutral'> - TARGET AUDIENCE - </span>
                             <br />
                             Australian teenagers aged 14 to 17 who are dealing with body image concerns and are responsible for preparing their own meals.
                             <br /><br />
-                            <span className='text-lg md:text-xl !text-neutral'> | PROBLEM STATEMENT | </span>
+                            <span className='text-lg md:text-xl !text-neutral'> - PROBLEM STATEMENT - </span>
                             <br />
                             Body image has consistently ranked among the top four concerns for young Australians, 
                             with 30% expressing concern about it. Alarmingly, children, particularly those aged 14 to 18 years, fail to meet the daily recommended intake of the five main food groups. 

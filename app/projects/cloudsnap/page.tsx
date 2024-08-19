@@ -61,7 +61,7 @@ const page = () => {
                         CloudSnap
                         </Typography>
                         <Typography className='text-sm md:text-lg !text-info' >
-                        <span className='text-lg md:text-xl !text-neutral'> | Introduction | </span>
+                        <span className='text-lg md:text-xl !text-neutral'> - INTRODUCTION - </span>
                         <br />
                         A cloud-based online system that allows users to store and retrieve images
                         based on auto-generated tags. The focus of this project is to design a serverless application that enables
@@ -69,6 +69,13 @@ const page = () => {
                         tags the image with the objects detected in it, such as person, car, etc. Later on, clients can query images
                         based on the objects present in them. To achieve this, the application provides users with a list of image
                         URLs that include the specific queried objects.
+                        <br /><br />
+                        <span className='text-lg md:text-xl !text-neutral'> - ABOUT PROJECT - </span>
+                        <br />
+                        Collaborated within a four-person team, where I implemented the following features:<br />
+                        - Designed and implemented the user interface.<br />
+                        - Coordinated the integration of various API endpoints, ensuring seamless communication between the frontend and backend components deployed on AWS Lambda.<br />
+                        - Configured S3 static website hosting and implemented CloudFront to optimize content delivery.
                         </Typography>
                     </CardContent>
                 </Card>
