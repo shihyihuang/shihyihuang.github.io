@@ -22,7 +22,8 @@ export default function Home() {
     "We have collaborated on Android apps and website development where she has demonstrated her excellent understanding and mature skills in front-end development and mobile apps. Her knowledge about cloud services such as AWS and SQL have helped us to overcome many challenges, and her strong Python skills contributed significantly to our cloud development projects.",
     "Her easygoing nature, good sense of humor, and her ability to see the bright side of things, make her a perfect teammate to work with. Meanwhile, she is an excellent communicator who knows how to cooperate with others and always able to find the most appropriate way to deal with any potential conflicts during the project.",
     "I strongly recommend Claire for any job or position which requires a trustworthy, responsible, and passionate individual. She will be an asset wherever she goes and any employer would benefit greatly from securing her services."
- ];
+  ];
+  const irisContent = ["Claire is an exceptionally organised, motivated, and detail-oriented team player. Collaborating with her on various projects has always been a seamless experience, thanks to her unwavering determination and clear communication. She readily adapts to different situations and consistently delivers outstanding results. Claire’s willingness to embrace challenges and her openness to feedback have shaped her into a versatile professional, capable of thriving in complex projects. Her ability to collaborate effectively, share knowledge, and cultivate a positive work environment makes her an invaluable asset to any organisation."]
   const danielContent = ["I had the chance to work with Claire in an image-to-image search project. In the project, she demonstrated how innovative she is, and impressed us by always being able to put her ideas into action and implementation.",
     "Claire’s skills in running frontend projects is undoubtedly great. Being the only frontend developer in the team, she managed to bring us an amazing, user-friendly, yet stable frontend platform for our image search backend to integrate with.",
     "If you’re looking for a trustworthy frontend engineer, she’s definitely on the top of my recommendation list!"]
@@ -90,11 +91,11 @@ export default function Home() {
 
               <ul className='mx-6 md:mx-12 ' ref={ref}> 
                 <TestimonialCard profileImage="/home/testimonial/thomas.jpeg" name="Thomas Ng" position="Full Stack Developer | Web3 Developer" content={thomasContent} linkedinUrl="https://www.linkedin.com/in/thomas-ng-ka-ho/"/>
-                <TestimonialCard profileImage="/home/testimonial/mingze.jpeg" name="Mingze Li" position="Software Engineer" content={mingzeContent} linkedinUrl="https://www.linkedin.com/in/mingze-li-aa590a161/"/> 
+                <TestimonialCard profileImage="/home/testimonial/iris.jpeg" name="Iris Hsu" position="Business System Analyst | IT Project Management | UXUI Designer" content={irisContent} linkedinUrl="https://www.linkedin.com/in/iris-h-510812203/"/> 
                 <TestimonialCard profileImage="/home/testimonial/nikita.jpeg" name="Nikita Beniwal" position="Data Analyst" content={nikitaContent} linkedinUrl="https://www.linkedin.com/in/nikita-beniwal/"/> 
+                <TestimonialCard profileImage="/home/testimonial/mingze.jpeg" name="Mingze Li" position="Software Engineer" content={mingzeContent} linkedinUrl="https://www.linkedin.com/in/mingze-li-aa590a161/"/> 
                 <TestimonialCard profileImage="/home/testimonial/wells.jpeg" name="Wells Yu" position="Software Engineer | Web Developer" content={wellsContent} linkedinUrl="https://www.linkedin.com/in/wells-yu/"/> 
-                <TestimonialCard profileImage="/home/testimonial/daniel.jpeg" name="Daniel Hu" position="Senior Software Engineer" content={danielContent} linkedinUrl="https://www.linkedin.com/in/iamdanielhu/"/> 
-                {/* <TestimonialCard profileImage="/home/testimonial/iris.jpeg" name="Iris Hsu" position="Business System Analyst | IT Project Management | UXUI Designer" content={content2} linkedinUrl="https://www.linkedin.com/in/iris-h-510812203/"/>  */}
+                <TestimonialCard profileImage="/home/testimonial/daniel.jpeg" name="Daniel Hu" position="Software Engineer" content={danielContent} linkedinUrl="https://www.linkedin.com/in/iamdanielhu/"/> 
                 {/* <TestimonialCard profileImage="/home/testimonial/patty.jpeg" name="Patty Hung" position="Aspiring Software Developer" content={content2} linkedinUrl="https://www.linkedin.com/in/pch23/"/>  */}
                 {/* <TestimonialCard profileImage="/home/testimonial/crystal.jpeg" name="Crystal Yu" position="Software Engineer" content={content2} linkedinUrl="https://www.linkedin.com/in/ych-b577152a4/"/>            */}
               </ul>
