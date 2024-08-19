@@ -42,7 +42,7 @@ const Projects = () => {
       label: 'CloudSnap',
       time: "June 2023",
       imgSrc: "/projects/cloudsnap/cloudsnap.png",
-      detail: "",
+      detail: "projects/cloudsnap",
       url: "https://drive.google.com/file/d/12onexGD3swyudgGHhyXCPHUDvn242CTT/view?usp=embed_facebook",
       skills: "React.js · AWS · RESTful API · HTML · CSS",
     },
@@ -143,7 +143,5 @@ const Projects = () => {
     </Timeline>
   );
 }
-  
-
 
 export default Projects;

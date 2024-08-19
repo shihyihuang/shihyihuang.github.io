@@ -1,4 +1,3 @@
-// import React from 'react'
 'use client';
 import ProjectAccordion from '@/components/projectAccordion';
 import BackButton from '@/components/BackButton';
