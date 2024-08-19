@@ -50,7 +50,7 @@ const Projects = () => {
       label: 'Android App',
       time: "May 2023",
       imgSrc: "/projects/android/android.jpg",
-      detail: "",
+      detail: "projects/androidApp",
       url: "",
       skills: "Git · Java · Android Studio · Firebase",
     },

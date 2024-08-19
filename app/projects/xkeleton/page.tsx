@@ -2,6 +2,8 @@
 import ProjectAccordion from '@/components/projectAccordion';
 import BackButton from '@/components/BackButton';
 import React, { useState} from 'react';
+import { Card, CardContent, Typography} from '@mui/material';
+import {motion} from 'framer-motion';
 
 const page = () => {
 
@@ -12,6 +14,11 @@ const page = () => {
     { id: 'uploadImage', image: '/projects/xkeleton/xkeleton2.png' },
     { id: 'sendEmail', image: '/projects/xkeleton/xkeleton3.png' },
     { id: 'rating', image: '/projects/xkeleton/xkeleton4.png' },
+    { id: 'blockDiagram', image: '/projects/xkeleton/xkeleton5.png' },
+    { id: 'mockupPrototype1', image: '/projects/xkeleton/xkeleton6.png' },
+    { id: 'mockupPrototype2', image: '/projects/xkeleton/xkeleton7.png' },
+    { id: 'mockupPrototype3', image: '/projects/xkeleton/xkeleton8.png' },
+    { id: 'entityRelationDiagram', image: '/projects/xkeleton/xkeleton9.png' },
   ];
 
   const nextSlide = () => {
@@ -28,22 +35,44 @@ const page = () => {
           <BackButton />
       </div>
       
-      <div className='flex justify-center mx-2'>
-        <div className="relative w-5/6 md:w-4/5 lg:w-3/5 rounded-lg mt-10">
+      <div className='flex flex-col items-center justify-center mx-auto lg:w-5/6 '>
+        <div className="relative w-5/6 md:w-4/5 lg:w-4/5 rounded-lg mt-10">
           <img 
             src={slides[currentSlide].image} 
             className="w-full rounded-lg" 
             alt={slides[currentSlide].id}
           />
           <div className="absolute left-4 right-4 md:left-6 md:right-6 lg:left-10 lg:right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <button onClick={prevSlide} className="btn-circle carousel-button">❮</button>
-            <button onClick={nextSlide} className="btn-circle carousel-button">❯</button>
+            <motion.button 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={prevSlide} 
+            className="btn-circle carousel-button">❮</motion.button>
+            <motion.button 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={nextSlide} className="btn-circle carousel-button">❯</motion.button>
           </div>
         </div>
+
+        <div className="mt-5 lg:mt-10 md:ml-8  flex justify-center px-3">
+                <Card  className='!bg-transparent !border-transparent !shadow-none md:w-11/12'>
+                    <CardContent>
+                        <Typography className='!text-2xl !text-base-100 pb-5 '>
+                        Xkeleton
+                        </Typography>
+                        <Typography className='text-sm md:text-lg !text-info' >
+                        <span className='text-lg md:text-xl !text-neutral'> | Introduction | </span>
+                        <br />
+                        A X-ray imaging service designed to optimize the interaction between patients and healthcare practitioners. The platform enables patients to book appointments, edit their profiles, and provide feedback, while allowing practitioners to upload X-ray images, view patient information, and send diagnostic reports. This streamlined service ensures efficient management of medical imaging needs, enhancing both patient care and the diagnostic process through a user-friendly online interface.
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </div>
       </div>
 
-      <div className="flex justify-center mb-10 md:mb-20 mt-5 lg:mt-20 mx-4">
-                <div className="w-11/12 md:w-10/12 lg:w-3/5 rounded-xl">
+      <div className="flex justify-center mb-10 md:mb-20 mt-5 lg:mt-10 mx-4">
+                <div className="w-11/12 md:w-10/12 lg:w-3/4 rounded-xl">
                     <ProjectAccordion
                         bgColor="bg-warning"
                         titleColor="text-neutral"
