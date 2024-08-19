@@ -1,74 +1,46 @@
-import React from 'react'
+// import React from 'react'
+'use client';
 import ProjectAccordion from '@/components/projectAccordion';
+import BackButton from '@/components/BackButton';
+import React, { useState} from 'react';
 
 const page = () => {
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const slides = [
+    { id: 'interactiveTable', image: '/projects/xkeleton/xkeleton.png' },
+    { id: 'uploadImage', image: '/projects/xkeleton/xkeleton2.png' },
+    { id: 'sendEmail', image: '/projects/xkeleton/xkeleton3.png' },
+    { id: 'rating', image: '/projects/xkeleton/xkeleton4.png' },
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <div className="carousel w-5/6 md:w-4/5 lg:w-3/5 rounded-lg mt-10">
-        <div id="slide1" className="carousel-item relative w-full flex justify-center">
-          <img
-            src="/projects/xkeleton/xkeleton.png"
-            className="rounded-lg" />
-          <div className="absolute left-4 right-4 md:left-6 md:right-6  lg:left-10 lg:right-10  top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide4" className="btn-circle bg-neutral text-primary rounded-full p-3 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-            ❮
-            </a>
-            <a href="#slide2" className="btn-circle bg-neutral text-primary rounded-full p-3 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                        w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-              ❯
-            </a>
-          </div>
-        </div>
-
-        <div id="slide2" className="carousel-item relative w-full flex justify-center">
-          <img
-            src="/projects/xkeleton/xkeleton2.png"
-            className="rounded-lg" />
+    <div className='flex flex-col items-start justify-start relative mx-4'>
+      <div className='w-full mt-8 mx-3'>
+          <BackButton />
+      </div>
+      
+      <div className='flex justify-center mx-2'>
+        <div className="relative w-5/6 md:w-4/5 lg:w-3/5 rounded-lg mt-10">
+          <img 
+            src={slides[currentSlide].image} 
+            className="w-full rounded-lg" 
+            alt={slides[currentSlide].id}
+          />
           <div className="absolute left-4 right-4 md:left-6 md:right-6 lg:left-10 lg:right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide1" className="btn-circle bg-neutral text-primary rounded-full p-3 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-            ❮
-            </a>
-            <a href="#slide3" className="btn-circle bg-neutral text-primary rounded-full p-2 text-xs md:text-lg lg:text-xl  flex items-center justify-center
-                          w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-              ❯
-            </a>
+            <button onClick={prevSlide} className="btn-circle carousel-button">❮</button>
+            <button onClick={nextSlide} className="btn-circle carousel-button">❯</button>
           </div>
         </div>
-
-        <div id="slide3" className="carousel-item relative w-full flex justify-center">
-          <img
-            src="/projects/xkeleton/xkeleton3.png"
-            className="rounded-lg" />
-          <div className="absolute left-4 right-4 md:left-6 md:right-6 lg:left-10 lg:right-10 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide2" className="btn-circle bg-neutral text-primary rounded-full p-2 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-            ❮
-            </a>
-            <a href="#slide4" className="btn-circle bg-neutral text-primary rounded-full p-2 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                          w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-              ❯
-            </a>
-          </div>
-        </div>
-
-        <div id="slide4" className="carousel-item relative w-full flex justify-center">
-          <img
-            src="/projects/xkeleton/xkeleton4.png"
-            className="rounded-lg" />
-          <div className="absolute left-4 right-4 md:left-6 md:right-6  lg:left-10 lg:right-10  top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide3" className="btn-circle bg-neutral text-primary rounded-full p-3 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-            ❮
-            </a>
-            <a href="#slide1" className="btn-circle bg-neutral text-primary rounded-full p-3 text-xs md:text-lg lg:text-xl flex items-center justify-center
-                        w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg">
-              ❯
-            </a>
-          </div>
-        </div>
-
       </div>
 
       <div className="flex justify-center mb-10 md:mb-20 mt-5 lg:mt-20 mx-4">

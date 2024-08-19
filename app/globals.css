@@ -28,12 +28,6 @@ body {
   }
 }
 
-/* .coming-soon-regular {
-  font-family: "Coming Soon", cursive;
-  font-weight: 400;
-  font-style: normal;
-} */
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -56,21 +50,14 @@ body {
   width: 100%; 
 }
 
+.carousel-button {
+  @apply bg-neutral text-primary rounded-full flex items-center justify-center;
+  @apply p-3 text-xs md:text-lg lg:text-xl;
+  @apply w-btn-sm h-btn-sm md:w-btn-md md:h-btn-md lg:w-btn-lg lg:h-btn-lg;
+}
 
-/* .background-grocery {
-  position: relative;
-  min-height: calc(100vh - 60px);
-  background-image: url('../public/background/background_grocery.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-} */
-  /* opacity: 0.8; */
-
-/* .transparent-card {
-  background: rgba(255, 255, 255, 0.6); 
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  padding: 20px; 
-  margin: 10px; 
+/* .coming-soon-regular {
+  font-family: "Coming Soon", cursive;
+  font-weight: 400;
+  font-style: normal;
 } */
