@@ -47,7 +47,7 @@ export default function Home() {
           <h1 className="text-center text-2xl md:text-5xl text-info font-bold drop-shadow-lg"><br/>
               <span className="text-base-100">This is Claire,</span>
           </h1>
-          <h2 className="mt-2 text-center text-lg md:text-3xl text-info">a full-stack developer !</h2>
+          <h2 className="mt-2 text-center text-lg md:text-3xl text-info">a Software Engineer !</h2>
         </div>
         <div className="mb-16">
           <FlashingArrow />

@@ -28,7 +28,7 @@ const Projects = () => {
       imgSrc: "/projects/xkeleton/xkeleton.png",
       detail: "projects/xkeleton",
       url: "https://github.com/shihyihuang/xkelentonXrayService",
-      skills: "C# · ASP.NET MVC · MS SQL · Web Security (XSS/CSRF protection) · Role-Based Authentication · CRUD Operations · API Integration",
+      skills: "C# · ASP.NET MVC · MS SQL · Web Security · API Integration",
     },
     {
       label: 'Geospatial Analysis',
